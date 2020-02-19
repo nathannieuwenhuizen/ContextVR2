@@ -31,6 +31,11 @@ public class VRGrabber : MonoBehaviour
     [Range(0.01f, 1f)]
     [SerializeField]
     private float closeInfo;
+
+    [Range(0f, .1f)]
+    [SerializeField]
+    private float scaleSpeed = 0.1f;
+
     void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -63,6 +68,19 @@ public class VRGrabber : MonoBehaviour
             grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position, Time.deltaTime * moveToHandSpeed);
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public void ScaleObject(float val)
+    {
+        if (grabbedObject == null){ return; }
+
+        Vector3 tempScale = grabbedObject.transform.localScale;
+
+        tempScale.x = (Mathf.Max(0.1f, tempScale.x + scaleSpeed * val));
+        tempScale.y = (Mathf.Max(0.1f, tempScale.y + scaleSpeed * val));
+        tempScale.z = (Mathf.Max(0.1f, tempScale.z + scaleSpeed * val));
+
+        grabbedObject.transform.localScale = tempScale;
     }
 
     public void Release()

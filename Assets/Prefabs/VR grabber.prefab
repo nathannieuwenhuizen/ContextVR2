@@ -228,6 +228,7 @@ MonoBehaviour:
   moveToHandSpeed: 10
   grabPointIndicator: {fileID: 1612000869126876626}
   closeInfo: 0.01
+  scaleSpeed: 0.1
 --- !u!114 &1391226563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +243,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerAction:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  scaleAction:
+    actionPath: /actions/buggy/in/Steering
     needsReinit: 0
   handType: 1
   grabber: {fileID: 2268717742948853351}
