@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class VRGrabber : MonoBehaviour
 {
     private bool grabbed = false;
@@ -112,6 +111,7 @@ public class VRGrabber : MonoBehaviour
             Release();
         }
     }
+
 
     void OnDrawGizmosSelected()
     {
