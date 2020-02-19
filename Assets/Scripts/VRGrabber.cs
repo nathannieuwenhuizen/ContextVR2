@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
+
 public class VRGrabber : MonoBehaviour
 {
+    [SerializeField]
     private bool grabbed = false;
     private GameObject grabbedObject;
     private LineRenderer lr;
 
+    [Header("pull info")]
     [Range(1, 50)]
     [SerializeField]
     private float grabDistance = 50f;
@@ -22,6 +27,10 @@ public class VRGrabber : MonoBehaviour
     [SerializeField]
     private GameObject grabPointIndicator;
 
+    [Header("close info")]
+    [Range(0.01f, 1f)]
+    [SerializeField]
+    private float closeInfo;
     void Start()
     {
         lr = GetComponent<LineRenderer>();
@@ -31,11 +40,17 @@ public class VRGrabber : MonoBehaviour
     {
         if (Grabbed) { return;  }
 
-        GameObject focusedObject = RayCastedObject();
-        if (focusedObject == null) { return; }
+        //search for the collider
+        GameObject focusedObject = SphereCastedObject();
+        if (focusedObject == null)
+        {
+            focusedObject = RayCastedObject();
+        }
 
-        Grabbed = true;
+        if (focusedObject == null) { return; }
+        
         grabbedObject = focusedObject;
+        Grabbed = true;
 
         grabbedObject.transform.parent = transform;
         StartCoroutine(MoveToGrabber());
@@ -58,6 +73,19 @@ public class VRGrabber : MonoBehaviour
         grabbedObject.transform.parent = null;
     }
 
+    private List<Collision> colliders = new List<Collision>();
+    public List<Collision> GetColliders() { return colliders; }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!colliders.Contains(other)) { colliders.Add(other); }
+    }
+    private void OnCollisionExit(Collision other)
+    {
+        colliders.Remove(other);
+    }
+
+
     public GameObject RayCastedObject()
     {
         RaycastHit objectHitHover;
@@ -68,19 +96,38 @@ public class VRGrabber : MonoBehaviour
             lr.enabled = true;
             lr.SetPosition(0, transform.position);
             lr.SetPosition(1, grabPointIndicator.transform.position);
-            if (objectHitHover.collider.tag == "Grabable")
+            if (objectHitHover.collider.tag == Tags.GRABABLE)
             {
                 grabPointIndicator.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
                 return objectHitHover.collider.gameObject;
-            } else
+            }
+            else
             {
                 grabPointIndicator.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
             }
-        } else
+        }
+        else
         {
             grabPointIndicator.SetActive(false);
             lr.enabled = false;
         }
+        return null;
+    }
+    public GameObject SphereCastedObject()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, closeInfo);
+
+        //i dont know if this works...
+        hitColliders.OrderBy(a => Vector3.Distance(transform.position, a.transform.position));
+
+        foreach (Collider col in hitColliders)
+        {
+            if (col.tag == Tags.GRABABLE && col.bounds.Contains(transform.position))
+            {
+                return col.gameObject;
+            }
+        }
+        
         return null;
     }
 
@@ -98,7 +145,14 @@ public class VRGrabber : MonoBehaviour
     {
         if (!grabbed)
         {
-            RayCastedObject();
+            if (SphereCastedObject() == null)
+            {
+                RayCastedObject();
+            } else
+            {
+                lr.enabled = false;
+                grabPointIndicator.SetActive(false);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.G))

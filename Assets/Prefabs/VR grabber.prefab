@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1612000869126876626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 2268717742948853345}
   m_RootOrder: 0
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2268717742948853350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.426, y: 0.24000001, z: -0.39254177}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7260423840660206862}
@@ -163,7 +163,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.07236862
+        value: 0.039470673
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -222,10 +222,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083c07c80a4ca7243a7034341127015c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabbed: 0
   grabDistance: 50
   holdDistance: 0.1
   moveToHandSpeed: 10
   grabPointIndicator: {fileID: 1612000869126876626}
+  closeInfo: 0.01
 --- !u!114 &1391226563
 MonoBehaviour:
   m_ObjectHideFlags: 0
