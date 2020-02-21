@@ -26,17 +26,7 @@ public class UIBeam : MonoBehaviour {
     }
 
     private void Update() {
-        float targetLength = LRLength;
-
-        RaycastHit hit = CreateRaycast(targetLength);
-
-        Vector3 endPos = transform.position + transform.forward * targetLength;
-
-        if (hit.collider != null) endPos = hit.point;
-        grabPointIndicator.transform.position = endPos;
-
-        lr.SetPosition(0,transform.position);
-        lr.SetPosition(1, endPos);
+        if (held) drawLine();
     }
 
     public void Press() {
@@ -62,6 +52,20 @@ public class UIBeam : MonoBehaviour {
         Ray ray = new Ray(transform.position,transform.forward);
         Physics.Raycast(ray,out hit, length);
         return hit;
+    }
+
+    private void drawLine() {
+        float targetLength = LRLength;
+
+        RaycastHit hit = CreateRaycast(targetLength);
+
+        Vector3 endPos = transform.position + transform.forward * targetLength;
+
+        if (hit.collider != null) endPos = hit.point;
+        grabPointIndicator.transform.position = endPos;
+
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, endPos);
     }
 
     //IEnumerator MoveToGrabber() {
