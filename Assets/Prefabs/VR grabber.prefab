@@ -89,8 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2268717742948853345}
   - component: {fileID: 2268717742948853344}
-  - component: {fileID: 2268717742948853351}
-  - component: {fileID: 1391226563}
+  - component: {fileID: 115257590}
+  - component: {fileID: 115257592}
+  - component: {fileID: 115257593}
   m_Layer: 0
   m_Name: VR grabber
   m_TagString: Untagged
@@ -154,7 +155,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 5}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -210,7 +211,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &2268717742948853351
+--- !u!114 &115257590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,33 +220,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 2268717742948853350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 083c07c80a4ca7243a7034341127015c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabbed: 0
-  grabDistance: 50
-  holdDistance: 0.1
-  moveToHandSpeed: 10
-  grabPointIndicator: {fileID: 1612000869126876626}
-  closeInfo: 0.01
-  scaleSpeed: 0.1
---- !u!114 &1391226563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2268717742948853350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91573f9a46f91040a8a45f9514be2e8, type: 3}
+  m_Script: {fileID: 11500000, guid: cb6e327936f82ed4791df361a5bfa303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
+  holdAction:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
   scaleAction:
     actionPath: /actions/buggy/in/Steering
     needsReinit: 0
   handType: 1
-  grabber: {fileID: 2268717742948853351}
+  UIBeam: {fileID: 115257593}
+  grabber: {fileID: 115257592}
+--- !u!114 &115257592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2268717742948853350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3faf4a0e8f55d6489d2646045457124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbed: 0
+  closeInfo: 0
+  scaleSpeed: 0.1
+--- !u!114 &115257593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2268717742948853350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce9da3a3ac6f9042a94614ccbd13d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbed: 0
+  grabDistance: 50
+  holdDistance: 1
+  moveToHandSpeed: 2
+  grabPointIndicator: {fileID: 1612000869126876626}
+  closeInfo: 0
