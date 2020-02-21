@@ -8,6 +8,9 @@ public class HairObject : MonoBehaviour
     public List<Collision> collissions;
     private Transform head;
 
+    private Vector3 oldPos;
+    private Vector3 deltaPos;
+    private float throwValue = 1;
     public bool Grabbed
     {
         get { return grabbed; }
@@ -23,10 +26,16 @@ public class HairObject : MonoBehaviour
     }
     private void Start()
     {
+        oldPos = transform.position;
         collissions = new List<Collision>();
     }
     private void Update()
     {
+        if (grabbed)
+        {
+            deltaPos = (transform.position - oldPos) * Time.deltaTime;
+            oldPos = transform.position;
+        }
         Debug.Log("Collissions length: " + collissions.Count);
     }
     public void Lock(bool value)
@@ -41,6 +50,7 @@ public class HairObject : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.None;
             }
+            rb.velocity = deltaPos * throwValue;
             rb.isKinematic = false;
         }
     }
