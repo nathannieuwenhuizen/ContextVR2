@@ -11,6 +11,7 @@ public class HairObject : MonoBehaviour
     private Vector3 oldPos;
     private Vector3 deltaPos;
     private float throwValue = 100;
+    private float maxThrow = 500;
     public bool Grabbed
     {
         get { return grabbed; }
@@ -51,7 +52,7 @@ public class HairObject : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.None;
             }
-            rb.velocity = deltaPos * throwValue;
+            rb.velocity = deltaPos * (Mathf.Min(maxThrow, throwValue) * 1000);
             rb.isKinematic = false;
             Grabbed = value;
         }
@@ -72,7 +73,7 @@ public class HairObject : MonoBehaviour
             {
                 if (parent.transform.tag == Tags.HEAD)
                 {
-                    head = parent;
+                    head = collision.transform;
                     //add hair children
                     collissions.Add(collision);
 
