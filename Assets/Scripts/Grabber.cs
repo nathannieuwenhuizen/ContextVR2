@@ -9,9 +9,6 @@ public class Grabber : MonoBehaviour {
     [SerializeField] private bool grabbed = false;
     private GameObject grabbedObject;
 
-    [Header("close info")] [Range(0.01f, 1f)]
-    [SerializeField] private float closeInfo;
-
     [Range(0f, .1f)]
     [SerializeField] private float scaleSpeed = 0.1f;
 
@@ -19,15 +16,18 @@ public class Grabber : MonoBehaviour {
         if (Grabbed) { return;  }
 
         //search for the collider
-        GameObject focusedObject = SphereCastedObject(Tags.GRABABLE);
+        GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
         if (focusedObject == null) { return; }
         
         grabbedObject = focusedObject;
         Grabbed = true;
         grabbedObject.transform.parent = transform;
 
-        Rigidbody grabbedRB = grabbedObject.GetComponent<Rigidbody>();
-        if (grabbedRB != null) grabbedRB.isKinematic = true;
+        if (grabbedObject.GetComponent<HairObject>() == null)
+        {
+            grabbedObject.AddComponent<HairObject>();
+        }
+        grabbedObject.GetComponent<HairObject>().Lock(true);
     }
 
     public void Release() {
@@ -36,31 +36,22 @@ public class Grabber : MonoBehaviour {
 
         Rigidbody grabbedRB = grabbedObject.GetComponent<Rigidbody>();
 
-        //no other controller grabs it
+        //no other controller grabs it, so you can do things, else ignore.
         if (grabbedObject.transform.parent == transform) 
         {
             grabbedObject.transform.parent = null;
-
-            GameObject collidedHead = SphereCastedObject(Tags.HEAD);
-            GameObject collidedHeadFromHair = SphereCastedObject(Tags.GRABABLE);
-            if (collidedHeadFromHair != null)
+            
+            if (grabbedObject.GetComponent<HairObject>().AttachedAtHead)
             {
-
-            }
-
-            if (collidedHead != null)
-            {
-                grabbedObject.transform.parent = collidedHead.transform;
-            } else if (collidedHeadFromHair != null)
-            {
-                grabbedObject.transform.parent = collidedHeadFromHair.transform;
-            }
+                grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().Head;
+            } 
             else
             {
                 //set gravity on
                 if (grabbedRB != null)
                 {
-                    grabbedRB.isKinematic = false;
+                    grabbedObject.GetComponent<HairObject>().Lock(false);
+
                 }
             }
         }
@@ -78,18 +69,31 @@ public class Grabber : MonoBehaviour {
         grabbedObject.transform.localScale = tempScale;
     }
 
-    public GameObject SphereCastedObject(string _tag) {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, closeInfo);
+    public GameObject SphereCastedObject(string _tag, Transform _transform) {
+
+        
+        Collider[] hitColliders;
+        if (_transform.GetComponent<BoxCollider>())
+        {
+            hitColliders = Physics.OverlapBox(_transform.position, _transform.GetComponent<BoxCollider>().size, _transform.rotation);
+        }
+        else
+        {
+            hitColliders = Physics.OverlapSphere(_transform.position, 0);
+        }
+
 
         //i dont know if this works...
-        hitColliders.OrderBy(a => Vector3.Distance(transform.position, a.transform.position));
+        hitColliders.OrderBy(a => Vector3.Distance(_transform.position, a.transform.position));
 
         foreach (Collider col in hitColliders) {
-            if (col.tag == _tag && col.bounds.Contains(transform.position)) {
+            
+            if (col.tag == _tag && col.bounds.Contains(_transform.position)) {
+                Debug.Log("col object tag: " + col.tag);
                 return col.gameObject;
             }
         }
-        
+        Debug.Log("no object tag");
         return null;
     }
 
