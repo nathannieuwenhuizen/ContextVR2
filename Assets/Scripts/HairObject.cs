@@ -10,8 +10,8 @@ public class HairObject : MonoBehaviour
 
     private Vector3 oldPos;
     private Vector3 deltaPos;
-    private float throwValue = 100;
-    private float maxThrow = 500;
+    private float throwValue = 10;
+    private float maxThrow = 10;
     public bool Grabbed
     {
         get { return grabbed; }
