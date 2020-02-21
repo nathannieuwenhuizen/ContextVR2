@@ -10,7 +10,7 @@ public class HairObject : MonoBehaviour
 
     private Vector3 oldPos;
     private Vector3 deltaPos;
-    private float throwValue = 1;
+    private float throwValue = 100;
     public bool Grabbed
     {
         get { return grabbed; }
@@ -33,6 +33,7 @@ public class HairObject : MonoBehaviour
     {
         if (grabbed)
         {
+            Debug.Log("delta pos: " + deltaPos);
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
             oldPos = transform.position;
         }
@@ -52,6 +53,7 @@ public class HairObject : MonoBehaviour
             }
             rb.velocity = deltaPos * throwValue;
             rb.isKinematic = false;
+            Grabbed = value;
         }
     }
     private void OnCollisionEnter(Collision collision)
