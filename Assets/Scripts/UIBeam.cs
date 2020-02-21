@@ -5,56 +5,45 @@ using System;
 using System.Linq;
 
 public class UIBeam : MonoBehaviour {
-    [SerializeField]
-    private bool grabbed = false;
+
+    private bool held;
     private GameObject grabbedObject;
     private LineRenderer lr;
 
-    [Header("pull info")]
-    [Range(1, 50)]
-    [SerializeField]
-    private float grabDistance = 50f;
+    [Header("pull info")] [Range(1, 50)]
+    [SerializeField] private float grabDistance = 50f;
 
     [Range(0.1f, 5f)]
-    [SerializeField]
-    private float holdDistance = 1f;
+    [SerializeField] private float holdDistance = .1f;
 
     [Range(0.1f, 10f)]
-    [SerializeField]
-    private float moveToHandSpeed = 2f;
+    [SerializeField] private float moveToHandSpeed = 2f;
 
-    [SerializeField]
-    private GameObject grabPointIndicator;
+    [SerializeField] private GameObject grabPointIndicator;
 
-    [Header("close info")]
-    [Range(0.01f, 1f)]
-    [SerializeField]
-    private float closeInfo;
 
     void Start() {
         lr = GetComponent<LineRenderer>();
     }
 
     public void Press() {
-        if (Grabbed) { return;  }
-
-        //search for the collider
+        if (held) { return;  }
         GameObject focusedObject = RayCastedObject();
 
         if (focusedObject == null) { return; }
         
         grabbedObject = focusedObject;
-        Grabbed = true;
+        held = true;
         StartCoroutine(MoveToGrabber());
     }
 
     public void Release() {
-        if (!Grabbed) { return; }
-        Grabbed = false;
+        if (!held) { return; }
+        held = false;
     }
 
     IEnumerator MoveToGrabber() {
-        while (Vector3.Distance(grabbedObject.transform.position, transform.position) > holdDistance && Grabbed) {
+        while (Vector3.Distance(grabbedObject.transform.position, transform.position) > holdDistance && held) {
             grabbedObject.transform.position = Vector3.Lerp(grabbedObject.transform.position, transform.position, Time.deltaTime * moveToHandSpeed);
             yield return new WaitForFixedUpdate();
         }
@@ -77,29 +66,8 @@ public class UIBeam : MonoBehaviour {
             }
         }
         else {
-            grabPointIndicator.SetActive(false);
             lr.enabled = false;
         }
         return null;
-    }
-
-    public bool Grabbed {
-        get { return grabbed; }
-        set {
-            grabbed = value;
-            lr.enabled = !value;
-            grabPointIndicator.SetActive(!value);
-        }
-    }
-
-    void Update() {
-        if (!grabbed) {
-            if (null == null) {
-                RayCastedObject();
-            } else {
-                lr.enabled = false;
-                grabPointIndicator.SetActive(false);
-            }
-        }
     }
 }
