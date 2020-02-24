@@ -22,14 +22,14 @@ public class UIBeam : MonoBehaviour {
 
     private void Update() {
         if (held) drawLine();
-        lr.enabled = (eventSystem.currentCamera == cam) ? true : false;
+        lr.enabled = (eventSystem.currentCamera == cam && held) ? true : false;
     }
 
     public void Press() {
         if (held) { return; }
 
         held = true;
-        lr.enabled = true;
+        grabPointIndicator.SetActive(true);
         eventSystem.setCam(cam);
         eventSystem.ProcessPress();
     }
@@ -38,7 +38,7 @@ public class UIBeam : MonoBehaviour {
         if (!held) { return; }
 
         held = false;
-        lr.enabled = false;
+        grabPointIndicator.SetActive(false);
         eventSystem.ProcessRelease();
     }
 
