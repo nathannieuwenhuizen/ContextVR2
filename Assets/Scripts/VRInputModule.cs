@@ -59,4 +59,9 @@ public class VRInputModule : BaseInputModule {
         data.pointerPress = null;
         data.rawPointerPress = null;
     }
+
+    public void setCam(Camera cam) {
+        currentCamera = cam;
+        canvas.worldCamera = cam;
+    }
 }

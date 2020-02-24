@@ -22,6 +22,7 @@ public class UIBeam : MonoBehaviour {
 
     private void Update() {
         if (held) drawLine();
+        lr.enabled = (eventSystem.currentCamera == cam) ? true : false;
     }
 
     public void Press() {
@@ -29,7 +30,7 @@ public class UIBeam : MonoBehaviour {
 
         held = true;
         lr.enabled = true;
-
+        eventSystem.setCam(cam);
         eventSystem.ProcessPress();
     }
 
@@ -38,7 +39,6 @@ public class UIBeam : MonoBehaviour {
 
         held = false;
         lr.enabled = false;
-
         eventSystem.ProcessRelease();
     }
 
