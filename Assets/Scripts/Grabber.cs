@@ -18,7 +18,9 @@ public class Grabber : MonoBehaviour {
         //search for the collider
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
         if (focusedObject == null) { return; }
-        
+
+        if (focusedObject.GetComponent<spawner>()) focusedObject = focusedObject.GetComponent<spawner>().spawnObject();
+
         grabbedObject = focusedObject;
         Grabbed = true;
         grabbedObject.transform.parent = transform;
