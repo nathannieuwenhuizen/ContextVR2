@@ -9,8 +9,9 @@ public class Grabber : MonoBehaviour {
     [SerializeField] private bool grabbed = false;
     private GameObject grabbedObject;
 
-    [Range(0f, .1f)]
     [SerializeField] private float scaleSpeed = 0.1f;
+    [SerializeField] private float scaleMin = 0.01f;
+    [SerializeField] private float scaleMax = .5f;
 
     public void Grab() {
         if (Grabbed) { return;  }
@@ -62,11 +63,10 @@ public class Grabber : MonoBehaviour {
     public void ScaleObject(float val) {
         if (grabbedObject == null){ return; }
 
-        Vector3 tempScale = grabbedObject.transform.localScale;
+        Vector3 tempScale = grabbedObject.transform.localScale + Vector3.one * scaleSpeed * val;
 
-        tempScale.x = (Mathf.Max(0.1f, tempScale.x + scaleSpeed * val));
-        tempScale.y = (Mathf.Max(0.1f, tempScale.y + scaleSpeed * val));
-        tempScale.z = (Mathf.Max(0.1f, tempScale.z + scaleSpeed * val));
+        if (tempScale.x < scaleMin) tempScale = new Vector3(scaleMin, scaleMin, scaleMin);
+        if (tempScale.x > scaleMax) tempScale = new Vector3(scaleMax, scaleMax, scaleMax);
 
         grabbedObject.transform.localScale = tempScale;
     }
@@ -91,11 +91,9 @@ public class Grabber : MonoBehaviour {
         foreach (Collider col in hitColliders) {
             
             if (col.tag == _tag && col.bounds.Contains(_transform.position)) {
-                Debug.Log("col object tag: " + col.tag);
                 return col.gameObject;
             }
         }
-        Debug.Log("no object tag");
         return null;
     }
 
@@ -125,5 +123,4 @@ public class Grabber : MonoBehaviour {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, .2f);
     }
-
 }

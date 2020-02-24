@@ -20,8 +20,6 @@ public class HandInput : MonoBehaviour {
 
         holdAction.AddOnStateDownListener(HoldDown, handType);
         holdAction.AddOnStateUpListener(HoldUp, handType);
-
-        scaleAction.AddOnUpdateListener(scale, handType);
     }
 
     public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
@@ -38,10 +36,11 @@ public class HandInput : MonoBehaviour {
         grabber.Release();
     }
 
-    //still doesent work
-    public void scale(SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource, Vector2 axis, Vector2 delta) {
-        Debug.Log("axis control: " + axis.y);
-        grabber.ScaleObject(axis.y);
-        grabber.ScaleObject(Input.GetAxis("horizontal"));
+    private void Update() {
+
+
+        if (scaleAction.axis == Vector2.zero) return;
+        grabber.ScaleObject(scaleAction.axis.x);
+
     }
 }
