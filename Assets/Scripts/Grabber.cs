@@ -46,7 +46,7 @@ public class Grabber : MonoBehaviour {
             
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead)
             {
-                grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().Head;
+                grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().ParentTransform;
             } 
             else
             {

@@ -6,7 +6,7 @@ public class HairObject : MonoBehaviour
 {
     private bool grabbed = false;
     public List<Collision> collissions;
-    private Transform head;
+    private Transform parentTransform;
 
     private Vector3 oldPos;
     private Vector3 deltaPos;
@@ -21,9 +21,9 @@ public class HairObject : MonoBehaviour
     {
         get { return collissions.Count > 0; }
     }
-    public Transform Head
+    public Transform ParentTransform
     {
-        get { return head; }
+        get { return parentTransform; }
     }
     private void Start()
     {
@@ -63,21 +63,22 @@ public class HairObject : MonoBehaviour
         //check head
         if (collision.transform.tag == Tags.HEAD)
         {
-            head = collision.transform;
+            parentTransform = collision.transform;
             collissions.Add(collision);
         } else //check hair children of head
         {
-            Transform parent = collision.transform.parent;
-
-            if (parent != null)
+            Transform parent = collision.transform;
+            while (parent != null)
             {
                 if (parent.transform.tag == Tags.HEAD)
                 {
-                    head = collision.transform;
+                    parentTransform = collision.transform;
                     //add hair children
                     collissions.Add(collision);
-
+                    return;
                 }
+                parent = parent.parent;
+
             }
         }
     }
