@@ -22,7 +22,10 @@ public class UIBeam : MonoBehaviour {
 
     private void Update() {
         if (held) drawLine();
-        lr.enabled = (eventSystem.currentCamera == cam && held) ? true : false;
+        if (lr != null)
+        {
+            lr.enabled = (eventSystem.currentCamera == cam && held) ? true : false;
+        }
     }
 
     public void Press() {

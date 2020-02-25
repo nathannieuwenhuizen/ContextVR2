@@ -109,6 +109,8 @@ public class Grabber : MonoBehaviour {
             Debug.Log("Release");
             Release();
         }
+
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
     }
 
     public bool Grabbed {
