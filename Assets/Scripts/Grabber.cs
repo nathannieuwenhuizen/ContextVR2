@@ -114,6 +114,8 @@ public class Grabber : MonoBehaviour {
             scale = Mathf.Clamp(scale, scaleMin, scaleMax);
             scalingObject.transform.localScale = new Vector3(scale,scale,scale);
         }
+
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
     }
 
     public bool Grabbed {
