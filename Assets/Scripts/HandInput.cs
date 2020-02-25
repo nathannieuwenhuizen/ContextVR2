@@ -11,7 +11,7 @@ public class HandInput : MonoBehaviour {
     public SteamVR_Action_Boolean colorAction;
     public SteamVR_Action_Boolean triggerAction;
     public SteamVR_Action_Boolean holdAction;
-    public SteamVR_Action_Vector2 scaleAction;
+    //public SteamVR_Action_Vector2 scaleAction;
     
     public SteamVR_Input_Sources handType;
 
@@ -75,8 +75,8 @@ public class HandInput : MonoBehaviour {
         grabber.Release();
     }
 
-    private void Update() {
-        if (scaleAction.axis == Vector2.zero) return;
-        grabber.ScaleObject(scaleAction.axis.x);
-    }
+    //private void Update() {
+    //    if (scaleAction.axis == Vector2.zero) return;
+    //    grabber.ScaleObject(scaleAction.axis.x);
+    //}
 }

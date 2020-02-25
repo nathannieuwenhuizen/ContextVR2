@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7260423840660206862
 Transform:
   m_ObjectHideFlags: 0
@@ -233,18 +233,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6e327936f82ed4791df361a5bfa303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorUI: {fileID: 0}
+  colorUIDistance: 1
+  colorAction:
+    actionPath: /actions/default/in/ColorButton
+    needsReinit: 0
   triggerAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   holdAction:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
-  scaleAction:
-    actionPath: /actions/buggy/in/Steering
-    needsReinit: 0
-  handType: 2
+  handType: 1
   UIBeam: {fileID: 115257593}
   grabber: {fileID: 115257592}
+  ToggleToggle: 1
 --- !u!114 &115257592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,9 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3faf4a0e8f55d6489d2646045457124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  otherHand: {fileID: 0}
   grabbed: 0
-  closeInfo: 0
-  scaleSpeed: 0.1
+  grabbedObject: {fileID: 0}
+  scaleMin: 0.01
+  scaleMax: 0.5
 --- !u!114 &115257593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,8 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce9da3a3ac6f9042a94614ccbd13d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawline: 0
   LRLength: 10
   grabPointIndicator: {fileID: 1612000869126876626}
+  eventSystem: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!20 &4243463170757902496
 Camera:
   m_ObjectHideFlags: 0
