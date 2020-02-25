@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.vrhaircuts.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "E:\\GitRepo's\\cont2vvr\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\Student.LD75\\Documents\\GitHub\\ContextVR2\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "VRHAIRCUTS [Testing]"

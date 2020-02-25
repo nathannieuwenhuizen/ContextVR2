@@ -7,7 +7,7 @@ using System.Linq;
 public class Grabber : MonoBehaviour {
 
     [SerializeField] private bool grabbed = false;
-    private GameObject grabbedObject;
+    public GameObject grabbedObject;
 
     [SerializeField] private float scaleSpeed = 0.1f;
     [SerializeField] private float scaleMin = 0.01f;

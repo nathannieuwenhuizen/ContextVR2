@@ -55,6 +55,11 @@
       "requirement": "mandatory"
     },
     {
+      "name": "/actions/default/in/ColorButton",
+      "type": "boolean",
+      "requirement": "mandatory"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
