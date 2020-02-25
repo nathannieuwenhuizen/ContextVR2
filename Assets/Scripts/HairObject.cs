@@ -52,6 +52,12 @@ public class HairObject : MonoBehaviour
             }
             rb.velocity = deltaPos * (Mathf.Min(maxThrow, throwValue) * 1000);
             rb.isKinematic = false;
+
+            HairObject[] children = transform.GetComponentsInChildren<HairObject>();
+            foreach(HairObject child in children)
+            {
+                child.Lock(value);
+            }
             Grabbed = value;
         }
     }
