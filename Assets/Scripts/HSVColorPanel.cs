@@ -8,7 +8,6 @@ public class HSVColorPanel : MonoBehaviour {
     [SerializeField] Slider Saturation;
     [SerializeField] Slider Value;
 
-    [SerializeField] InputField hex;
     [SerializeField] Image colorDisplay;
     [SerializeField] Texture2D SaturationBG;
     [SerializeField] Texture2D ValueBG;
@@ -22,7 +21,6 @@ public class HSVColorPanel : MonoBehaviour {
     public void ChaingedColor() {
         color = Color.HSVToRGB(Hue.value, Saturation.value, Value.value);
         colorDisplay.color = color;
-        hex.text = "#" + ColorUtility.ToHtmlStringRGB(color);
     }
 
     public void updateSaturation() {

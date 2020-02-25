@@ -10,7 +10,7 @@ public class HairObject : MonoBehaviour
 
     private Vector3 oldPos;
     private Vector3 deltaPos;
-    private float throwValue = 10;
+    private float throwValue = 2;
     private float maxThrow = 10;
     public bool Grabbed
     {
@@ -34,11 +34,9 @@ public class HairObject : MonoBehaviour
     {
         if (grabbed)
         {
-            Debug.Log("delta pos: " + deltaPos);
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
             oldPos = transform.position;
         }
-        Debug.Log("Collissions length: " + collissions.Count);
     }
     public void Lock(bool value)
     {
@@ -59,7 +57,6 @@ public class HairObject : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collissions enter");
         //check head
         if (collision.transform.tag == Tags.HEAD)
         {
@@ -85,7 +82,6 @@ public class HairObject : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Collissions exit");
         if (collissions.Contains(collision))
         {
             collissions.Remove(collision);

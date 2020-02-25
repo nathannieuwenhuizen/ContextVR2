@@ -6,14 +6,14 @@ using System.Linq;
 using UnityEngine.EventSystems;
 
 public class UIBeam : MonoBehaviour {
-
+    [HideInInspector] public bool drawline = false;
     private bool held;
     private LineRenderer lr;
     [SerializeField] private float LRLength = 10;
     [SerializeField] private GameObject grabPointIndicator;
-    [SerializeField] private VRInputModule eventSystem;
+    [SerializeField] public VRInputModule eventSystem;
 
-    Camera cam;
+    [HideInInspector] public Camera cam;
 
     void Start() {
         eventSystem.currentCamera = cam = GetComponent<Camera>();
@@ -21,10 +21,9 @@ public class UIBeam : MonoBehaviour {
     }
 
     private void Update() {
-        if (held) drawLine();
-        if (lr != null)
-        {
-            lr.enabled = (eventSystem.currentCamera == cam && held) ? true : false;
+        if (held || drawline) drawLine();
+        if (lr != null) {
+            lr.enabled = ((eventSystem.currentCamera == cam && held) || (eventSystem.currentCamera == cam && drawline)) ? true : false;
         }
     }
 
