@@ -16,15 +16,35 @@ public static class Settings
             AudioListener.volume = value;
         }
     }
-    public static int amountOfCustomers
+    public static float AveragePrecentage
+    {
+        get { return (float)Settings.TotalPrecentage / (float)Settings.AmountOfCustomers; }
+    }
+    public static int AmountOfCustomers
     {
         get
         {
-            return PlayerPrefs.GetInt("amountCustomers", 1);
+            return PlayerPrefs.GetInt("amountCustomers", 0);
         }
         set
         {
             PlayerPrefs.SetInt("amountCustomers", value);
         }
+    }
+    public static float TotalPrecentage
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("totalPrecentage", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("totalPrecentage", value);
+        }
+    }
+
+    public static void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

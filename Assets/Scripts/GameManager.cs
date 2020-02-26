@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text precentageUI;
 
+    [SerializeField]
+    private ImageGallery gallery;
+
+
     [Header("customerPositions")]
     [SerializeField]
     private Transform doorPos;
@@ -41,6 +45,12 @@ public class GameManager : MonoBehaviour
 
     public void OnHairCutCheck()
     {
+        Settings.TotalPrecentage += formChecker.precentageCorrect;
+        Settings.AmountOfCustomers++;
+        if (gallery != null)
+        {
+            gallery.AddFrame(formChecker.selectedTexture);
+        }
         precentageUI.text = Mathf.Round(formChecker.precentageCorrect * 100) + "%";
     }
 

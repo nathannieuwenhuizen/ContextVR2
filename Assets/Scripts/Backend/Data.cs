@@ -21,4 +21,18 @@ public static class Data
         File.WriteAllBytes(dirPath + "Image" + ".png", bytes);
         
     }
+
+    public static Texture2D LoadPNG(string filePath)
+    {
+        Texture2D tex = null;
+        byte[] fileData;
+
+        Debug.Log("Application path: " + Application.dataPath);
+        
+            fileData = File.ReadAllBytes(filePath);
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+        
+        return tex;
+    }
 }

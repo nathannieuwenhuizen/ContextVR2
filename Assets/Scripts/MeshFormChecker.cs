@@ -23,14 +23,17 @@ public class MeshFormChecker : MonoBehaviour
     [SerializeField]
     private int cellSize = 5;
 
-    private Texture2D referenceTexture;
     private Camera refCamera;
 
     public float precentageCorrect = 0f;
     private bool calculating = false;
 
+    private Texture2D refTexture;
+    [HideInInspector]
+    public Texture2D selectedTexture;
+
     public MeshRenderer testPlane;
-    
+
     void Start()
     {
         refCamera = GetComponent<Camera>();
@@ -73,33 +76,33 @@ public class MeshFormChecker : MonoBehaviour
         //yield return new WaitForEndOfFrame();
         refCamera.Render();
 
-        Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, false);
-        texture.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
-        texture.Apply();
+        refTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
+        refTexture.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
+        refTexture.Apply();
 
         tempReferenceHaircut.SetActive(false);
         tempSelectedHaircut.SetActive(true);
         //yield return new WaitForEndOfFrame();
         refCamera.Render();
 
-        Texture2D texture2 = new Texture2D(width, height, TextureFormat.RGB24, false);
-        texture2.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
-        texture2.Apply();
+        selectedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
+        selectedTexture.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
+        selectedTexture.Apply();
 
-        Data.SaveTextureAsPNG(texture2, "");
-        testPlane.material.mainTexture =texture2;
+        //Data.SaveTextureAsPNG(selectedTexture, "");
+        testPlane.material.mainTexture = selectedTexture;
 
         //check the pixels
-        cellSize = Mathf.Min(texture.height, Mathf.Max(1, cellSize)); //to prevent infinite loop... sort of
+        cellSize = Mathf.Min(refTexture.height, Mathf.Max(1, cellSize)); //to prevent infinite loop... sort of
 
         float total = 0;
         float correct = 0;
-        for (int y = 0; y < texture.height; y+= cellSize)
+        for (int y = 0; y < refTexture.height; y+= cellSize)
         {
-            for (int x = 0; x < texture.width; x+= cellSize)
+            for (int x = 0; x < refTexture.width; x+= cellSize)
             {
-                Color col = texture.GetPixel(x, y);
-                Color col2 = texture2.GetPixel(x, y);
+                Color col = refTexture.GetPixel(x, y);
+                Color col2 = selectedTexture.GetPixel(x, y);
 
                 bool colIsFilled = col != Color.white;
                 bool col2IsFilled = col2 != Color.white;
@@ -126,8 +129,6 @@ public class MeshFormChecker : MonoBehaviour
         tempReferenceHaircut = null;
         Destroy(tempSelectedHaircut);
         tempSelectedHaircut = null;
-        texture = null;
-        texture2 = null;
 
         Debug.Log("total: " + total + " | correct: " + correct);
         //update values
