@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941399832823555159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 2.33, z: 10.5}
+  m_LocalPosition: {x: -1.65, y: 2.33, z: -4.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1941399833177076825}
@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1941399832958845194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ Canvas:
   m_GameObject: {fileID: 1941399832958845195}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   customerPrefab: {fileID: 8992148284509144097, guid: afa5d92a7f8badf4685c9143ce3eebba,
     type: 3}
   precentageUI: {fileID: 1941399833423211752}
+  gallery: {fileID: 0}
   doorPos: {fileID: 1941399832823555158}
   chairPos: {fileID: 1941399834101772426}
 --- !u!1 &1941399833423211753
@@ -282,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941399834101772427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 2.33, z: 2.12}
+  m_LocalPosition: {x: 0.556, y: 2.33, z: 0.065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1941399833177076825}

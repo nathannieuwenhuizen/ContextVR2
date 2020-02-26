@@ -10,14 +10,33 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private GameObject desiredHead;
 
+    [SerializeField]
+    private GameObject head;
+
+
+    [Header("UI info")]
+    [SerializeField]
+    private Transform canvasPivot;
+    [SerializeField]
+    private float rotationDamping;
+
     public GameObject Head
     {
-        get { return transform.GetChild(1).gameObject; }
+        get { return head; }
     }
     public GameObject DesiredHead
     {
         get { return desiredHead; }
     }
+
+    private void Update()
+    {
+        var lookPos = transform.position - Camera.main.transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        canvasPivot.rotation = Quaternion.Slerp(canvasPivot.rotation, rotation, Time.deltaTime * rotationDamping);
+    }
+
     public void Walk(Vector3 destination, bool destroyWhenReached = false)
     {
         StopAllCoroutines();
