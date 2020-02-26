@@ -70,7 +70,7 @@ public class MeshFormChecker : MonoBehaviour
 
         tempReferenceHaircut.SetActive(true);
         tempSelectedHaircut.SetActive(false);
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         refCamera.Render();
 
         Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, false);
@@ -79,7 +79,7 @@ public class MeshFormChecker : MonoBehaviour
 
         tempReferenceHaircut.SetActive(false);
         tempSelectedHaircut.SetActive(true);
-        yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
         refCamera.Render();
 
         Texture2D texture2 = new Texture2D(width, height, TextureFormat.RGB24, false);
@@ -122,10 +122,10 @@ public class MeshFormChecker : MonoBehaviour
         }
 
         //delete everything
-        //Destroy(tempReferenceHaircut);
-        //tempReferenceHaircut = null;
-        //Destroy(tempSelectedHaircut);
-        //tempSelectedHaircut = null;
+        Destroy(tempReferenceHaircut);
+        tempReferenceHaircut = null;
+        Destroy(tempSelectedHaircut);
+        tempSelectedHaircut = null;
         texture = null;
         texture2 = null;
 
