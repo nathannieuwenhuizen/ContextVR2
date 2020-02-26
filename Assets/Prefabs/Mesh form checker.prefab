@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8589313223018582657}
   m_Layer: 0
   m_Name: Mesh form checker
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   checkPos: {fileID: 8589313222348121772}
   cameraSize: 5
   cellSize: 5
+  precentageCorrect: 0
   testPlane: {fileID: 8589313223966179178}
 --- !u!1 &8589313223966179176
 GameObject:
