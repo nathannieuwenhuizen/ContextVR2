@@ -26,7 +26,7 @@ public class MeshFormChecker : MonoBehaviour
     private Texture2D referenceTexture;
     private Camera refCamera;
 
-    public float precentageCorrect = 0f;
+    private float precentageCorrect = 0f;
     private bool calculating = false;
 
     public MeshRenderer testPlane;
@@ -35,6 +35,7 @@ public class MeshFormChecker : MonoBehaviour
     {
         refCamera = GetComponent<Camera>();
         CameraSize = cameraSize;
+        //getPrecentageFilled();
     }
 
     public float CameraSize
@@ -49,16 +50,21 @@ public class MeshFormChecker : MonoBehaviour
         }
     }
 
-    public IEnumerator getPrecentageFilled(GameObject selected, GameObject reference)
+    public void CloneHair()
+    {
+        tempSelectedHaircut = Instantiate(selectedHairCut, checkPos);
+        tempSelectedHaircut.transform.localPosition = Vector3.zero;
+        tempReferenceHaircut = Instantiate(referenceHaircut, checkPos);
+        tempReferenceHaircut.transform.localPosition = Vector3.zero;
+
+    }
+
+    public IEnumerator getPrecentageFilled()
     {
         calculating = true;
 
         //clone the objects to checkcamera
-        tempSelectedHaircut = Instantiate(selected, checkPos);
-        tempSelectedHaircut.transform.localPosition = Vector3.zero;
-        tempReferenceHaircut = Instantiate(reference, checkPos);
-        tempReferenceHaircut.transform.localPosition = Vector3.zero;
-
+        CloneHair();
         while (tempReferenceHaircut == null || tempSelectedHaircut == null)
         {
             yield return new WaitForFixedUpdate();
@@ -70,7 +76,6 @@ public class MeshFormChecker : MonoBehaviour
 
         tempReferenceHaircut.SetActive(true);
         tempSelectedHaircut.SetActive(false);
-        yield return new WaitForEndOfFrame();
         refCamera.Render();
 
         Texture2D texture = new Texture2D(width, height, TextureFormat.RGB24, false);
@@ -79,14 +84,12 @@ public class MeshFormChecker : MonoBehaviour
 
         tempReferenceHaircut.SetActive(false);
         tempSelectedHaircut.SetActive(true);
-        yield return new WaitForEndOfFrame();
         refCamera.Render();
 
         Texture2D texture2 = new Texture2D(width, height, TextureFormat.RGB24, false);
         texture2.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
         texture2.Apply();
 
-        Data.SaveTextureAsPNG(texture2, "");
         testPlane.material.mainTexture =texture2;
 
         //check the pixels
@@ -122,39 +125,26 @@ public class MeshFormChecker : MonoBehaviour
         }
 
         //delete everything
-        //Destroy(tempReferenceHaircut);
-        //tempReferenceHaircut = null;
-        //Destroy(tempSelectedHaircut);
-        //tempSelectedHaircut = null;
+        Destroy(tempReferenceHaircut);
+        tempReferenceHaircut = null;
+        Destroy(tempSelectedHaircut);
+        tempSelectedHaircut = null;
         texture = null;
         texture2 = null;
 
         Debug.Log("total: " + total + " | correct: " + correct);
         //update values
         precentageCorrect = correct / total;
-        GameManager.instance.OnHairCutCheck();
-
         calculating = false;
-    }
-
-    public void CompareMeshes(GameObject selected, GameObject reference)
-    {
-        if (calculating) { return; }
-        else
-        {
-            calculating = true;
-            StartCoroutine(getPrecentageFilled(selected, reference));
-        }
     }
 
     void Update()
     {
-        /*
         if (calculating) { return; }
         else
         {
             calculating = true;
-            StartCoroutine(getPrecentageFilled(selectedHairCut, referenceHaircut));
-        }*/
+            StartCoroutine(getPrecentageFilled());
+        }
     }
 }
