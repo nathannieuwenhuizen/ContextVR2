@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class VRInputModule : BaseInputModule {
 
     public Camera currentCamera;
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private Canvas[] canvass;
 
     private GameObject currentObject = null;
     private PointerEventData data;
@@ -56,6 +56,8 @@ public class VRInputModule : BaseInputModule {
 
     public void setCam(Camera cam) {
         currentCamera = cam;
-        canvas.worldCamera = cam;
+        for (int i = 0; i < canvass.Length; i++) {
+            canvass[i].worldCamera = cam;
+        }
     }
 }
