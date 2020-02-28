@@ -7,6 +7,7 @@ using System.Linq;
 public class Grabber : MonoBehaviour {
 
     [SerializeField] private Grabber otherHand;
+    [SerializeField] float GrabberRange = .1f;
     [SerializeField] private bool grabbed = false;
     public GameObject grabbedObject;
     private GameObject scalingObject;
@@ -35,7 +36,7 @@ public class Grabber : MonoBehaviour {
     }
 
     void scaleCheck() {
-        if (otherHand.transform != null) {
+        if (otherHand.grabbedObject != null) {
             scalingObject = otherHand.grabbedObject;
             scaleMultip = scalingObject.transform.localScale.x;
             startDistance = Vector3.Distance(transform.position, otherHand.transform.position);
@@ -71,22 +72,8 @@ public class Grabber : MonoBehaviour {
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
-        Collider[] hitColliders;
-        // if (_transform.GetComponent<BoxCollider>()) {
-        //     hitColliders = Physics.OverlapBox(_transform.position, _transform.GetComponent<BoxCollider>().size, _transform.rotation);
-        // }
-        // else {
-            hitColliders = Physics.OverlapSphere(_transform.position, 0);
-        // }
-
-        //i dont know if this works...
-        hitColliders.OrderBy(a => Vector3.Distance(_transform.position, a.transform.position));
-
-        foreach (Collider col in hitColliders) { 
-            if (col.tag == _tag && col.bounds.Contains(_transform.position)) {
-                return col.gameObject;
-            }
-        }
+        Collider[] hitColliders = Physics.OverlapSphere(_transform.position, GrabberRange);
+        if (hitColliders.Length > 0) return hitColliders[0].gameObject;
         return null;
     }
 
@@ -109,4 +96,8 @@ public class Grabber : MonoBehaviour {
             grabbed = value;
         }
     }
+
+    // void OnDrawGizmos() {
+    //     Gizmos.DrawSphere(transform.position, GrabberRange);
+    // }
 }
