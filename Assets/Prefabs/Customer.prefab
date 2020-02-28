@@ -347,7 +347,8 @@ MonoBehaviour:
     type: 3}
   head: {fileID: 2737237308202397904}
   canvasPivot: {fileID: 4552695885708906325}
-  rotationDamping: 5
+  canvasContent: {fileID: 5029313418765002566}
+  UIRotationType: 0
 --- !u!1 &9005066836704862526
 GameObject:
   m_ObjectHideFlags: 0
