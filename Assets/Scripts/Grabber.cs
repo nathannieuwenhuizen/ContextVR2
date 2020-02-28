@@ -20,16 +20,9 @@ public class Grabber : MonoBehaviour {
         if (Grabbed) { return;  }
 
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
-        if (focusedObject == null) { return; }
+        if (focusedObject == null) { scaleCheck(); return; }
 
         if (focusedObject.GetComponent<spawner>()) focusedObject = focusedObject.GetComponent<spawner>().spawnObject();
-
-        if (focusedObject.transform.parent == otherHand.transform) {
-            scalingObject = focusedObject;
-            scaleMultip = scalingObject.transform.localScale.x;
-            startDistance = Vector3.Distance(transform.position, otherHand.transform.position);
-            return;
-        }
 
         grabbedObject = focusedObject;
         Grabbed = true;
@@ -39,6 +32,15 @@ public class Grabber : MonoBehaviour {
             grabbedObject.AddComponent<HairObject>();
         }
         grabbedObject.GetComponent<HairObject>().Lock(true);
+    }
+
+    void scaleCheck() {
+        if (otherHand.transform != null) {
+            scalingObject = otherHand.gameObject;
+            scaleMultip = scalingObject.transform.localScale.x;
+            startDistance = Vector3.Distance(transform.position, otherHand.transform.position);
+            return;
+        }
     }
 
     public void Release() {
@@ -68,36 +70,19 @@ public class Grabber : MonoBehaviour {
         }
     }
 
-    // public void ScaleObject(float val) {
-    //     if (grabbedObject == null){ return; }
-
-    //     Vector3 tempScale = grabbedObject.transform.localScale + Vector3.one * scaleSpeed * val;
-
-    //     if (tempScale.x < scaleMin) tempScale = new Vector3(scaleMin, scaleMin, scaleMin);
-    //     if (tempScale.x > scaleMax) tempScale = new Vector3(scaleMax, scaleMax, scaleMax);
-
-    //     grabbedObject.transform.localScale = tempScale;
-    // }
-
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
-
-        
         Collider[] hitColliders;
-        if (_transform.GetComponent<BoxCollider>())
-        {
-            hitColliders = Physics.OverlapBox(_transform.position, _transform.GetComponent<BoxCollider>().size, _transform.rotation);
-        }
-        else
-        {
+        // if (_transform.GetComponent<BoxCollider>()) {
+        //     hitColliders = Physics.OverlapBox(_transform.position, _transform.GetComponent<BoxCollider>().size, _transform.rotation);
+        // }
+        // else {
             hitColliders = Physics.OverlapSphere(_transform.position, 0);
-        }
-
+        // }
 
         //i dont know if this works...
         hitColliders.OrderBy(a => Vector3.Distance(_transform.position, a.transform.position));
 
-        foreach (Collider col in hitColliders) {
-            
+        foreach (Collider col in hitColliders) { 
             if (col.tag == _tag && col.bounds.Contains(_transform.position)) {
                 return col.gameObject;
             }
