@@ -36,7 +36,7 @@ public class Grabber : MonoBehaviour {
 
     void scaleCheck() {
         if (otherHand.transform != null) {
-            scalingObject = otherHand.gameObject;
+            scalingObject = otherHand.grabbedObject;
             scaleMultip = scalingObject.transform.localScale.x;
             startDistance = Vector3.Distance(transform.position, otherHand.transform.position);
             return;
