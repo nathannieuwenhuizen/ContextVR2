@@ -87,7 +87,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
+  near clip plane: 0.01
   far clip plane: 10
   field of view: 60
   orthographic: 1
@@ -99,7 +99,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
+  m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   cameraSize: 5
   cellSize: 5
   precentageCorrect: 0
+  selectedTexture: {fileID: 0}
+  testPlane: {fileID: 8589313223966179178}
 --- !u!1 &8589313223966179176
 GameObject:
   m_ObjectHideFlags: 0

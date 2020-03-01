@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class MeshFormChecker : MonoBehaviour
 {
-    [Header("Reference objects")]
-    [SerializeField]
-    private GameObject selectedHairCut;
-
-    [SerializeField]
-    private GameObject referenceHaircut;
-
     [SerializeField]
     private Transform checkPos;
 
@@ -52,15 +45,26 @@ public class MeshFormChecker : MonoBehaviour
         }
     }
 
-    public IEnumerator getPrecentageFilled(GameObject selected, GameObject reference)
+    public IEnumerator getPrecentageFilled(GameObject selected, Sprite sprite)
     {
         calculating = true;
 
         //clone the objects to checkcamera
         tempSelectedHaircut = Instantiate(selected, checkPos);
         tempSelectedHaircut.transform.localPosition = Vector3.zero;
-        tempReferenceHaircut = Instantiate(reference, checkPos);
+
+        tempReferenceHaircut = Instantiate(new GameObject(), checkPos);
         tempReferenceHaircut.transform.localPosition = Vector3.zero;
+        tempReferenceHaircut.AddComponent<SpriteRenderer>();
+
+        //scale image accordingly
+        if(tempReferenceHaircut.GetComponent<SpriteRenderer>() != null)
+        {
+            SpriteRenderer sr = tempReferenceHaircut.GetComponent<SpriteRenderer>();
+            sr.sprite = sprite;
+            Debug.Log("temo scale: " + tempSelectedHaircut.transform.localScale.x);
+            tempReferenceHaircut.transform.localScale *= (sprite.pixelsPerUnit / Data.HEAD_SIZE_PIXELS) * tempSelectedHaircut.transform.localScale.x;
+        }
 
         while (tempReferenceHaircut == null || tempSelectedHaircut == null)
         {
@@ -124,6 +128,7 @@ public class MeshFormChecker : MonoBehaviour
             }
         }
 
+        tempReferenceHaircut.SetActive(true);
         //delete everything
         Destroy(tempReferenceHaircut);
         tempReferenceHaircut = null;
@@ -138,7 +143,7 @@ public class MeshFormChecker : MonoBehaviour
         calculating = false;
     }
 
-    public void CompareMeshes(GameObject selected, GameObject reference)
+    public void CompareMeshes(GameObject selected, Sprite reference)
     {
         if (calculating) { return; }
         else

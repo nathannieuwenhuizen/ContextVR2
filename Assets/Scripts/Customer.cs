@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 0.1f;
 
-    [SerializeField] private GameObject desiredHead;
+
+    [SerializeField] private Sprite[] potentialHaircuts;
+
+    [SerializeField] private Sprite desiredHead;
 
     [SerializeField] private GameObject head;
 
@@ -15,13 +19,16 @@ public class Customer : MonoBehaviour
     [SerializeField] private Transform canvasPivot;
     [SerializeField] private Transform canvasContent;
 
+    [SerializeField]
+    private Image desiredHeadImage;
+
     // [SerializeField]
     // private float rotationDamping;
 
     public GameObject Head {
         get { return head; }
     }
-    public GameObject DesiredHead {
+    public Sprite DesiredHead {
         get { return desiredHead; }
     }
 
@@ -32,6 +39,13 @@ public class Customer : MonoBehaviour
         float a = Vector3.Distance(Camera.main.transform.position, canvasPivot.position);
         float angle = Mathf.Acos(a/s) * Mathf.Rad2Deg;
         canvasPivot.eulerAngles = new Vector3(canvasPivot.eulerAngles.x,canvasPivot.eulerAngles.y + angle,canvasPivot.eulerAngles.z);
+    }
+
+    public void Start()
+    {
+        //random desired head
+        desiredHead = potentialHaircuts[Mathf.FloorToInt(Random.Range(0, potentialHaircuts.Length))];
+        desiredHeadImage.sprite = DesiredHead;
     }
 
     public void Walk(Vector3 destination, bool destroyWhenReached = false) {
