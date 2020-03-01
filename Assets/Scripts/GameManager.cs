@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
+        //just for testing
         if (Input.GetKeyDown(KeyCode.Space))
         {
             HairCutFinished();
