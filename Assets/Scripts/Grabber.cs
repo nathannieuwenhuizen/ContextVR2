@@ -73,21 +73,31 @@ public class Grabber : MonoBehaviour {
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
         Collider[] hitColliders = Physics.OverlapSphere(_transform.position, GrabberRange);
-        if (hitColliders.Length > 0) return hitColliders[0].gameObject;
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.tag == _tag)
+            {
+                return collider.gameObject;
+            }
+        }
         return null;
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.G)) Grab();
         if (Input.GetKeyDown(KeyCode.R)) Release();
+        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
 
-        if(scalingObject != null) {
-            float scale = (Vector3.Distance(transform.position, otherHand.transform.position) / startDistance) * scaleMultip;
-            scale = Mathf.Clamp(scale, scaleMin, scaleMax);
-            scalingObject.transform.localScale = new Vector3(scale,scale,scale);
+
+        if (scalingObject != null ) {
+            if (scalingObject.GetComponent<HairObject>().Grabbed)
+            {
+                float scale = (Vector3.Distance(transform.position, otherHand.transform.position) / startDistance) * scaleMultip;
+                scale = Mathf.Clamp(scale, scaleMin, scaleMax);
+                scalingObject.transform.localScale = new Vector3(scale, scale, scale);
+            }
         }
 
-        transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
     }
 
     public bool Grabbed {
