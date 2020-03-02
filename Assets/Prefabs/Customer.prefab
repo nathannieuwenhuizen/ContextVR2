@@ -360,7 +360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c83278f05e6c914fa47a5e124faf425, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71108e4ea9461cf4da71c464853b09bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -417,9 +417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1
-  potentialHaircuts:
-  - {fileID: 21300000, guid: 4468cdeec33b1c3458bc708957acb6d0, type: 3}
-  - {fileID: 21300000, guid: 71108e4ea9461cf4da71c464853b09bc, type: 3}
   desiredHead: {fileID: 21300000, guid: 71108e4ea9461cf4da71c464853b09bc, type: 3}
   head: {fileID: 2737237308202397904}
   canvasPivot: {fileID: 4552695885708906325}

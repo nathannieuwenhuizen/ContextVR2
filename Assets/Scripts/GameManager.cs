@@ -19,12 +19,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ImageGallery gallery;
 
+    
 
     [Header("customerPositions")]
     [SerializeField]
     private Transform doorPos;
     [SerializeField]
     private Transform chairPos;
+
+    [Header("hair info")]
+    [SerializeField]
+    private Sprite govermentHair;
+    [SerializeField]
+    private Image govermentImage;
+    [SerializeField]
+    private Sprite[] customerHairQueue;
+    private int customerCount = 0;
 
     public static GameManager instance;
     private void Awake()
@@ -34,11 +44,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        govermentImage.sprite = govermentHair;
         NextCustomerWalksIn();
     }
     public void NextCustomerWalksIn()
     {
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
+        currentCustomer.DesiredHead = customerHairQueue[customerCount % customerHairQueue.Length];
         currentCustomer.Walk(chairPos.position);
 
     }
@@ -66,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void HairCutFinished()
     {
+        customerCount++;
         formChecker.CompareMeshes(currentCustomer.Head, currentCustomer.DesiredHead);
         currentCustomer.Walk(doorPos.position, true);
         NextCustomerWalksIn();

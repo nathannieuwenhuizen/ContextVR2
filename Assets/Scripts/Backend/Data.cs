@@ -8,7 +8,6 @@ public static class Data
     public static int HEAD_SIZE_PIXELS = 160;
     public static int HAIR_TOTAL_SIZE_PIXELS = 512;
 
-
     public static void SaveTextureAsPNG(Texture2D _texture, string _fullPath)
     {
         //first Make sure you're using RGB24 as your texture format

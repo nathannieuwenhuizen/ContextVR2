@@ -183,6 +183,8 @@ MonoBehaviour:
   gallery: {fileID: 0}
   doorPos: {fileID: 1941399832823555158}
   chairPos: {fileID: 1941399834101772426}
+  govermentHair: {fileID: 0}
+  customerHairQueue: []
 --- !u!1 &1941399833423211753
 GameObject:
   m_ObjectHideFlags: 0
