@@ -20,9 +20,11 @@ public class Grabber : MonoBehaviour {
     public void Grab() {
         if (Grabbed) { return;  }
 
+        //check object with tag
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
         if (focusedObject == null) { scaleCheck(); return; }
 
+        //check if spawner
         if (focusedObject.GetComponent<spawner>()) focusedObject = focusedObject.GetComponent<spawner>().spawnObject();
 
         grabbedObject = focusedObject;
@@ -33,6 +35,7 @@ public class Grabber : MonoBehaviour {
             grabbedObject.AddComponent<HairObject>();
         }
         grabbedObject.GetComponent<HairObject>().Lock(true);
+        grabbedObject.GetComponent<HairObject>().Grabbed = true;
     }
 
     void scaleCheck() {
@@ -58,7 +61,9 @@ public class Grabber : MonoBehaviour {
         if (grabbedObject.transform.parent == transform)  {
             grabbedObject.transform.parent = null;
             
+            //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
+                grabbedObject.GetComponent<HairObject>().Grabbed = false;
                 grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().ParentTransform;
             } 
             else {
