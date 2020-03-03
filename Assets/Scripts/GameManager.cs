@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Sprite govermentHair;
     [SerializeField]
-    private Image govermentImage;
-    [SerializeField]
     private Sprite[] customerHairQueue;
     private int customerCount = 0;
 
@@ -44,17 +42,24 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        govermentImage.sprite = govermentHair;
         NextCustomerWalksIn();
     }
     public void NextCustomerWalksIn()
     {
+        //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
+
+        //apply desired head
         currentCustomer.DesiredHead = customerHairQueue[customerCount % customerHairQueue.Length];
+
+        //let the customer walk
         currentCustomer.Walk(chairPos.position);
 
     }
 
+    /// <summary>
+    /// Gets called after the form of the haircuts are compared.
+    /// </summary>
     public void OnHairCutCheck()
     {
         Settings.TotalPrecentage += formChecker.precentageCorrect;
@@ -76,6 +81,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Finishes the haircut and compares the haircut with what the customer wants.
+    /// </summary>
     public void HairCutFinished()
     {
         customerCount++;
