@@ -16,7 +16,6 @@ public class HairObject : MonoBehaviour
 
     private MeshRenderer mr;
     private Material idleMaterial;
-    private Color idleColor;
     private Material highLightedMaterial;
 
     public bool Grabbed
@@ -41,17 +40,14 @@ public class HairObject : MonoBehaviour
                 Color color = mr.material.color;
                 mr.material = value ? highLightedMaterial : idleMaterial;
                 mr.material.color = color;
-
-                //if (value)
-                //{
-                //    idleColor = mr.material.color;
-                //    float val = 0.2f;
-                //    mr.material.color = new Color(mr.material.color.r + val, mr.material.color.g + val, mr.material.color.b + val);
-                //} else
-                //{
-                //    mr.material.color = idleColor;
-                //}
             }
+            //if (transform.childCount > 1)
+            //{
+            //    if (transform.GetChild(1).GetComponent<HairObject>())
+            //    {
+            //        transform.GetChild(1).GetComponent<HairObject>().Hover = value;
+            //    }
+            //}
         }
     }
     public bool AttachedAtHead

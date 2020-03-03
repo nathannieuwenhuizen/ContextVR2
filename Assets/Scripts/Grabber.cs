@@ -38,6 +38,7 @@ public class Grabber : MonoBehaviour {
         }
         grabbedObject.GetComponent<HairObject>().Lock(true);
         grabbedObject.GetComponent<HairObject>().Grabbed = true;
+        grabbedObject.GetComponent<HairObject>().Hover = true;
     }
 
     void scaleCheck() {
