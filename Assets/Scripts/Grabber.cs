@@ -26,17 +26,22 @@ public class Grabber : MonoBehaviour {
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
         if (focusedObject == null) { scaleCheck(); return; }
 
-        //check if spawner
+        //check if spawnerobject
         if (focusedObject.GetComponent<spawner>()) focusedObject = focusedObject.GetComponent<spawner>().spawnObject();
 
+        //apply variavble and parent
         grabbedObject = focusedObject;
         Grabbed = true;
         grabbedObject.transform.parent = transform;
 
+        //add haircomponent
         if (grabbedObject.GetComponent<HairObject>() == null) {
             grabbedObject.AddComponent<HairObject>();
         }
-        grabbedObject.GetComponent<HairObject>().Lock(true);
+
+        //lock rigidbody but still exist for collission detection with head and hair
+        grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, true);
+
         grabbedObject.GetComponent<HairObject>().Grabbed = true;
         grabbedObject.GetComponent<HairObject>().Hover = true;
     }
@@ -58,8 +63,6 @@ public class Grabber : MonoBehaviour {
         if (!Grabbed) { return; }
         Grabbed = false;
         
-        Rigidbody grabbedRB = grabbedObject.GetComponent<Rigidbody>();
-
         //no other controller grabs it, so you can do things, else ignore.
         if (grabbedObject.transform.parent == transform)  {
             grabbedObject.transform.parent = null;
@@ -67,14 +70,13 @@ public class Grabber : MonoBehaviour {
             //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
                 grabbedObject.GetComponent<HairObject>().Grabbed = false;
+                grabbedObject.GetComponent<HairObject>().ToggleRigidBody(false);
+
                 grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().ParentTransform;
             } 
             else {
                 //set gravity on
-                if (grabbedRB != null) {
-                    grabbedObject.GetComponent<HairObject>().Lock(false);
-
-                }
+                grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
             }
         }
     }

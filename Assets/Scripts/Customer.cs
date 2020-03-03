@@ -32,14 +32,25 @@ public class Customer : MonoBehaviour
     }
 
     private void Update() {
-        canvasPivot.LookAt(2* canvasPivot.position - Camera.main.transform.position);
-        // Turn the canvas so the  tekstballon looks at the player
-        float s = Vector3.Distance(Camera.main.transform.position,canvasContent.position);
-        float a = Vector3.Distance(Camera.main.transform.position, canvasPivot.position);
-        float angle = Mathf.Acos(a/s) * Mathf.Rad2Deg;
-        canvasPivot.eulerAngles = new Vector3(canvasPivot.eulerAngles.x,canvasPivot.eulerAngles.y + angle,canvasPivot.eulerAngles.z);
+        AimCanvasToCamera();
     }
 
+    // Turn the canvas so the  tekstballon looks at the player
+    public void AimCanvasToCamera()
+    {
+        canvasPivot.LookAt(2 * canvasPivot.position - Camera.main.transform.position);
+
+        float s = Vector3.Distance(Camera.main.transform.position, canvasContent.position);
+        float a = Vector3.Distance(Camera.main.transform.position, canvasPivot.position);
+        float angle = Mathf.Acos(a / s) * Mathf.Rad2Deg;
+        canvasPivot.eulerAngles = new Vector3(canvasPivot.eulerAngles.x, canvasPivot.eulerAngles.y + angle, canvasPivot.eulerAngles.z);
+    }
+
+    /// <summary>
+    /// Makes the customer walks to the postion
+    /// </summary>
+    /// <param name="destination"> Th</param>
+    /// <param name="destroyWhenReached"></param>
     public void Walk(Vector3 destination, bool destroyWhenReached = false) {
         StopAllCoroutines();
         StartCoroutine(Walking(destination, destroyWhenReached));

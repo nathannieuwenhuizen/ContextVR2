@@ -82,23 +82,30 @@ public class HairObject : MonoBehaviour
             oldPos = transform.position;
         }
     }
-    public void Lock(bool value)
+    public void ToggleRigidBody(bool value, bool hasConstaints = false)
     {
-        if (GetComponent<Rigidbody>())
+        if (!value)
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            if (value)
+            if (GetComponent<Rigidbody>())
             {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
-            } else
+                Destroy(GetComponent<Rigidbody>());
+            }
+        }
+        else
+        {
+            
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            if (rb == null)
             {
-                rb.constraints = RigidbodyConstraints.None;
+                rb = gameObject.AddComponent<Rigidbody>();
             }
             rb.velocity = deltaPos * (Mathf.Min(maxThrow, throwValue) * 1000);
+            rb.constraints = hasConstaints ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
             rb.isKinematic = false;
-            Grabbed = value;
+            
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         //check head
