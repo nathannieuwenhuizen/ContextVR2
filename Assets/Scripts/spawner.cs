@@ -17,7 +17,10 @@ public class spawner : MonoBehaviour {
     }
 
     public GameObject spawnObject() {
-        GameObject obj = GameObject.Instantiate(SpawnableObject, transform.position, transform.rotation);
+        GameObject obj = GameObject.Instantiate(this.gameObject, transform.position, transform.rotation);
+        Destroy(obj.GetComponent<spawner>());
+        obj.GetComponent<HairObject>().idleMaterial = GetComponent<HairObject>().idleMaterial;
+        //GameObject obj = GameObject.Instantiate(SpawnableObject, transform.position, transform.rotation);
         obj.GetComponent<MeshRenderer>().material.color = colorPanel.color;
         return obj;
     }

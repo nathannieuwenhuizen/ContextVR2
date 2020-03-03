@@ -15,7 +15,7 @@ public class HairObject : MonoBehaviour
     private float maxThrow = 10;
 
     private MeshRenderer mr;
-    private Material idleMaterial;
+    public Material idleMaterial;
     private Material highLightedMaterial;
 
     public bool Grabbed
