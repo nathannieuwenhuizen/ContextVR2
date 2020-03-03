@@ -120,11 +120,13 @@ public class Grabber : MonoBehaviour {
 
                 hoverObject = sphereCastedObject;
 
-                if (!hoverObject.GetComponent<HairObject>())
-                {
-                    hoverObject.AddComponent<HairObject>();
+                if (hoverObject) {
+                    if (!hoverObject.GetComponent<HairObject>())
+                    {
+                        hoverObject.AddComponent<HairObject>();
+                    }
+                    hoverObject.GetComponent<HairObject>().Hover = true;
                 }
-                hoverObject.GetComponent<HairObject>().Hover = true;
             } 
         }
 
