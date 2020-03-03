@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4853898773594778881}
   m_Layer: 0
   m_Name: doughnut
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

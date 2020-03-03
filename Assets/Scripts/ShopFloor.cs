@@ -14,6 +14,10 @@ public class ShopFloor : MonoBehaviour {
 
     void Update() {
         for (int i = 0; i < scaleObjects.Count; i++) {
+            if (scaleObjects[i] == null) {
+                scaleObjects.Remove(scaleObjects[i]);
+                break;
+            }
             scaleObjects[i].localScale -= new Vector3(scaleSpeed,scaleSpeed,scaleSpeed);
             if (scaleObjects[i].localScale.x < deleteThershold) {
                 GameObject dest = scaleObjects[i].gameObject;

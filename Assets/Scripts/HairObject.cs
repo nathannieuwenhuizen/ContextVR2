@@ -103,6 +103,9 @@ public class HairObject : MonoBehaviour
             rb.constraints = hasConstaints ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
             rb.isKinematic = false;
             
+                    collissions = new List<Collision>();
+                    parentTransform = null;
+
         }
     }
 

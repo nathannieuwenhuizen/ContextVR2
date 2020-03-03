@@ -183,8 +183,14 @@ MonoBehaviour:
   gallery: {fileID: 0}
   doorPos: {fileID: 1941399832823555158}
   chairPos: {fileID: 1941399834101772426}
-  govermentHair: {fileID: 0}
-  customerHairQueue: []
+  govermentHair: {fileID: 21300000, guid: 4468cdeec33b1c3458bc708957acb6d0, type: 3}
+  govermentImage: {fileID: 0}
+  customerHairQueue:
+  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
 --- !u!1 &1941399833423211753
 GameObject:
   m_ObjectHideFlags: 0
