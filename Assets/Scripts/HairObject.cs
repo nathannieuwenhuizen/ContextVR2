@@ -5,6 +5,7 @@ using UnityEngine;
 public class HairObject : MonoBehaviour
 {
     private bool grabbed = false;
+    private bool hover = false;
     public List<Collision> collissions;
     private Transform parentTransform;
 
@@ -12,10 +13,46 @@ public class HairObject : MonoBehaviour
     private Vector3 deltaPos;
     private float throwValue = 2;
     private float maxThrow = 10;
+
+    private MeshRenderer mr;
+    private Material idleMaterial;
+    private Color idleColor;
+    private Material highLightedMaterial;
+
     public bool Grabbed
     {
         get { return grabbed; }
-        set { grabbed = value; }
+        set {
+            grabbed = value;
+        }
+    }
+    public bool Hover
+    {
+        get
+        {
+            return hover;
+        }
+        set
+        {
+            Debug.Log("hover: " + value);
+            hover = value;
+            if (mr != null)
+            {
+                Color color = mr.material.color;
+                mr.material = value ? highLightedMaterial : idleMaterial;
+                mr.material.color = color;
+
+                //if (value)
+                //{
+                //    idleColor = mr.material.color;
+                //    float val = 0.2f;
+                //    mr.material.color = new Color(mr.material.color.r + val, mr.material.color.g + val, mr.material.color.b + val);
+                //} else
+                //{
+                //    mr.material.color = idleColor;
+                //}
+            }
+        }
     }
     public bool AttachedAtHead
     {
@@ -24,6 +61,16 @@ public class HairObject : MonoBehaviour
     public Transform ParentTransform
     {
         get { return parentTransform; }
+    }
+    private void Awake()
+    {
+        mr = GetComponent<MeshRenderer>();
+        if (mr != null)
+        {
+            idleMaterial = mr.material;
+        }
+
+        highLightedMaterial = Resources.Load("Outline", typeof(Material)) as Material;
     }
     private void Start()
     {

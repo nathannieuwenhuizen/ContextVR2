@@ -14,6 +14,8 @@ public class Grabber : MonoBehaviour {
     private float scaleMultip;
     private float startDistance;
 
+    private GameObject hoverObject;
+
     [SerializeField] private float scaleMin = 0.01f;
     [SerializeField] private float scaleMax = .5f;
 
@@ -101,6 +103,31 @@ public class Grabber : MonoBehaviour {
                 scale = Mathf.Clamp(scale, scaleMin, scaleMax);
                 scalingObject.transform.localScale = new Vector3(scale, scale, scale);
             }
+        }
+
+        if (!grabbed)
+        {
+            GameObject sphereCastedObject = SphereCastedObject(Tags.GRABABLE, transform);
+            if (hoverObject != sphereCastedObject)
+            {
+                if (hoverObject != null)
+                {
+                    if (hoverObject.GetComponent<HairObject>())
+                    {
+                        hoverObject.GetComponent<HairObject>().Hover = false;
+                    }
+                }
+
+                hoverObject = sphereCastedObject;
+
+                if (hoverObject) {
+                    if (!hoverObject.GetComponent<HairObject>())
+                    {
+                        hoverObject.AddComponent<HairObject>();
+                    }
+                    hoverObject.GetComponent<HairObject>().Hover = true;
+                }
+            } 
         }
 
     }
