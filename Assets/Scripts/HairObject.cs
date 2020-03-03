@@ -41,13 +41,14 @@ public class HairObject : MonoBehaviour
                 mr.material = value ? highLightedMaterial : idleMaterial;
                 mr.material.color = color;
             }
-            //if (transform.childCount > 1)
-            //{
-            //    if (transform.GetChild(1).GetComponent<HairObject>())
-            //    {
-            //        transform.GetChild(1).GetComponent<HairObject>().Hover = value;
-            //    }
-            //}
+
+            for (int i= 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<HairObject>())
+                {
+                    transform.GetChild(i).GetComponent<HairObject>().Hover = value;
+                }
+            }
         }
     }
     public bool AttachedAtHead
