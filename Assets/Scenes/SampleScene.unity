@@ -722,7 +722,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.009742e-28, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -938,11 +938,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e592acea06db7f4794f26706e2d486e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedHairCut: {fileID: 1579236334}
-  referenceHaircut: {fileID: 473274533}
   checkPos: {fileID: 1633655128}
   cameraSize: 5
   cellSize: 5
+  precentageCorrect: 0
+  selectedTexture: {fileID: 0}
   testPlane: {fileID: 15597726}
 --- !u!1 &976546668
 GameObject:
@@ -1430,7 +1430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df81148efcb6aae49a97c7ab3d8db328, type: 2}
+  - {fileID: 2100000, guid: 73a9afaf752e3ba4095bdba7edb81603, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
