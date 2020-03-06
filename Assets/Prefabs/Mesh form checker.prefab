@@ -119,10 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e592acea06db7f4794f26706e2d486e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedHairCut: {fileID: 0}
-  referenceHaircut: {fileID: 0}
   checkPos: {fileID: 8589313222348121772}
-  cameraSize: 5
+  portaitShot: {fileID: 0}
+  cameraSize: 2
   cellSize: 5
   precentageCorrect: 0
   selectedTexture: {fileID: 0}

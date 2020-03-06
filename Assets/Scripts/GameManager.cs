@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         Settings.AmountOfCustomers++;
         if (gallery != null)
         {
-            gallery.AddFrame(formChecker.selectedTexture);
+            gallery.AddFrame(formChecker.portaitShot);
         }
         precentageUI.text = Mathf.Round(formChecker.precentageCorrect * 100) + "%";
     }

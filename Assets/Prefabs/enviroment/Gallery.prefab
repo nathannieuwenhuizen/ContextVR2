@@ -46,6 +46,5 @@ MonoBehaviour:
   framePrefab: {fileID: 4552629279981565322, guid: 3330c61b3f950d24b8704ffb6238a84a,
     type: 3}
   frames: []
-  framesPadding: 2
-  maxFrames: 5
-  test: {fileID: 2800000, guid: 200a36575873a1d40baa790e18dafe5d, type: 3}
+  framesPadding: 1.5
+  maxFrames: 3

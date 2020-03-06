@@ -9,6 +9,7 @@ public class MeshFormChecker : MonoBehaviour
 
     private GameObject tempSelectedHaircut;
     private GameObject tempReferenceHaircut;
+    public Texture2D portaitShot;
 
     [Header("Other Info")]
     [SerializeField]
@@ -27,6 +28,9 @@ public class MeshFormChecker : MonoBehaviour
 
     public MeshRenderer testPlane;
 
+    int width = 0;
+    int height = 0;
+
     void Start()
     {
         refCamera = GetComponent<Camera>();
@@ -41,7 +45,7 @@ public class MeshFormChecker : MonoBehaviour
             refCamera.orthographicSize = value / 2f;
             refCamera.nearClipPlane = 0;
             refCamera.farClipPlane = value;
-            checkPos.localPosition = new Vector3(0, 0, value / 2f);
+            checkPos.localPosition = new Vector3(0, -value / 4f, value / 2f);
         }
     }
 
@@ -62,7 +66,7 @@ public class MeshFormChecker : MonoBehaviour
         {
             SpriteRenderer sr = tempReferenceHaircut.GetComponent<SpriteRenderer>();
             sr.sprite = sprite;
-            Debug.Log("temo scale: " + tempSelectedHaircut.transform.localScale.x);
+            //Debug.Log("temo scale: " + tempSelectedHaircut.transform.localScale.x);
             tempReferenceHaircut.transform.localScale *= (sprite.pixelsPerUnit / Data.HEAD_SIZE_PIXELS) * tempSelectedHaircut.transform.localScale.x;
         }
 
@@ -72,26 +76,13 @@ public class MeshFormChecker : MonoBehaviour
         }
 
         //make textures and take screenshot
-        int width = Screen.width;
-        int height = Screen.height;
+        width = Screen.width;
+        height = Screen.height;
 
-        tempReferenceHaircut.SetActive(true);
-        tempSelectedHaircut.SetActive(false);
-        //yield return new WaitForEndOfFrame();
-        refCamera.Render();
+        refTexture = GetScreenShot(false, width);
+        selectedTexture = GetScreenShot(true, width);
 
-        refTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
-        refTexture.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
-        refTexture.Apply();
-
-        tempReferenceHaircut.SetActive(false);
-        tempSelectedHaircut.SetActive(true);
-        //yield return new WaitForEndOfFrame();
-        refCamera.Render();
-
-        selectedTexture = new Texture2D(width, height, TextureFormat.RGB24, false);
-        selectedTexture.ReadPixels(new Rect(refCamera.rect.x, refCamera.rect.y, width, height), 0, 0, false);
-        selectedTexture.Apply();
+        portaitShot = GetScreenShot(true , Mathf.RoundToInt(height / 1.5f));
 
         //Data.SaveTextureAsPNG(selectedTexture, "");
         testPlane.material.mainTexture = selectedTexture;
@@ -135,12 +126,29 @@ public class MeshFormChecker : MonoBehaviour
         Destroy(tempSelectedHaircut);
         tempSelectedHaircut = null;
 
+        //refTexture = null;
+        //selectedTexture = null;
+
         Debug.Log("total: " + total + " | correct: " + correct);
         //update values
         precentageCorrect = correct / total;
         GameManager.instance.OnHairCutCheck();
 
         calculating = false;
+    }
+
+    public Texture2D GetScreenShot(bool selected, int widthOfTexture)
+    {
+        Debug.Log("screenshot width: " + widthOfTexture);
+        tempSelectedHaircut.SetActive(selected);
+        tempReferenceHaircut.SetActive(!selected);
+
+        refCamera.Render();
+
+        Texture2D tex = new Texture2D(widthOfTexture, height, TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(refCamera.rect.x + (width / 2) - (widthOfTexture / 2) , refCamera.rect.y, widthOfTexture, height), 0, 0, false);
+        tex.Apply();
+        return tex;
     }
 
     public void CompareMeshes(GameObject selected, Sprite reference)
