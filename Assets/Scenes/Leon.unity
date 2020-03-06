@@ -3506,6 +3506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1857716621}
   - component: {fileID: 1846803091}
+  - component: {fileID: 1858026868}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -3513,6 +3514,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &1858026868
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858026867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1858052711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,6 +3573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1857720337}
   - component: {fileID: 1846802969}
+  - component: {fileID: 1858073132}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -3566,6 +3581,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!135 &1858073132
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858073131}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1859675535
 PrefabInstance:
   m_ObjectHideFlags: 0
