@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HairCutFinished()
     {
+        if (currentCustomer.IsWalking) { return; }
+
         customerCount++;
         formChecker.CompareMeshes(currentCustomer.Head, currentCustomer.DesiredHead);
         currentCustomer.Walk(doorPos.position, true);

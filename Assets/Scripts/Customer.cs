@@ -19,7 +19,6 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Image desiredHeadImage;
 
-
     public GameObject Head {
         get { return head; }
     }
@@ -30,6 +29,7 @@ public class Customer : MonoBehaviour
             desiredHeadImage.sprite = value;
         }
     }
+    public bool IsWalking { get; private set; } = false;
 
     private void Update() {
         AimCanvasToCamera();
@@ -56,12 +56,13 @@ public class Customer : MonoBehaviour
         StartCoroutine(Walking(destination, destroyWhenReached));
     }
     IEnumerator Walking(Vector3 destination, bool destroyWhenReached = false) {
+        IsWalking = true;
         while (Vector3.Distance(transform.position, destination) > 0.1f) {
             transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * walkSpeed);
             yield return new WaitForFixedUpdate();
         }
         transform.position = destination;
-
+        IsWalking = false;
         if (destroyWhenReached) Destroy(this.gameObject);
     }
 }
