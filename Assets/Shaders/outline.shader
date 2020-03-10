@@ -35,7 +35,6 @@
 			Pass //Outline
 			{
 				ZWrite Off
-				Cull Back
 				CGPROGRAM
 
 				#pragma vertex vert
