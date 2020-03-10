@@ -46,7 +46,7 @@ public class Grabber : MonoBehaviour {
         grabbedObject.GetComponent<HairObject>().Hover = true;
 
         //update slider
-        HSVColorPanel.instance.SelectedMaterial = grabbedObject.GetComponent<Material>();
+        HSVColorPanel.instance.SelectedObject = grabbedObject;
     }
 
     void scaleCheck() {
@@ -71,7 +71,7 @@ public class Grabber : MonoBehaviour {
             grabbedObject.transform.parent = null;
 
             //update color panel
-            HSVColorPanel.instance.SelectedMaterial = null;
+            HSVColorPanel.instance.SelectedObject = null;
 
             //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
