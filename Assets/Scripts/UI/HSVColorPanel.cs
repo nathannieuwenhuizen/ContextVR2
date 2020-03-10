@@ -26,6 +26,14 @@ public class HSVColorPanel : MonoBehaviour {
     [SerializeField] Sprite selectedSprite;
     GameObject[] swatchbuttons;
 
+    private Material selectedMaterial;
+
+    public static HSVColorPanel instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start() {
         ChaingedColor();
         updateSaturation();
@@ -51,6 +59,36 @@ public class HSVColorPanel : MonoBehaviour {
         }
     }
 
+    public Material SelectedMaterial
+    {
+        set
+        {
+            selectedMaterial = value;
+            if (value != null)
+            {
+                SelectedColor = selectedMaterial.color;
+            }
+        }
+    }
+
+    public Color SelectedColor
+    {
+        get { return color; }
+        set
+        {
+            color = value;
+
+            Color.RGBToHSV(value, out float H, out float S, out float V);
+            Hue.value = H;
+
+            updateSaturation();
+            Saturation.value = S;
+
+            updateValue();
+            Value.value = V;
+        }
+    }
+
     public void PressSwatch(int index) {
         swatchbuttons[selectedColorIndex].GetComponent<Image>().sprite = normalSprite;
         swatchbuttons[index].GetComponent<Image>().sprite = selectedSprite;
@@ -62,6 +100,11 @@ public class HSVColorPanel : MonoBehaviour {
         color = Color.HSVToRGB(Hue.value, Saturation.value, Value.value);
         for (int i = 0; i < colorDisplay.Length; i++) {
             colorDisplay[i].color = color;
+        }
+
+        if (selectedMaterial != null)
+        {
+            selectedMaterial.color = color;
         }
     }
 
