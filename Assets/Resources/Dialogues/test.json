@@ -1,0 +1,28 @@
+{
+	"name" : "test",
+	"desiredHaircutID" : 3,
+	"appearanceSeed" : 3,
+	"dialogues" :[
+	{
+		"text" : "Are you gay?",
+		"responses" : [
+		{
+			"text" : "Yes",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "No",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "Hahaha you gay!",
+		"responses" : []
+	},
+	{
+		"text" : "Wow... you uncultured swine!",
+		"responses" : []
+	}
+	]
+}

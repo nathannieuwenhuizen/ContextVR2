@@ -37,4 +37,22 @@ public static class Data
         
         return tex;
     }
+
+    /// <summary>
+    /// Loads JSON file as a text variable
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static string LoadJSONFileAsText(string path)
+    {
+
+        string filePath = "Dialogues/" + path.Replace(".json", "");
+
+        TextAsset targetFile = Resources.Load<TextAsset>(filePath);
+
+        Debug.Log(targetFile.text);
+        return targetFile.text;
+    }
+
+
 }

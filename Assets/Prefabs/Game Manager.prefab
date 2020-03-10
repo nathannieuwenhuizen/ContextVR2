@@ -67,7 +67,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.263, y: 0}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!223 &1941399832958845191
@@ -183,14 +183,15 @@ MonoBehaviour:
   gallery: {fileID: 0}
   doorPos: {fileID: 1941399832823555158}
   chairPos: {fileID: 1941399834101772426}
-  govermentHair: {fileID: 21300000, guid: 4468cdeec33b1c3458bc708957acb6d0, type: 3}
-  govermentImage: {fileID: 0}
-  customerHairQueue:
-  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
-  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
-  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
-  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
-  - {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  govermentHair: {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
+  customerHaircuts:
+  - {fileID: 21300000, guid: 97706c7adfbdc4841aed5161f237ba32, type: 3}
+  - {fileID: 21300000, guid: c09217076e4d11440865de83b1e87fd4, type: 3}
+  - {fileID: 21300000, guid: d1a846c5d5f40f349a0ec762b7900a8b, type: 3}
+  - {fileID: 21300000, guid: 1a09fcc794a7c624bbd2157b4fe6c6b4, type: 3}
+  customerDataQueue:
+  - test
+  - test2
 --- !u!1 &1941399833423211753
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -42}
+  m_AnchoredPosition: {x: 0, y: -434.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1941399833423211755

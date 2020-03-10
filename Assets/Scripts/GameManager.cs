@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
     private Transform chairPos;
 
     [Header("hair info")]
-    [SerializeField]
-    private Sprite govermentHair;
-    [SerializeField]
-    private Sprite[] customerHairQueue;
+    public Sprite govermentHair;
+    public Sprite[] customerHaircuts;
+
+    public string[] customerDataQueue;
+
     private int customerCount = 0;
 
     public static GameManager instance;
@@ -49,8 +50,8 @@ public class GameManager : MonoBehaviour
         //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
 
-        //apply desired head
-        currentCustomer.DesiredHead = customerHairQueue[customerCount % customerHairQueue.Length];
+        //apply data (speak bubble, desired haircut and appearance
+        currentCustomer.CustomerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(customerDataQueue[customerCount % customerDataQueue.Length]));
 
         //let the customer walk
         currentCustomer.Walk(chairPos.position);
