@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class ColourBeta : MonoBehaviour
 {
+    public Material colourBetaMat;
+
     public void Yellow()
     {
-        Debug.LogWarning("Yellow");
+        colourBetaMat.color = Color.yellow;
     }
 
     public void Blue()
     {
-        Debug.LogWarning("Blue");
+        colourBetaMat.color = Color.blue;
     }
 
     public void Red()
     {
-        Debug.LogWarning("Red");
+        colourBetaMat.color = Color.red;
     }
 
-    public void Pink()
+    public void Magenta()
     {
-        Debug.LogWarning("Pink");
+        colourBetaMat.color = Color.magenta;
     }
 }
