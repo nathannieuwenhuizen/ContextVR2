@@ -99,6 +99,11 @@ public class HSVColorPanel : MonoBehaviour {
 
             updateValue();
             Value.value = V;
+
+            if (selectedObject != null)
+            {
+                selectedObject.GetComponent<MeshRenderer>().material.color = color;
+            }
         }
     }
 
@@ -106,7 +111,7 @@ public class HSVColorPanel : MonoBehaviour {
         swatchbuttons[selectedColorIndex].GetComponent<Image>().sprite = normalSprite;
         swatchbuttons[index].GetComponent<Image>().sprite = selectedSprite;
         selectedColorIndex = index;
-        color = swatches[index];
+        SelectedColor = swatches[index];
     }
 
     public void ChaingedColor() {
