@@ -19,6 +19,20 @@ public class Grabber : MonoBehaviour {
     [SerializeField] private float scaleMin = 0.01f;
     [SerializeField] private float scaleMax = .5f;
 
+    //Throw Physics Shit
+    public GameObject capsule;
+    private Vector3 controllerCentreOfMass;
+    private Vector3 grabbedObjectCentreOfMass;
+    private Vector3 grabbedObjectPosOffset;
+    private Vector3 controllerVelocityCross;
+
+
+    private void Start()
+    {
+        //Throw Physics Shit
+        controllerCentreOfMass = capsule.GetComponent<Rigidbody>().centerOfMass;
+    }
+
     public void Grab() {
         if (Grabbed) { return;  }
 
@@ -47,6 +61,9 @@ public class Grabber : MonoBehaviour {
 
         //update slider
         HSVColorPanel.instance.SelectedObject = grabbedObject;
+
+        //Throw Physics Shit
+        grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
     }
 
     void scaleCheck() {
@@ -85,6 +102,9 @@ public class Grabber : MonoBehaviour {
                 grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
             }
         }
+
+        //Throw Physics Shit
+        grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
@@ -139,6 +159,12 @@ public class Grabber : MonoBehaviour {
             } 
         }
 
+        //Throw Physics Shit
+        if (grabbed)
+        {
+            grabbedObjectPosOffset = grabbedObjectCentreOfMass - controllerCentreOfMass;
+            controllerVelocityCross = Vector3.Cross(capsule.GetComponent<Rigidbody>().angularVelocity, grabbedObjectPosOffset);
+        }
     }
 
     public bool Grabbed {
