@@ -11,7 +11,7 @@ public class DialogueHandeler : MonoBehaviour
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private float dialogueDuration = 0.5f;
     [SerializeField] private Text nameText;
-    [SerializeField] private Customer customer;
+    [SerializeField] public Customer customer;
 
     public void UpdateUI(Dialogue dialogue, string name) {
         //set dialogue text

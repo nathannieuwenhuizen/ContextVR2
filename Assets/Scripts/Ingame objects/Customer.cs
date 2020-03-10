@@ -43,6 +43,7 @@ public class Customer : MonoBehaviour
     public void Start()
     {
         canvas.worldCamera = VRInputModule.instance.currentCamera;
+        dialogueHandeler.customer = this;
         //customerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(dataPath));
     }
     public CustomerData CustomerData
@@ -52,6 +53,7 @@ public class Customer : MonoBehaviour
             customerData = value;
             if (customerData.dialogues.Length > 0)
             {
+                
                 dialogueHandeler.UpdateUI(customerData.dialogues[0], customerData.name);
                 if (customerData.desiredHaircutID < 0)
                 {
