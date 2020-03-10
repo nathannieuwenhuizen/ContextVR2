@@ -20,6 +20,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private DialogueHandeler dialogueHandeler;
     [SerializeField] private Transform canvasPivot;
     [SerializeField] private Transform canvasContent;
+    [SerializeField] private Canvas canvas;
 
     [SerializeField]
     private Image desiredHeadImage;
@@ -41,6 +42,7 @@ public class Customer : MonoBehaviour
     }
     public void Start()
     {
+        canvas.worldCamera = VRInputModule.instance.currentCamera;
         //customerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(dataPath));
     }
     public CustomerData CustomerData

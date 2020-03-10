@@ -843,6 +843,7 @@ MonoBehaviour:
   dialogueHandeler: {fileID: 8058405535679599936}
   canvasPivot: {fileID: 4552695885708906325}
   canvasContent: {fileID: 5029313418765002566}
+  canvas: {fileID: 5600869415065745767}
   desiredHeadImage: {fileID: 7845306479694517435}
 --- !u!1 &9005066836704862526
 GameObject:

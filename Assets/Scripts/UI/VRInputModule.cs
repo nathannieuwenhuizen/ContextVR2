@@ -7,13 +7,20 @@ public class VRInputModule : BaseInputModule {
 
     public Camera currentCamera;
     [SerializeField] private Canvas[] canvass;
-
+    
     private GameObject currentObject = null;
     private PointerEventData data;
 
-    protected override void Start() {
-        base.Awake();
+    public Canvas customerCanvas;
 
+    public static VRInputModule instance;
+    protected override void Awake()
+    {
+        base.Awake();
+        instance = this;
+    }
+
+    protected override void Start() {
         data = new PointerEventData(eventSystem);
         data.position = new Vector2(currentCamera.pixelWidth / 2, currentCamera.scaledPixelHeight / 2);
     }
