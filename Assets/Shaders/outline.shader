@@ -1,74 +1,80 @@
-﻿Shader "Tutorial/Outline" {
-
-	Properties{
-
-		_Color("Color", Color) = (1, 1, 1, 1)
-		_Glossiness("Smoothness", Range(0, 1)) = 0.5
-		_Metallic("Metallic", Range(0, 1)) = 0
-
-		_OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
-		_OutlineWidth("Outline Width", Range(0, 0.1)) = 0.03
-
+﻿Shader "Outlined/Uniform"
+{
+	Properties
+	{
+		_Color("Main Color", Color) = (0.5,0.5,0.5,1)
+		_MainTex("Texture", 2D) = "white" {}
+		_OutlineColor("Outline color", Color) = (0,0,0,1)
+		_OutlineWidth("Outlines width", Range(0.0, 2.0)) = 1.1
 	}
 
-		Subshader{
+		CGINCLUDE
+#include "UnityCG.cginc"
 
-			Tags {
-				"RenderType" = "Opaque"
-			}
+			struct appdata
+		{
+			float4 vertex : POSITION;
+		};
 
-			CGPROGRAM
+		struct v2f
+		{
+			float4 pos : POSITION;
+		};
 
-			#pragma surface surf Standard fullforwardshadows
+		uniform float _OutlineWidth;
+		uniform float4 _OutlineColor;
+		uniform sampler2D _MainTex;
+		uniform float4 _Color;
 
-			Input {
-				float4 color : COLOR
-			}
+		ENDCG
 
-			half4 _Color;
-			half _Glossiness;
-			half _Metallic;
+			SubShader
+		{
+			Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" }
 
-			void surf(Input IN, inout SufaceStandardOutput o) {
-				o.Albedo = _Color.rgb * IN.color.rgb;
-				o.Smoothness = _Glossiness;
-				o.Metallic = _Metallic;
-				o.Alpha = _Color.a * IN.color.a;
-			}
-
-			ENDCG
-
-			Pass {
-
-				Cull Front
-
+			Pass //Outline
+			{
+				ZWrite Off
+				Cull Back
 				CGPROGRAM
 
-				#pragma vertex VertexProgram
-				#pragma fragment FragmentProgram
+				#pragma vertex vert
+				#pragma fragment frag
 
-				half _OutlineWidth;
+				v2f vert(appdata v)
+				{
+					appdata original = v;
+					v.vertex.xyz += _OutlineWidth * normalize(v.vertex.xyz);
 
-				float4 VertexProgram(
-						float4 position : POSITION,
-						float3 normal : NORMAL) : SV_POSITION {
-
-					position.xyz += normal * _OutlineWidth;
-
-					return UnityObjectToClipPos(position);
+					v2f o;
+					o.pos = UnityObjectToClipPos(v.vertex);
+					return o;
 
 				}
 
-				half4 _OutlineColor;
-
-				half4 FragmentProgram() : SV_TARGET {
+				half4 frag(v2f i) : COLOR
+				{
 					return _OutlineColor;
 				}
 
 				ENDCG
-
 			}
 
-	}
+			Tags{ "Queue" = "Geometry"}
 
+			CGPROGRAM
+			#pragma surface surf Lambert
+
+			struct Input {
+				float2 uv_MainTex;
+			};
+
+			void surf(Input IN, inout SurfaceOutput o) {
+				fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+				o.Albedo = c.rgb;
+				o.Alpha = c.a;
+			}
+			ENDCG
+		}
+			Fallback "Diffuse"
 }
