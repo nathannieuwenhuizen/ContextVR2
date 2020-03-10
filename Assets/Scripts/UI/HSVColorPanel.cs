@@ -27,7 +27,7 @@ public class HSVColorPanel : MonoBehaviour {
     [SerializeField] Sprite selectedSprite;
     GameObject[] swatchbuttons;
 
-    private GameObject selectedObject;
+    public GameObject selectedObject;
 
     public static HSVColorPanel instance;
     private void Awake()
@@ -75,10 +75,11 @@ public class HSVColorPanel : MonoBehaviour {
     {
         set
         {
+            Debug.Log(" selected object: " + value);
             selectedObject = value;
             if (selectedObject != null)
             {
-                SelectedColor = selectedObject.GetComponent<Material>().color;
+                SelectedColor = selectedObject.GetComponent<MeshRenderer>().material.color;
             }
         }
     }
@@ -116,7 +117,7 @@ public class HSVColorPanel : MonoBehaviour {
 
         if (selectedObject != null)
         {
-            selectedObject.GetComponent<Material>().color = color;
+            selectedObject.GetComponent<MeshRenderer>().material.color = color;
         }
     }
 
