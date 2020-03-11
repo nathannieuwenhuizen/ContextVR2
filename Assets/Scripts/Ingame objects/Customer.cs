@@ -107,6 +107,9 @@ public class Customer : MonoBehaviour
 public class CustomerData
 {
     public string name = "name";
+    public bool moodForNewHaircut = false;
+    public int basePrice = 20;
+    public int maxTip = 30;
     public int desiredHaircutID = -1;
     public int appearanceSeed = 0;
     public Dialogue[] dialogues;

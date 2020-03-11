@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     private int customerCount = 0;
 
     public static GameManager instance;
+
+    public int money = 0;
+
+    private bool editMode = false;
+
     private void Awake()
     {
         instance = this;
@@ -46,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         NextCustomerWalksIn();
     }
+
 
     public void NextCustomerWalksIn()
     {
@@ -63,22 +69,37 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator NextCustomerWalkngIn()
     {
+        //customer walks to chair position
         yield return StartCoroutine(currentCustomer.Walking(chairPos.position)); 
+        
+        //chair rotates
         yield return StartCoroutine(chair.Spinning(false));
+        editMode = true;
     }
 
     /// <summary>
     /// Gets called after the form of the haircuts are compared.
     /// </summary>
-    public void OnHairCutCheck()
+    public void UpdateStore()
     {
-        Settings.TotalPrecentage += formChecker.precentageCorrect;
+        Settings.TotalPrecentage += formChecker.desiredPrecentage;
         Settings.AmountOfCustomers++;
+
         if (gallery != null)
         {
             gallery.AddFrame(formChecker.portaitShot);
+            //gallery.AddFrame(formChecker.refTexture);
+            //gallery.AddFrame(formChecker.selectedTexture);
         }
-        precentageUI.text = Mathf.Round(formChecker.precentageCorrect * 100) + "%";
+        int payment = currentCustomer.CustomerData.basePrice;
+        if (formChecker.desiredPrecentage > 0.7f)
+        {
+            payment += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
+        }
+        money += payment;
+
+        precentageUI.text = Mathf.Round(formChecker.desiredPrecentage * 100) + "%";
+        Debug.Log("money: " + money + "$");
     }
 
     private void Update()
@@ -96,18 +117,32 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HairCutFinished()
     {
-        if (currentCustomer.IsWalking) { return; }
+        if (!editMode || currentCustomer.IsWalking) { return; }
+        editMode = false;
         StartCoroutine(HairCutFinishing());
 
     }
     IEnumerator HairCutFinishing()
     {
-        customerCount++;
-        formChecker.CompareMeshes(currentCustomer.Head, currentCustomer.DesiredHead);
+        //char is spinning
         yield return StartCoroutine(chair.Spinning(true));
+
+        //compares the haircut
+        yield return StartCoroutine(formChecker.getPrecentageFilled(currentCustomer.Head, currentCustomer.DesiredHead, govermentHair));
+
+        yield return new WaitForSeconds(0.5f);
+
+        //updates the money and gallery
+        UpdateStore();
+
+        //customer walks out of store
         yield return StartCoroutine(currentCustomer.Walking(doorPos.position, true));
 
+        customerCount++;
+
+        //next customer walks in
         NextCustomerWalksIn();
+
     }
 
 }

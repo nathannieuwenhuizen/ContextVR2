@@ -2,6 +2,9 @@
 	"name" : "test2",
 	"desiredHaircutID" : 2,
 	"appearanceSeed" : 1,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
 	"dialogues" :[
 	{
 		"text" : "Are you hetero?",
