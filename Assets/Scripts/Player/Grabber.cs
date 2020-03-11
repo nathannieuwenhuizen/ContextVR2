@@ -100,11 +100,12 @@ public class Grabber : MonoBehaviour {
             else {
                 //set gravity on
                 grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
+
+                //Throw Physics Shit
+                grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
             }
         }
 
-        //Throw Physics Shit
-        grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
