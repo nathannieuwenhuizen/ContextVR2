@@ -82,19 +82,24 @@ public class Customer : MonoBehaviour
     /// </summary>
     /// <param name="destination"> Th</param>
     /// <param name="destroyWhenReached"></param>
-    public void Walk(Vector3 destination, bool destroyWhenReached = false) {
+    public void Walk(Vector3 destination, bool destroyWhenReached = false ) {
         StopAllCoroutines();
         StartCoroutine(Walking(destination, destroyWhenReached));
     }
-    IEnumerator Walking(Vector3 destination, bool destroyWhenReached = false) {
-        IsWalking = true;
-        while (Vector3.Distance(transform.position, destination) > 0.1f) {
-            transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * walkSpeed);
-            yield return new WaitForFixedUpdate();
+    public IEnumerator Walking(Vector3 destination, bool destroyWhenReached = false)
+    {
+        if (!IsWalking)
+        {
+            IsWalking = true;
+            while (Vector3.Distance(transform.position, destination) > 0.1f)
+            {
+                transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * walkSpeed);
+                yield return new WaitForFixedUpdate();
+            }
+            transform.position = destination;
+            IsWalking = false;
+            if (destroyWhenReached) Destroy(this.gameObject);
         }
-        transform.position = destination;
-        IsWalking = false;
-        if (destroyWhenReached) Destroy(this.gameObject);
     }
 }
 

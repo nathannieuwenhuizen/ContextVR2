@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text precentageUI;
 
+    [Header("Enviroment")]
+    [SerializeField]
+    public Chair chair;
     [SerializeField]
     private ImageGallery gallery;
-
-    
 
     [Header("customerPositions")]
     [SerializeField]
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         NextCustomerWalksIn();
     }
+
     public void NextCustomerWalksIn()
     {
         //spawn customer
@@ -52,10 +54,17 @@ public class GameManager : MonoBehaviour
 
         //apply data (speak bubble, desired haircut and appearance
         currentCustomer.CustomerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(customerDataQueue[customerCount % customerDataQueue.Length]));
+        chair.customer = currentCustomer;
 
         //let the customer walk
-        currentCustomer.Walk(chairPos.position);
+        StartCoroutine(NextCustomerWalkngIn());
 
+    }
+
+    public IEnumerator NextCustomerWalkngIn()
+    {
+        yield return StartCoroutine(currentCustomer.Walking(chairPos.position)); 
+        yield return StartCoroutine(chair.Spinning(false));
     }
 
     /// <summary>
@@ -88,10 +97,16 @@ public class GameManager : MonoBehaviour
     public void HairCutFinished()
     {
         if (currentCustomer.IsWalking) { return; }
+        StartCoroutine(HairCutFinishing());
 
+    }
+    IEnumerator HairCutFinishing()
+    {
         customerCount++;
         formChecker.CompareMeshes(currentCustomer.Head, currentCustomer.DesiredHead);
-        currentCustomer.Walk(doorPos.position, true);
+        yield return StartCoroutine(chair.Spinning(true));
+        yield return StartCoroutine(currentCustomer.Walking(doorPos.position, true));
+
         NextCustomerWalksIn();
     }
 

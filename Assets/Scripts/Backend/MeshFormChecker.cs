@@ -129,7 +129,7 @@ public class MeshFormChecker : MonoBehaviour
         //refTexture = null;
         //selectedTexture = null;
 
-        Debug.Log("total: " + total + " | correct: " + correct);
+        //Debug.Log("total: " + total + " | correct: " + correct);
         //update values
         precentageCorrect = correct / total;
         GameManager.instance.OnHairCutCheck();
@@ -139,7 +139,7 @@ public class MeshFormChecker : MonoBehaviour
 
     public Texture2D GetScreenShot(bool selected, int widthOfTexture)
     {
-        Debug.Log("screenshot width: " + widthOfTexture);
+        //Debug.Log("screenshot width: " + widthOfTexture);
         tempSelectedHaircut.SetActive(selected);
         tempReferenceHaircut.SetActive(!selected);
 

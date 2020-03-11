@@ -50,7 +50,7 @@ public static class Data
 
         TextAsset targetFile = Resources.Load<TextAsset>(filePath);
 
-        Debug.Log(targetFile.text);
+        //Debug.Log(targetFile.text);
         return targetFile.text;
     }
 
