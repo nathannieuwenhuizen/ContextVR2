@@ -13,14 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject customerPrefab;
 
-    [SerializeField]
-    private Text precentageUI;
-
     [Header("Enviroment")]
     [SerializeField]
     public Chair chair;
     [SerializeField]
     private ImageGallery gallery;
+    [SerializeField]
+    private ResultTerminal resultTerminal;
 
     [Header("customerPositions")]
     [SerializeField]
@@ -91,14 +90,16 @@ public class GameManager : MonoBehaviour
             //gallery.AddFrame(formChecker.refTexture);
             //gallery.AddFrame(formChecker.selectedTexture);
         }
-        int payment = currentCustomer.CustomerData.basePrice;
+        int price = currentCustomer.CustomerData.basePrice;
+        int tip = 0;
         if (formChecker.desiredPrecentage > 0.7f)
         {
-            payment += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
+            tip += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
         }
-        money += payment;
+        money += price + tip;
 
-        precentageUI.text = Mathf.Round(formChecker.desiredPrecentage * 100) + "%";
+        //update terminal ui
+        resultTerminal.ShowResult(formChecker.govermentPrecentage, formChecker.desiredPrecentage, price, tip);
         Debug.Log("money: " + money + "$");
     }
 
