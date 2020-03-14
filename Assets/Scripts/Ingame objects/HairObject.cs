@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HairObject : MonoBehaviour
 {
+    public HairData hairData;
+
     private bool grabbed = false;
     private bool hover = false;
     public List<Collision> collissions;
@@ -17,6 +19,7 @@ public class HairObject : MonoBehaviour
     private MeshRenderer mr;
     public Material idleMaterial;
     private Material highLightedMaterial;
+
 
     public bool Grabbed
     {
@@ -71,6 +74,34 @@ public class HairObject : MonoBehaviour
     }
     private void Start()
     {
+
+        if (hairData == null)
+        {
+            hairData = new HairData();
+            if (string.IsNullOrEmpty(hairData.id))
+            {
+                hairData.id = System.DateTime.Now.ToLongDateString() + System.DateTime.Now.ToLongDateString() + Random.Range(0, int.MaxValue).ToString();
+            }
+
+        }
+
+        switch (GetComponent<MeshFilter>().mesh.name.Substring(0,4))
+        {
+            case "Cube":
+                hairData.meshType = PrimitiveType.Cube;
+                break;
+            case "Spher":
+                hairData.meshType = PrimitiveType.Sphere;
+                break;
+            case "Cyli":
+                hairData.meshType = PrimitiveType.Cylinder;
+                break;
+            default:
+                hairData.meshType = PrimitiveType.Sphere;
+                break;
+        }
+        //Debug.Log("Mesh: " + GetComponent<MeshFilter>().mesh.name);
+        //Debug.Log( hairData.meshType);
         oldPos = transform.position;
         collissions = new List<Collision>();
     }
@@ -80,6 +111,8 @@ public class HairObject : MonoBehaviour
         {
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
             oldPos = transform.position;
+
+            hairData.color = mr.material.color;
         }
     }
     public void ToggleRigidBody(bool value, bool hasConstaints = false)

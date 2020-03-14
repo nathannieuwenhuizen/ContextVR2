@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Runtime.Serialization;
+
 
 public static class Data
 {
@@ -52,6 +55,78 @@ public static class Data
 
         //Debug.Log(targetFile.text);
         return targetFile.text;
+    }
+
+
+    public static bool SaveHair(string directory = "/saves", string fileName = "testHairSave.hair", object saveData = null)
+    {
+        BinaryFormatter formatter = GetBinaryFormatter();
+
+        if (!Directory.Exists(Application.dataPath + directory))
+        {
+            Directory.CreateDirectory(Application.dataPath + directory);
+        }
+
+        string path = Application.dataPath + directory + "/" + fileName;
+        FileStream file = File.Create(path);
+
+        formatter.Serialize(file, saveData);
+        Debug.Log("It should be saved");
+        return true;
+    }
+
+    public static object LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
+    {
+        string path = Application.dataPath + directory + "/" + fileName;
+        if (!File.Exists(path)) {
+            Debug.LogErrorFormat("Form nathan: THe file doesnt exist at {0}", path);
+            return null;
+        }
+
+        BinaryFormatter formatter = GetBinaryFormatter();
+
+        FileStream file = File.Open(path, FileMode.Open);
+
+        try
+        {
+            object save = formatter.Deserialize(file);
+            file.Close();
+            return save;
+        }
+        catch
+        {
+            Debug.LogErrorFormat("From Nathan: Fail to load save file at {0}", path);
+            file.Close();
+            return null;
+        }
+    }
+
+    public static string[] GetHairFiles(string directory = "/saves")
+    {
+        if (!Directory.Exists(Application.dataPath + directory))
+        {
+            Directory.CreateDirectory(Application.dataPath + directory);
+        }
+        return Directory.GetFiles(Application.dataPath + directory);
+    }
+
+    public static BinaryFormatter GetBinaryFormatter()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        SurrogateSelector selector = new SurrogateSelector();
+
+        Vector3SerializationSurrogate vector3Surrogate = new Vector3SerializationSurrogate();
+        QuaternionSerializationSurrogate quaternionSurrogate = new QuaternionSerializationSurrogate();
+        ColorSerializationSurrogate colorSurrogate = new ColorSerializationSurrogate();
+
+        selector.AddSurrogate(typeof(Vector3), new StreamingContext(StreamingContextStates.All), vector3Surrogate);
+        selector.AddSurrogate(typeof(Quaternion), new StreamingContext(StreamingContextStates.All), quaternionSurrogate);
+        selector.AddSurrogate(typeof(Color), new StreamingContext(StreamingContextStates.All), colorSurrogate);
+
+        formatter.SurrogateSelector = selector;
+
+        return formatter;
     }
 
 

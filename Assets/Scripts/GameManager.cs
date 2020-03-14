@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
+    [Header("Hair Data")]
+    public string fileName = "testHairSave.hair";
+    public string directory = "/saves";
+    [Space]
+    [Space]
+    [Space]
+
     [SerializeField]
     private MeshFormChecker formChecker;
 
     //customer info
-    private Customer currentCustomer;
+    [HideInInspector]
+    public Customer currentCustomer;
     [SerializeField]
     private GameObject customerPrefab;
 
@@ -100,7 +109,6 @@ public class GameManager : MonoBehaviour
 
         //update terminal ui
         resultTerminal.ShowResult(formChecker.govermentPrecentage, formChecker.desiredPrecentage, price, tip);
-        Debug.Log("money: " + money + "$");
     }
 
     private void Update()
@@ -111,6 +119,11 @@ public class GameManager : MonoBehaviour
         {
             HairCutFinished();
         }
+        //just for testing
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            //currentCustomer.LoadHair();
+        }
     }
 
     /// <summary>
@@ -120,6 +133,8 @@ public class GameManager : MonoBehaviour
     {
         if (!editMode || currentCustomer.IsWalking) { return; }
         editMode = false;
+        //currentCustomer.SaveHair();
+
         StartCoroutine(HairCutFinishing());
 
     }
@@ -145,5 +160,4 @@ public class GameManager : MonoBehaviour
         NextCustomerWalksIn();
 
     }
-
 }

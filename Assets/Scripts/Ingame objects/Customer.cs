@@ -44,7 +44,6 @@ public class Customer : MonoBehaviour
     {
         canvas.worldCamera = VRInputModule.instance.currentCamera;
         dialogueHandeler.customer = this;
-        //customerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(dataPath));
     }
     public CustomerData CustomerData
     {
@@ -100,6 +99,71 @@ public class Customer : MonoBehaviour
             IsWalking = false;
             if (destroyWhenReached) Destroy(this.gameObject);
         }
+    }
+    public void LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
+    {
+        foreach (HairObject child in GetComponentsInChildren<HairObject>())
+        {
+            Destroy(child.gameObject);
+        }
+        HeadData.current = (HeadData)Data.LoadHair(directory, fileName);
+
+        List<Transform> tempTransforms = new List<Transform>();
+        for (int i = 0; i < HeadData.current.hairObjects.Count; i++)
+        {
+            HairData data = HeadData.current.hairObjects[i]; 
+            HairObject obj = GameObject.CreatePrimitive(data.meshType).AddComponent<HairObject>();
+            obj.GetComponent<MeshRenderer>().material.color = data.color;
+            obj.gameObject.name = "hair object #" + i;
+
+            if (data.parentIndex == -1)
+            {
+                obj.transform.parent = head.transform;
+            } else
+            {
+                obj.transform.parent = tempTransforms[data.parentIndex];
+            }
+            obj.gameObject.tag = Tags.GRABABLE;
+            obj.hairData = data;
+
+            obj.transform.localScale = data.scale;
+            obj.transform.localPosition = data.localposition;
+            obj.transform.localRotation = data.rotation;
+
+            tempTransforms.Add(obj.transform);
+        }
+        tempTransforms.Clear();
+    }
+
+    public bool SaveHair(string directory = "/saves", string fileName = "testHairSave.hair")
+    {
+        HeadData.current.test = 6;
+        HeadData.current.hairObjects = new List<HairData>();
+        foreach (HairObject child in GetComponentsInChildren<HairObject>())
+        {
+            AddHairObjectToSave(child);
+        }
+        Data.SaveHair(directory, fileName, HeadData.current);
+        return true;
+    }
+    public void AddHairObjectToSave(HairObject obj)
+    {
+        if (obj.hairData == null)
+        {
+            return;
+        }
+        if (obj.transform.parent != head.transform)
+        {
+            obj.hairData.parentIndex = HeadData.current.hairObjects.IndexOf(obj.transform.parent.GetComponent<HairObject>().hairData);
+        } else
+        {
+            obj.hairData.parentIndex = -1;
+        }
+        obj.hairData.localposition = obj.transform.localPosition;
+        obj.hairData.scale = obj.transform.localScale;
+        obj.hairData.rotation = obj.transform.localRotation;
+
+        HeadData.current.hairObjects.Add(obj.hairData);
     }
 }
 
