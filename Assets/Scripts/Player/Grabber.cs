@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Valve.VR.InteractionSystem;
 
 public class Grabber : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class Grabber : MonoBehaviour {
 
     //Throw Physics Shit
     private Vector3 currentGrabbedLocation;
+
+    private bool didHideDefaultController;
     //public GameObject capsule;
     //private Vector3 controllerCentreOfMass;
     //private Vector3 grabbedObjectCentreOfMass;
@@ -65,9 +68,11 @@ public class Grabber : MonoBehaviour {
         //update slider
         HSVColorPanel.instance.SelectedObject = grabbedObject;
 
-        //Throw Physics Shit
-        //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
-    }
+        //make hand dissapear
+        HideHands();
+            //Throw Physics Shit
+            //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
+        }
 
     void scaleCheck() {
         if (otherHand.grabbedObject != null) {
@@ -112,6 +117,7 @@ public class Grabber : MonoBehaviour {
                 grabbedObject.GetComponent<Rigidbody>().AddForce(throwVector * 75, ForceMode.Impulse);
                 //grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
             }
+            ShowHands();
         }
 
     }
@@ -180,6 +186,24 @@ public class Grabber : MonoBehaviour {
         get { return grabbed; }
         set {
             grabbed = value;
+        }
+    }
+
+    void HideHands()
+    {
+        SkinnedMeshRenderer[] renderers = this.transform.parent.GetComponentsInChildren<SkinnedMeshRenderer>();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = false;
+        }
+    }
+
+    void ShowHands()
+    {
+        SkinnedMeshRenderer[] renderers = this.transform.parent.GetComponentsInChildren<SkinnedMeshRenderer>();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = true;
         }
     }
 
