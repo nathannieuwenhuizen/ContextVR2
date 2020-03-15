@@ -20,17 +20,19 @@ public class Grabber : MonoBehaviour {
     [SerializeField] private float scaleMax = .5f;
 
     //Throw Physics Shit
-    public GameObject capsule;
-    private Vector3 controllerCentreOfMass;
-    private Vector3 grabbedObjectCentreOfMass;
-    private Vector3 grabbedObjectPosOffset;
-    private Vector3 controllerVelocityCross;
+    private Vector3 currentGrabbedLocation;
+    //public GameObject capsule;
+    //private Vector3 controllerCentreOfMass;
+    //private Vector3 grabbedObjectCentreOfMass;
+    //private Vector3 grabbedObjectPosOffset;
+    //private Vector3 controllerVelocityCross;
 
 
     private void Start()
     {
         //Throw Physics Shit
-        controllerCentreOfMass = capsule.GetComponent<Rigidbody>().centerOfMass;
+        currentGrabbedLocation = new Vector3();
+        //controllerCentreOfMass = capsule.GetComponent<Rigidbody>().centerOfMass;
     }
 
     public void Grab() {
@@ -55,6 +57,7 @@ public class Grabber : MonoBehaviour {
 
         //lock rigidbody but still exist for collission detection with head and hair
         grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, true);
+        //grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 
         grabbedObject.GetComponent<HairObject>().Grabbed = true;
         grabbedObject.GetComponent<HairObject>().Hover = true;
@@ -63,7 +66,7 @@ public class Grabber : MonoBehaviour {
         HSVColorPanel.instance.SelectedObject = grabbedObject;
 
         //Throw Physics Shit
-        grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
+        //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
     }
 
     void scaleCheck() {
@@ -92,6 +95,7 @@ public class Grabber : MonoBehaviour {
 
             //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
+                //grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 grabbedObject.GetComponent<HairObject>().Grabbed = false;
                 grabbedObject.GetComponent<HairObject>().ToggleRigidBody(false);
 
@@ -99,10 +103,14 @@ public class Grabber : MonoBehaviour {
             } 
             else {
                 //set gravity on
-                grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
+                //grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
 
                 //Throw Physics Shit
-                grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
+                Vector3 throwVector = grabbedObject.transform.position - currentGrabbedLocation;
+                //grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+                grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, false);
+                grabbedObject.GetComponent<Rigidbody>().AddForce(throwVector * 75, ForceMode.Impulse);
+                //grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
             }
         }
 
@@ -124,7 +132,6 @@ public class Grabber : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.G)) Grab();
         if (Input.GetKeyDown(KeyCode.R)) Release();
         transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
-
 
         if (scalingObject != null ) {
             if (scalingObject.GetComponent<HairObject>().Grabbed)
@@ -161,11 +168,12 @@ public class Grabber : MonoBehaviour {
         }
 
         //Throw Physics Shit
-        if (grabbed)
-        {
-            grabbedObjectPosOffset = grabbedObjectCentreOfMass - controllerCentreOfMass;
-            controllerVelocityCross = Vector3.Cross(capsule.GetComponent<Rigidbody>().angularVelocity, grabbedObjectPosOffset);
-        }
+        if (grabbed) currentGrabbedLocation = grabbedObject.transform.position;
+        //if (grabbed)
+        //{
+        //    grabbedObjectPosOffset = grabbedObjectCentreOfMass - controllerCentreOfMass;
+        //    controllerVelocityCross = Vector3.Cross(capsule.GetComponent<Rigidbody>().angularVelocity, grabbedObjectPosOffset);
+        //}
     }
 
     public bool Grabbed {

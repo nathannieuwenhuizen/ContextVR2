@@ -119,6 +119,7 @@ public class HairObject : MonoBehaviour
     {
         if (!value)
         {
+            //GetComponent<Rigidbody>().isKinematic = true;
             if (GetComponent<Rigidbody>())
             {
                 Destroy(GetComponent<Rigidbody>());
@@ -133,6 +134,7 @@ public class HairObject : MonoBehaviour
                 rb = gameObject.AddComponent<Rigidbody>();
             }
             rb.velocity = deltaPos * (Mathf.Min(maxThrow, throwValue) * 1000);
+            //rb.isKinematic = hasConstaints ? true : false;
             rb.constraints = hasConstaints ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
             rb.isKinematic = false;
             
