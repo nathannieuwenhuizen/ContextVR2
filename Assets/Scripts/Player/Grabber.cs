@@ -117,9 +117,9 @@ public class Grabber : MonoBehaviour {
                 grabbedObject.GetComponent<Rigidbody>().AddForce(throwVector * 75, ForceMode.Impulse);
                 //grabbedObject.GetComponent<Rigidbody>().velocity = capsule.GetComponent<Rigidbody>().velocity + controllerVelocityCross;
             }
-            ShowHands();
+            
         }
-
+        ShowHands();
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
