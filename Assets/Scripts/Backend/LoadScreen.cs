@@ -7,7 +7,7 @@ public class LoadScreen : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadSceneAsync("VRTEST3");
+        SceneManager.LoadSceneAsync("PlayerTest2");
     }
     
 }
