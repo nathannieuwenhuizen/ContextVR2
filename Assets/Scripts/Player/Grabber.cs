@@ -41,6 +41,9 @@ public class Grabber : MonoBehaviour {
     public void Grab() {
         if (Grabbed) { return;  }
 
+        //make hand dissapear
+        HideHands();
+
         //check object with tag
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
         if (focusedObject == null) { scaleCheck(); return; }
@@ -60,6 +63,7 @@ public class Grabber : MonoBehaviour {
 
         //lock rigidbody but still exist for collission detection with head and hair
         grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, true);
+        //grabbedObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
         //grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 
         grabbedObject.GetComponent<HairObject>().Grabbed = true;
@@ -68,8 +72,6 @@ public class Grabber : MonoBehaviour {
         //update slider
         HSVColorPanel.instance.SelectedObject = grabbedObject;
 
-        //make hand dissapear
-        HideHands();
             //Throw Physics Shit
             //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
         }
@@ -84,6 +86,9 @@ public class Grabber : MonoBehaviour {
     }
 
     public void Release() {
+        //Make hands reappear
+        ShowHands();
+
         if (scalingObject != null) {
             scalingObject = null;
             return;
@@ -97,7 +102,7 @@ public class Grabber : MonoBehaviour {
 
             //update color panel
             HSVColorPanel.instance.SelectedObject = null;
-
+            Debug.Log(grabbedObject.GetComponent<HairObject>().AttachedAtHead);
             //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
                 //grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -105,7 +110,8 @@ public class Grabber : MonoBehaviour {
                 grabbedObject.GetComponent<HairObject>().ToggleRigidBody(false);
 
                 grabbedObject.transform.parent = grabbedObject.GetComponent<HairObject>().ParentTransform;
-            } 
+                //grabbedObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
+            }
             else {
                 //set gravity on
                 //grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
@@ -119,7 +125,6 @@ public class Grabber : MonoBehaviour {
             }
             
         }
-        ShowHands();
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
@@ -191,20 +196,12 @@ public class Grabber : MonoBehaviour {
 
     void HideHands()
     {
-        SkinnedMeshRenderer[] renderers = this.transform.parent.GetComponentsInChildren<SkinnedMeshRenderer>();
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].enabled = false;
-        }
+        this.transform.parent.GetChild(6).gameObject.SetActive(false);
     }
 
     void ShowHands()
     {
-        SkinnedMeshRenderer[] renderers = this.transform.parent.GetComponentsInChildren<SkinnedMeshRenderer>();
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].enabled = true;
-        }
+        this.transform.parent.GetChild(6).gameObject.SetActive(true);
     }
 
     // void OnDrawGizmos() {

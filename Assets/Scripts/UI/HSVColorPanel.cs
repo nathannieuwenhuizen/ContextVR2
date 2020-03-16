@@ -75,7 +75,7 @@ public class HSVColorPanel : MonoBehaviour {
     {
         set
         {
-            Debug.Log(" selected object: " + value);
+            //Debug.Log(" selected object: " + value);
             selectedObject = value;
             if (selectedObject != null)
             {

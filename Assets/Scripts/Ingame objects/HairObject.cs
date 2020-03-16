@@ -36,7 +36,7 @@ public class HairObject : MonoBehaviour
         }
         set
         {
-            Debug.Log("hover: " + value);
+            //Debug.Log("hover: " + value);
             hover = value;
             if (mr != null)
             {
@@ -107,6 +107,8 @@ public class HairObject : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(collissions.Count);
+
         if (grabbed)
         {
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
@@ -136,11 +138,9 @@ public class HairObject : MonoBehaviour
             rb.velocity = deltaPos * (Mathf.Min(maxThrow, throwValue) * 1000);
             //rb.isKinematic = hasConstaints ? true : false;
             rb.constraints = hasConstaints ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.None;
-            rb.isKinematic = false;
-            
-                    collissions = new List<Collision>();
-                    parentTransform = null;
-
+            rb.isKinematic = false;            
+            collissions = new List<Collision>();
+            parentTransform = null;
         }
     }
 
