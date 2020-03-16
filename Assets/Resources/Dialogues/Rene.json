@@ -7,7 +7,6 @@
 	"basePrice" : 20,
 	"dialogues" :[
 	{
-		// 0
 		"text" : "I really like this months haircut. It's got something gallant and noble to it, which is perfect for my grandmothers commemoration.",
 		"responses" : [
 		{
@@ -21,7 +20,6 @@
 		]
 	},
 	{
-		// 1
 		"text" : "Very. She was from the 2030's and died eleven years ago. She was there for the formation of the Party, the Climate Restoration...",
 		"responses" : [
 		{
@@ -35,7 +33,6 @@
 		]
 	},
 	{
-		// 2
 		"text" : "She had values she stood behind, values that ultimately decided the fate of humanity. I respect her a lot.",
 		"responses" : [
 		{
@@ -49,22 +46,18 @@
 		]
 	},
 	{
-		// 3
 		"text" : "She supported it fully, just like I do. She'd experienced plenty of nasty things in her time. I'm very glad those don't happen anymore.",
 		"responses" : []
 	},
 	{
-		// 4
 		"text" : "Definitly. What the Party has done for us now all started with people like her. They were the ones that decided to be done with suffering.",
 		"responses" : []
 	},
 	{
-		// 5
 		"text" : "Yes. A sustainable climate, a world without discrimination. When we act together we can do great things.",
 		"responses" : []
 	},
 	{
-		// 6
 		"text" : "She told me all about it when I was young. She was a strong advocate of the Party. We owe it to her that we can live like we do now.",
 		"responses" : []
 	}

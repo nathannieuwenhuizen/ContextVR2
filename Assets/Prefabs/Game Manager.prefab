@@ -175,7 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4779ef7ece6b6444b732a1f12a0eb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: testHairSave.hair
+  directory: /saves
   formChecker: {fileID: 0}
+  currentCustomer: {fileID: 0}
   customerPrefab: {fileID: 8992148284509144097, guid: afa5d92a7f8badf4685c9143ce3eebba,
     type: 3}
   chair: {fileID: 0}
@@ -190,7 +193,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a846c5d5f40f349a0ec762b7900a8b, type: 3}
   - {fileID: 21300000, guid: 1a09fcc794a7c624bbd2157b4fe6c6b4, type: 3}
   customerDataQueue:
-  - test
+  - Rene
   - test2
   money: 0
 --- !u!1 &1941399834101772427
