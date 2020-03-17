@@ -87,10 +87,16 @@ public class GameManager : MonoBehaviour
         //check if it is recurring character.
         if (nextDialogueData.recurringCharacter)
         {
+            //load hair if character visited before
+            if (Data.RECURING_CHARACTER_VISITS > 0)
+            {
+                currentCustomer.LoadHair("/saves", Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+            }
+
             if (nextDialogueData.fileNames.Length > 1) //more than one file?
             {
                 //recurring match is more than 0.8, then load positive.
-                if (Data.recurringCharacterMatch > 0.8f)
+                if (Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT == false)
                 {
                     jsonData = nextDialogueData.fileNames[1];
                 }
@@ -179,10 +185,13 @@ public class GameManager : MonoBehaviour
         //compares the haircut
         yield return StartCoroutine(formChecker.getPrecentageFilled(currentCustomer.Head, currentCustomer.DesiredHead, govermentHair));
 
-        //if recurring character, save the desired match data.
+        //if recurring character
         if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
         {
-            Data.recurringCharacterMatch = formChecker.desiredPrecentage;
+            //save hair and update data
+            currentCustomer.SaveHair("/saves", Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+            Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction;
+            Data.RECURING_CHARACTER_VISITS++;
         }
 
         //raction of customer
