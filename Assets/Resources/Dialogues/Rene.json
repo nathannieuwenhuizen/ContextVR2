@@ -5,6 +5,10 @@
 	"moodForNewHaircut" : false,
 	"maxTip" : 30,
 	"basePrice" : 20,
+	"greetingDialogue" : "Hello",
+	"negativeReaction" : "Negative!",
+	"positiveReaction" : "Yay!",
+
 	"dialogues" :[
 	{
 		"text" : "I really like this months haircut. It's got something gallant and noble to it, which is perfect for my grandmothers commemoration.",

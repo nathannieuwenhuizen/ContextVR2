@@ -176,6 +176,9 @@ public class CustomerData
     public int maxTip = 30;
     public int desiredHaircutID = -1;
     public int appearanceSeed = 0;
+    public string greetingDialogue;
+    public string positiveReaction;
+    public string negativeReaction;
     public Dialogue[] dialogues;
 }
 [System.Serializable]
