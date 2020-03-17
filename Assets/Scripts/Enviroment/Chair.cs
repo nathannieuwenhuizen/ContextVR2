@@ -13,19 +13,6 @@ public class Chair : MonoBehaviour
     [HideInInspector]
     public Customer customer;
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            StartCoroutine(Spinning(true));
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine(Spinning(false));
-        }
-
-    }
     public IEnumerator Spinning(bool facesMirror)
     {
         if (customer != null)

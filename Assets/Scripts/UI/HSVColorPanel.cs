@@ -27,6 +27,10 @@ public class HSVColorPanel : MonoBehaviour {
     [SerializeField] Sprite selectedSprite;
     GameObject[] swatchbuttons;
 
+    [Header("PARTICLE")]
+    [SerializeField]
+    private GameObject particlePrefab;
+    private GameObject particleInstance;
     public GameObject selectedObject;
 
     public static HSVColorPanel instance;
@@ -103,8 +107,19 @@ public class HSVColorPanel : MonoBehaviour {
             if (selectedObject != null)
             {
                 selectedObject.GetComponent<MeshRenderer>().material.color = color;
+                SpawnParticle(selectedObject);
             }
         }
+    }
+    public void SpawnParticle(GameObject atObject)
+    {
+        if (particleInstance == null)
+        {
+            particleInstance = Instantiate(particlePrefab);
+        }
+        particleInstance.GetComponent<ParticleSystem>().Play();
+        particleInstance.transform.position =  atObject.transform.position;
+        particleInstance.GetComponent<ParticleSystem>().startColor = color;
     }
 
     public void PressSwatch(int index) {

@@ -844,6 +844,9 @@ MonoBehaviour:
     type: 3}
   normalSprite: {fileID: 21300000, guid: d56df0590db85074a94dd351b9809cf2, type: 3}
   selectedSprite: {fileID: 21300000, guid: 3c83278f05e6c914fa47a5e124faf425, type: 3}
+  particlePrefab: {fileID: 859706912144084714, guid: 075f9fdd7568083499519c7d7d1c37af,
+    type: 3}
+  selectedObject: {fileID: 0}
 --- !u!1 &3196482903779869865
 GameObject:
   m_ObjectHideFlags: 0
