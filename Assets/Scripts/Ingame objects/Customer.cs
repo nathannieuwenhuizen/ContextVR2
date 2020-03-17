@@ -52,8 +52,7 @@ public class Customer : MonoBehaviour
             customerData = value;
             if (customerData.dialogues.Length > 0)
             {
-                
-                dialogueHandeler.UpdateUI(customerData.dialogues[0], customerData.name);
+                StartCoroutine(Greeting());
                 if (customerData.desiredHaircutID < 0)
                 {
                     DesiredHead = GameManager.instance.govermentHair;
@@ -63,6 +62,13 @@ public class Customer : MonoBehaviour
                 }
             }
         }
+    }
+    IEnumerator Greeting()
+    {
+        dialogueHandeler.BeginLine(customerData.greetingDialogue, customerData.name);
+        yield return new WaitForSeconds(2f);
+        dialogueHandeler.BeginDialogue(customerData.dialogues[0], customerData.name);
+
     }
 
     // Turn the canvas so the  tekstballon looks at the player
@@ -135,6 +141,11 @@ public class Customer : MonoBehaviour
         tempTransforms.Clear();
     }
 
+    public void Reaction(float desiredMatch)
+    {
+        dialogueHandeler.BeginLine(desiredMatch > customerData.minimumPrecentageForPositiveReaction ? customerData.positiveReaction : customerData.negativeReaction, customerData.name);
+    }
+
     public bool SaveHair(string directory = "/saves", string fileName = "testHairSave.hair")
     {
         HeadData.current.test = 6;
@@ -176,6 +187,7 @@ public class CustomerData
     public int maxTip = 30;
     public int desiredHaircutID = -1;
     public int appearanceSeed = 0;
+    public float minimumPrecentageForPositiveReaction = 0.7f;
     public string greetingDialogue;
     public string positiveReaction;
     public string negativeReaction;

@@ -13,12 +13,9 @@ public class DialogueHandeler : MonoBehaviour
     [SerializeField] private Text nameText;
     [SerializeField] public Customer customer;
 
-    public void UpdateUI(Dialogue dialogue, string name) {
+    public void BeginDialogue(Dialogue dialogue, string name) {
         //set dialogue text
-        Talk(dialogue.text);
-        //dialogueText.text = dialogue.text;
-
-        nameText.text = name;
+        BeginLine(dialogue.text, name);
 
         //destroy all buttons
         foreach (Transform child in buttonParent.transform)
@@ -44,16 +41,18 @@ public class DialogueHandeler : MonoBehaviour
                     int id = dialogue.responses[ii].dialogueID;
                     if (id < customer.customerData.dialogues.Length)
                     {
-                        UpdateUI(customer.customerData.dialogues[id], name);
+                        BeginDialogue(customer.customerData.dialogues[id], name);
                     }
                 });
             }
         }
     }
 
-    public void Talk(string line)
+    public void BeginLine(string line, string name)
     {
         dialogueText.text = "";
+        nameText.text = name;
+
         StopAllCoroutines();
         StartCoroutine(Talking(line));
     }

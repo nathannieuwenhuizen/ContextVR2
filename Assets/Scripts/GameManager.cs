@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour
         //calculate price
         int price = currentCustomer.CustomerData.basePrice;
         int tip = 0;
-        if (formChecker.desiredPrecentage > 0.7f)
+        //if customer is happy, he/she gives a fine tip!
+        if (formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction)
         {
             tip += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
         }
@@ -184,8 +185,9 @@ public class GameManager : MonoBehaviour
             Data.recurringCharacterMatch = formChecker.desiredPrecentage;
         }
 
-        //wait for a time.
-        yield return new WaitForSeconds(0.5f);
+        //raction of customer
+        currentCustomer.Reaction(formChecker.desiredPrecentage);
+        yield return new WaitForSeconds(1f);
 
 
         //updates the money and gallery

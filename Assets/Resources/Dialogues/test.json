@@ -8,6 +8,7 @@
 	"greetingDialogue" : "Hello",
 	"negativeReaction" : "Negative!",
 	"positiveReaction" : "Yay!",
+	"minimumPrecentageForPositiveReaction" : "0.8",
 	"dialogues" :[
 	{
 		"text" : "Are you gay?",
