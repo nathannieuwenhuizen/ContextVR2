@@ -122,7 +122,10 @@ namespace Valve.VR.InteractionSystem
 
         public void SetCollisionDetectionEnabled(bool value)
         {
-            rigidbody.detectCollisions = value;
+            if (rigidbody != null)
+            {
+                rigidbody.detectCollisions = value;
+            }
         }
 
         public void MoveTo(Vector3 position, Quaternion rotation)

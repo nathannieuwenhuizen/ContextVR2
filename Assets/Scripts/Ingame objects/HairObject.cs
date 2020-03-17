@@ -26,6 +26,7 @@ public class HairObject : MonoBehaviour
         get { return grabbed; }
         set {
             grabbed = value;
+            collissions.Clear();
         }
     }
     public bool Hover
@@ -107,10 +108,11 @@ public class HairObject : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(collissions.Count);
 
         if (grabbed)
         {
+            Debug.Log(" collission count: " + collissions.Count);
+
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
             oldPos = transform.position;
 
@@ -144,14 +146,16 @@ public class HairObject : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void CheckCollissionToAttach(Collision collision)
     {
+        if (collissions.Contains(collision)) { return; }
         //check head
         if (collision.transform.tag == Tags.HEAD)
         {
             parentTransform = collision.transform;
             collissions.Add(collision);
-        } else //check hair children of head
+        }
+        else //check hair children of head
         {
             Transform parent = collision.transform;
             while (parent != null)
@@ -166,6 +170,20 @@ public class HairObject : MonoBehaviour
                 parent = parent.parent;
 
             }
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        CheckCollissionToAttach(collision);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (grabbed)
+        {
+            CheckCollissionToAttach(collision);
         }
     }
 
