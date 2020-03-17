@@ -5,6 +5,10 @@
 	"moodForNewHaircut" : false,
 	"maxTip" : 30,
 	"basePrice" : 20,
+	"greetingDialogue" : "Hello",
+	"negativeReaction" : "Negative!",
+	"positiveReaction" : "Yay!",
+
 	"dialogues" :[
 	{
 		"text" : "Are you hetero?",

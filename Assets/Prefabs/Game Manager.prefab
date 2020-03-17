@@ -193,8 +193,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a846c5d5f40f349a0ec762b7900a8b, type: 3}
   - {fileID: 21300000, guid: 1a09fcc794a7c624bbd2157b4fe6c6b4, type: 3}
   customerDataQueue:
-  - Rene
-  - test2
+  - recurringCharacter: 0
+    fileNames:
+    - test
+  - recurringCharacter: 0
+    fileNames:
+    - test
   money: 0
 --- !u!1 &1941399834101772427
 GameObject:

@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public Sprite govermentHair;
     public Sprite[] customerHaircuts;
 
-    public string[] customerDataQueue;
+    public DialogueData[] customerDataQueue;
 
     private int customerCount = 0;
 
@@ -66,12 +66,40 @@ public class GameManager : MonoBehaviour
         //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
 
-        //apply data (speak bubble, desired haircut and appearance
-        currentCustomer.CustomerData = JsonUtility.FromJson<CustomerData>(Data.LoadJSONFileAsText(customerDataQueue[customerCount % customerDataQueue.Length]));
+
+        //load/apply data (dialogue, desired haircut and appearance)
+        loadCustomerData();
+
+        //set customer to chair for spinning function.
         chair.customer = currentCustomer;
 
         //let the customer walk
         StartCoroutine(NextCustomerWalkngIn());
+
+    }
+
+    public void loadCustomerData()
+    {
+        //get next dialogue data.
+        DialogueData nextDialogueData = customerDataQueue[customerCount % customerDataQueue.Length];
+
+        string jsonData = nextDialogueData.fileNames[0];
+        //check if it is recurring character.
+        if (nextDialogueData.recurringCharacter)
+        {
+            if (nextDialogueData.fileNames.Length > 1) //more than one file?
+            {
+                //recurring match is more than 0.8, then load positive.
+                if (Data.recurringCharacterMatch > 0.8f)
+                {
+                    jsonData = nextDialogueData.fileNames[1];
+                }
+            }
+        }
+        //load json file as a c# object
+        currentCustomer.CustomerData = JsonUtility.FromJson<CustomerData>(
+            Data.LoadJSONFileAsText(jsonData)
+        );
 
     }
 
@@ -90,15 +118,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void UpdateStore()
     {
-        Settings.TotalPrecentage += formChecker.desiredPrecentage;
-        Settings.AmountOfCustomers++;
-
+        //add frame picture
         if (gallery != null)
         {
             gallery.AddFrame(formChecker.portaitShot);
             //gallery.AddFrame(formChecker.refTexture);
             //gallery.AddFrame(formChecker.selectedTexture);
         }
+
+        //calculate price
         int price = currentCustomer.CustomerData.basePrice;
         int tip = 0;
         if (formChecker.desiredPrecentage > 0.7f)
@@ -131,13 +159,17 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void HairCutFinished()
     {
+        //if out of edit mode/haircut mode or the customer is walking, you can't finish.
         if (!editMode || currentCustomer.IsWalking) { return; }
         editMode = false;
+
+        //you can save the hair
         //currentCustomer.SaveHair();
 
         StartCoroutine(HairCutFinishing());
 
     }
+
     IEnumerator HairCutFinishing()
     {
         //char is spinning
@@ -146,7 +178,15 @@ public class GameManager : MonoBehaviour
         //compares the haircut
         yield return StartCoroutine(formChecker.getPrecentageFilled(currentCustomer.Head, currentCustomer.DesiredHead, govermentHair));
 
+        //if recurring character, save the desired match data.
+        if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
+        {
+            Data.recurringCharacterMatch = formChecker.desiredPrecentage;
+        }
+
+        //wait for a time.
         yield return new WaitForSeconds(0.5f);
+
 
         //updates the money and gallery
         UpdateStore();
