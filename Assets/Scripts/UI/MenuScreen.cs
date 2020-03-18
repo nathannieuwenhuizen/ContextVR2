@@ -43,6 +43,8 @@ public class MenuScreen : MonoBehaviour
         {
             return;
         }
+        AudioManager.instance?.PlaySound(AudioEffect.uiClick, 1);
+
         activeScreen.interactable = false;
         activeScreen.blocksRaycasts = false;
         LeanTween.alphaCanvas(activeScreen, 0, fadeTime).setOnComplete(() =>
@@ -56,6 +58,8 @@ public class MenuScreen : MonoBehaviour
 
     public void UpdateVolume()
     {
+        AudioManager.instance?.PlaySound(AudioEffect.scaleChange, 1);
+
         Settings.Volume = volumeSlider.value;
         AudioListener.volume = volumeSlider.value;
     }

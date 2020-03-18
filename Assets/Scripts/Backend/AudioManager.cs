@@ -21,8 +21,6 @@ public enum AudioEffect
 }
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip grabProp;
 
     [SerializeField]
     private List<AudioInstance> soundEffectInstances;
@@ -33,10 +31,6 @@ public class AudioManager : MonoBehaviour
     {
         instance = this;
     }
-    private void Start()
-    {
-        soundEffectInstances = new List<AudioInstance>();
-    }
 
     public void PlaySound(AudioEffect audioEffect, float volume, bool makeInstace = false)
     {
@@ -45,7 +39,8 @@ public class AudioManager : MonoBehaviour
         if (makeInstace)
         {
             selectedAudio = new AudioInstance();
-            selectedAudio.audioS = Instantiate(selectedAudio.audioS.gameObject).GetComponent<AudioSource>();
+            GameObject newObj = Instantiate(selectedAudio.audioS.gameObject);
+            selectedAudio.audioS = newObj.GetComponent<AudioSource>();
         }
         selectedAudio.audioS.spatialBlend = 0;
         selectedAudio.audioS.volume = volume;
@@ -53,18 +48,21 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void Play3DSound(AudioEffect audioEffect, float volume, Vector3 position, bool makeInstace = false)
+    public void Play3DSound(AudioEffect audioEffect, float volume, Vector3 position, bool makeInstace = false, float pitch = 1)
     {
         AudioInstance selectedAudio = soundEffectInstances.Find(x => x.audioEffect == audioEffect);
 
         if (makeInstace)
         {
             selectedAudio = new AudioInstance();
-            selectedAudio.audioS = Instantiate(selectedAudio.audioS.gameObject).GetComponent<AudioSource>();
+            GameObject newObj = Instantiate(selectedAudio.audioS.gameObject);
+            selectedAudio.audioS = newObj.GetComponent<AudioSource>();
         }
+        selectedAudio.audioS.pitch = pitch;
         selectedAudio.audioS.spatialBlend = 1;
         selectedAudio.audioS.gameObject.transform.position = position;
         selectedAudio.audioS.volume = volume;
+        Debug.Log(" play!");
         selectedAudio.audioS.Play();
     }
     public void StopSound(AudioEffect audioEffect)

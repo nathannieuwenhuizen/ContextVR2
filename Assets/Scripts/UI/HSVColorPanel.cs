@@ -33,6 +33,7 @@ public class HSVColorPanel : MonoBehaviour {
     private GameObject particleInstance;
     public GameObject selectedObject;
 
+    private float oldPitch = 0;
     public static HSVColorPanel instance;
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class HSVColorPanel : MonoBehaviour {
         }
     }
 
+    //for testing
     public IEnumerator test()
     {
         while (true)
@@ -134,7 +136,18 @@ public class HSVColorPanel : MonoBehaviour {
     }
 
     public void ChaingedColor() {
+
         color = Color.HSVToRGB(Hue.value, Saturation.value, Value.value);
+
+
+        //sound effect with pitch
+        float pitchValue = (Hue.value + Saturation.value + Value.value) / 3f;
+        if (Mathf.Abs(pitchValue - oldPitch) > 0.02f)
+        {
+            oldPitch = pitchValue;
+            AudioManager.instance?.Play3DSound(AudioEffect.colorChange, 1, transform.position, false, .5f + pitchValue);
+        }
+
         for (int i = 0; i < colorDisplay.Length; i++) {
             colorDisplay[i].color = color;
         }
@@ -160,6 +173,8 @@ public class HSVColorPanel : MonoBehaviour {
     }
 
     public void switchPanel() {
+        AudioManager.instance?.Play3DSound(AudioEffect.uiClick, 1, transform.position);
+
         if (HSV.active) {
             HSV.SetActive(false);
             SWATCHES.SetActive(true);

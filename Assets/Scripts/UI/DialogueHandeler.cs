@@ -59,7 +59,7 @@ public class DialogueHandeler : MonoBehaviour
     private IEnumerator Talking(string line)
     {
         //play talking sound
-        AudioManager.instance?.Play3DSound(AudioEffect.dialogueTalk, 1, transform.position);
+        AudioManager.instance?.Play3DSound(AudioEffect.dialogueTalk, .5f, transform.position);
 
         float interval = dialogueDuration / line.Length;
         for (int i = 0; i < line.Length; i++)
@@ -67,5 +67,9 @@ public class DialogueHandeler : MonoBehaviour
             dialogueText.text += line[i];
             yield return new WaitForSeconds(interval);
         }
+
+        //play talking sound
+        AudioManager.instance?.StopSound(AudioEffect.dialogueTalk);
+
     }
 }

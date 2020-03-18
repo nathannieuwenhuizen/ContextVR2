@@ -177,11 +177,6 @@ public class HairObject : MonoBehaviour
         {
             CheckCollissionToAttach(collision);
         }
-        else
-        {
-            //play prop hitting ground or othero object at head sound
-            AudioManager.instance?.Play3DSound(AudioEffect.propHitGround, 1, transform.position, true);
-        }
     }
 
     private void OnCollisionStay(Collision collision)

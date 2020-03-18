@@ -28,6 +28,12 @@ public class ShopFloor : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
+        //play prop hitting ground or othero object at head sound
+        if (collision.gameObject.tag == Tags.GRABABLE)
+        {
+            AudioManager.instance?.Play3DSound(AudioEffect.propHitGround, .1f, collision.transform.position);
+        }
+
         scaleObjects.Add(collision.transform);
     }
     
