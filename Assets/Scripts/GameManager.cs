@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
         //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
 
+        //play doorbell sound
+        AudioManager.instance?.Play3DSound(AudioEffect.doorbell, 1, doorPos.position);
 
         //load/apply data (dialogue, desired haircut and appearance)
         loadCustomerData();
@@ -179,6 +181,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator HairCutFinishing()
     {
+        //play cash register sound
+        AudioManager.instance?.Play3DSound(AudioEffect.cashRegister, 1, chair.transform.position);
+        yield return new WaitForSeconds(.5f);
+
         //char is spinning
         yield return StartCoroutine(chair.Spinning(true));
 

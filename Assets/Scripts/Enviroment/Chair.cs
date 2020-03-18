@@ -15,6 +15,9 @@ public class Chair : MonoBehaviour
 
     public IEnumerator Spinning(bool facesMirror)
     {
+        //play talking sound
+        AudioManager.instance?.Play3DSound(AudioEffect.chair, 1, transform.position);
+
         if (customer != null)
         {
             customer.transform.parent = transform;

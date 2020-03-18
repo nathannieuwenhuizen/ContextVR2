@@ -56,6 +56,9 @@ public class Grabber : MonoBehaviour {
         Grabbed = true;
         grabbedObject.transform.parent = transform;
 
+        //play grab sound
+        AudioManager.instance?.Play3DSound(AudioEffect.grabProp, 1, transform.position);
+
         //add haircomponent
         if (grabbedObject.GetComponent<HairObject>() == null) {
             grabbedObject.AddComponent<HairObject>();
@@ -77,6 +80,8 @@ public class Grabber : MonoBehaviour {
         }
 
     void scaleCheck() {
+
+        //check if other hand also grabs it
         if (otherHand.grabbedObject != null) {
             scalingObject = otherHand.grabbedObject;
             scaleMultip = scalingObject.transform.localScale.x;
@@ -102,9 +107,13 @@ public class Grabber : MonoBehaviour {
 
             //update color panel
             HSVColorPanel.instance.SelectedObject = null;
-            Debug.Log(grabbedObject.GetComponent<HairObject>().AttachedAtHead);
+
             //if collides with head, attach it, otherwise fall on ground
             if (grabbedObject.GetComponent<HairObject>().AttachedAtHead) {
+
+                //play release at head sound
+                AudioManager.instance?.Play3DSound(AudioEffect.releaseWithHead, 1, transform.position);
+
                 //grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 grabbedObject.GetComponent<HairObject>().Grabbed = false;
                 grabbedObject.GetComponent<HairObject>().ToggleRigidBody(false);
@@ -113,8 +122,8 @@ public class Grabber : MonoBehaviour {
                 //grabbedObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Discrete;
             }
             else {
-                //set gravity on
-                //grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true);
+                //play release without head sound
+                AudioManager.instance?.Play3DSound(AudioEffect.releaseWithoutHead, 1, transform.position);
 
                 //Throw Physics Shit
                 Vector3 throwVector = grabbedObject.transform.position - currentGrabbedLocation;

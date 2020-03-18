@@ -52,6 +52,9 @@ public class ResultTerminal : MonoBehaviour
     {
         Reset();
 
+        //play terminal sound
+        AudioManager.instance?.Play3DSound(AudioEffect.computerTerminal, 1, transform.position);
+
         //goverment slider
         govermentTween = LeanTween.value(gameObject, 0, _govermentPrecentage, sliderTime).setOnUpdate((float val) =>
         {

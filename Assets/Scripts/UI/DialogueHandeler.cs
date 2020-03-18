@@ -58,6 +58,9 @@ public class DialogueHandeler : MonoBehaviour
     }
     private IEnumerator Talking(string line)
     {
+        //play talking sound
+        AudioManager.instance?.Play3DSound(AudioEffect.dialogueTalk, 1, transform.position);
+
         float interval = dialogueDuration / line.Length;
         for (int i = 0; i < line.Length; i++)
         {

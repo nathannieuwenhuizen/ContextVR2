@@ -104,6 +104,10 @@ public class HSVColorPanel : MonoBehaviour {
             updateValue();
             Value.value = V;
 
+            //play color change sound
+            AudioManager.instance?.Play3DSound(AudioEffect.colorChange, 1, HSV.transform.position);
+
+
             if (selectedObject != null)
             {
                 selectedObject.GetComponent<MeshRenderer>().material.color = color;

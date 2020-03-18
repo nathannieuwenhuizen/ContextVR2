@@ -111,8 +111,6 @@ public class HairObject : MonoBehaviour
 
         if (grabbed)
         {
-            Debug.Log(" collission count: " + collissions.Count);
-
             deltaPos = (transform.position - oldPos) * Time.deltaTime;
             oldPos = transform.position;
 
@@ -123,7 +121,6 @@ public class HairObject : MonoBehaviour
     {
         if (!value)
         {
-            //GetComponent<Rigidbody>().isKinematic = true;
             if (GetComponent<Rigidbody>())
             {
                 Destroy(GetComponent<Rigidbody>());
@@ -176,7 +173,15 @@ public class HairObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        CheckCollissionToAttach(collision);
+        if (grabbed)
+        {
+            CheckCollissionToAttach(collision);
+        }
+        else
+        {
+            //play prop hitting ground or othero object at head sound
+            AudioManager.instance?.Play3DSound(AudioEffect.propHitGround, 1, transform.position, true);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
