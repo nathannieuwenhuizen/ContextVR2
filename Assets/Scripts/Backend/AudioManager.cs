@@ -62,7 +62,6 @@ public class AudioManager : MonoBehaviour
         selectedAudio.audioS.spatialBlend = 1;
         selectedAudio.audioS.gameObject.transform.position = position;
         selectedAudio.audioS.volume = volume;
-        Debug.Log(" play!");
         selectedAudio.audioS.Play();
     }
     public void StopSound(AudioEffect audioEffect)

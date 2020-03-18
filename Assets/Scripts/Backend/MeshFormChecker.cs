@@ -65,6 +65,8 @@ public class MeshFormChecker : MonoBehaviour
 
             //clone the objects to checkcamera
             tempSelectedHaircut = Instantiate(selected, checkPos);
+            tempSelectedHaircut.transform.Rotate(0, 90, 0);
+
             tempSelectedHaircut.transform.localPosition = Vector3.zero;
 
             tempReferenceHaircut = spriteObject(sprite);

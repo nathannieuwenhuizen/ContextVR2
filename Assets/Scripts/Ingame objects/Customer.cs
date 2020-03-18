@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Customer : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 0.1f;
+    [SerializeField] private float rotateSpeed = 2f;
 
     [SerializeField] private Sprite desiredHead;
 
@@ -35,7 +36,7 @@ public class Customer : MonoBehaviour
             desiredHeadImage.sprite = value;
         }
     }
-    public bool IsWalking { get; private set; } = false;
+    public bool IsMoving { get; private set; } = false;
 
     private void Update() {
         AimCanvasToCamera();
@@ -82,30 +83,46 @@ public class Customer : MonoBehaviour
         canvasPivot.eulerAngles = new Vector3(canvasPivot.eulerAngles.x, canvasPivot.eulerAngles.y + angle, canvasPivot.eulerAngles.z);
     }
 
-    /// <summary>
-    /// Makes the customer walks to the postion
-    /// </summary>
-    /// <param name="destination"> Th</param>
-    /// <param name="destroyWhenReached"></param>
-    public void Walk(Vector3 destination, bool destroyWhenReached = false ) {
-        StopAllCoroutines();
-        StartCoroutine(Walking(destination, destroyWhenReached));
-    }
-    public IEnumerator Walking(Vector3 destination, bool destroyWhenReached = false)
+    public IEnumerator Orienting(Vector3 destination)
     {
-        if (!IsWalking)
+        Vector3 newDirection;
+
+        while (Mathf.Abs(Vector3.Angle(transform.forward, destination - transform.position)) > 0.1f)
         {
-            IsWalking = true;
-            while (Vector3.Distance(transform.position, destination) > 0.1f)
-            {
-                transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * walkSpeed);
-                yield return new WaitForFixedUpdate();
-            }
-            transform.position = destination;
-            IsWalking = false;
-            if (destroyWhenReached) Destroy(this.gameObject);
+            newDirection = Vector3.RotateTowards(transform.forward, destination - transform.position, Time.deltaTime * rotateSpeed, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+            yield return new WaitForFixedUpdate();
         }
+        newDirection = Vector3.RotateTowards(transform.forward, destination - transform.position, 1f, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
     }
+    public IEnumerator Walking(Vector3 destination)
+    {
+        while (Vector3.Distance(transform.position, destination) > 0.1f)
+        {
+            transform.Translate(transform.InverseTransformDirection(transform.forward) * walkSpeed);
+            yield return new WaitForFixedUpdate();
+        }
+        transform.position = destination;
+    }
+
+    public IEnumerator GoTo(Vector3 pos, bool destoryWhenFinish = false)
+    {
+        if (!IsMoving)
+        {
+            IsMoving = true;
+            yield return StartCoroutine(Orienting(pos));
+            yield return StartCoroutine(Walking(pos));
+            IsMoving = false;
+        }
+        if (destoryWhenFinish)
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
     public void LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
     {
         foreach (HairObject child in GetComponentsInChildren<HairObject>())
@@ -143,7 +160,9 @@ public class Customer : MonoBehaviour
 
     public void Reaction(float desiredMatch)
     {
-        dialogueHandeler.BeginLine(desiredMatch > customerData.minimumPrecentageForPositiveReaction ? customerData.positiveReaction : customerData.negativeReaction, customerData.name);
+        dialogueHandeler.BeginLine(
+            desiredMatch > customerData.minimumPrecentageForPositiveReaction ? 
+            customerData.positiveReaction : customerData.negativeReaction, customerData.name);
     }
 
     public bool SaveHair(string directory = "/saves", string fileName = "testHairSave.hair")
