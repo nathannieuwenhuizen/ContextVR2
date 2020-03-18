@@ -66,9 +66,6 @@ public class GameManager : MonoBehaviour
         //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
 
-        //play doorbell sound
-        AudioManager.instance?.Play3DSound(AudioEffect.doorbell, 1, doorPos.position);
-
         //load/apply data (dialogue, desired haircut and appearance)
         loadCustomerData();
 
@@ -113,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator NextCustomerWalkngIn()
     {
+
         //customer walks to chair position
         yield return StartCoroutine(currentCustomer.GoTo(chairPos.position) );
         yield return StartCoroutine(currentCustomer.Orienting(currentCustomer.transform.position + new Vector3(10f, 0, 0)));
@@ -212,7 +210,7 @@ public class GameManager : MonoBehaviour
         //customer walks out of store
         yield return StartCoroutine(currentCustomer.GoTo(doorPos.position, true));
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         customerCount++;
 
         //next customer walks in

@@ -12,6 +12,8 @@ public class Chair : MonoBehaviour
 
     [HideInInspector]
     public Customer customer;
+    [SerializeField]
+    private LeanTweenType spinAnimationType = LeanTweenType.easeInOutBack;
 
     public IEnumerator Spinning(bool facesMirror)
     {
@@ -22,15 +24,9 @@ public class Chair : MonoBehaviour
         {
             customer.transform.parent = transform;
         }
-        float startTime = Time.time;
-        while (Mathf.Abs( transform.localRotation.eulerAngles.y -(facesMirror ? 0 : endAngle)) > 0.1f)
-        {
-            float t = (Time.time - startTime) / duration;
-            Vector3 euler = transform.localRotation.eulerAngles;
-            euler.y = Mathf.SmoothStep(euler.y, facesMirror ? 0 : endAngle, t);
-            transform.localRotation = Quaternion.Euler(euler);
-            yield return new WaitForFixedUpdate();
-        }
+        LeanTween.rotate(gameObject, new Vector3(0, facesMirror ? 0 : endAngle, 0), duration).setEase(spinAnimationType);
+
+        yield return new WaitForSeconds(duration);
         if (customer != null)
         {
             customer.transform.parent = null;
