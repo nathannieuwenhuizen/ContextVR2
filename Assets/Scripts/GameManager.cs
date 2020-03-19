@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform doorPos;
     [SerializeField]
+    private Transform greetingPos;
+    [SerializeField]
     private Transform chairPos;
 
     [Header("hair info")]
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         //spawn customer
         currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
+        VRInputModule.instance.customerCanvas = currentCustomer.canvas;
 
         //load/apply data (dialogue, desired haircut and appearance)
         loadCustomerData();
@@ -110,6 +113,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator NextCustomerWalkngIn()
     {
+        //customer walks to greeting pos through the door
+        yield return StartCoroutine(currentCustomer.GoTo(greetingPos.position));
+
+        //wait for player to respond
+        yield return StartCoroutine(currentCustomer.Greeting());
 
         //customer walks to chair position
         yield return StartCoroutine(currentCustomer.GoTo(chairPos.position) );

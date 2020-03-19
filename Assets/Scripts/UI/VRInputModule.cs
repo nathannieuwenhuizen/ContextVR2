@@ -66,5 +66,9 @@ public class VRInputModule : BaseInputModule {
         for (int i = 0; i < canvass.Length; i++) {
             canvass[i].worldCamera = cam;
         }
+        if (customerCanvas != null)
+        {
+            customerCanvas.worldCamera = cam;
+        }
     }
 }

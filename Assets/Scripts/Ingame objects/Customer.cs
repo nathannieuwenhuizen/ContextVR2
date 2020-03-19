@@ -21,7 +21,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private DialogueHandeler dialogueHandeler;
     [SerializeField] private Transform canvasPivot;
     [SerializeField] private Transform canvasContent;
-    [SerializeField] private Canvas canvas;
+    [SerializeField] public Canvas canvas;
 
     [SerializeField]
     private Image desiredHeadImage;
@@ -53,7 +53,6 @@ public class Customer : MonoBehaviour
             customerData = value;
             if (customerData.dialogues.Length > 0)
             {
-                StartCoroutine(Greeting());
                 if (customerData.desiredHaircutID < 0)
                 {
                     DesiredHead = GameManager.instance.govermentHair;
@@ -64,12 +63,10 @@ public class Customer : MonoBehaviour
             }
         }
     }
-    IEnumerator Greeting()
+    public IEnumerator Greeting()
     {
-        dialogueHandeler.BeginLine(customerData.greetingDialogue, customerData.name);
-        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine( dialogueHandeler.Greetings(customerData.greetingDialogue, customerData.name));
         dialogueHandeler.BeginDialogue(customerData.dialogues[0], customerData.name);
-
     }
 
     // Turn the canvas so the  tekstballon looks at the player

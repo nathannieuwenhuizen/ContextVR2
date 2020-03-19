@@ -13,38 +13,72 @@ public class DialogueHandeler : MonoBehaviour
     [SerializeField] private Text nameText;
     [SerializeField] public Customer customer;
 
+    public bool greetings = false;
+
     public void BeginDialogue(Dialogue dialogue, string name) {
         //set dialogue text
         BeginLine(dialogue.text, name);
 
+        RemoveButtons();
+        for (int i = 0; i < dialogue.responses.Length; i++)
+        {
+            AddButton(i, dialogue);
+        }
+    }
+    public void AddButton(int i, Dialogue dialogue = null)
+    {
+        GameObject tempButton = Instantiate(buttonPrefab, buttonParent);
+        tempButton.SetActive(true);
+        //set pos
+        if (dialogue != null)
+        {
+            //set text
+            tempButton.GetComponentInChildren<Text>().text = dialogue.responses[i].text;
+            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(-25 + 50 * i, 0, 0);
+
+            //set button event
+            int ii = i; //WHY DOES THIS WORK
+            tempButton.GetComponent<Button>().onClick.AddListener(delegate {
+                int id = dialogue.responses[ii].dialogueID;
+                if (id < customer.customerData.dialogues.Length)
+                {
+                    BeginDialogue(customer.customerData.dialogues[id], name);
+                }
+            });
+
+        }
+        else //it is greetings button
+        {
+            //set text
+            tempButton.GetComponentInChildren<Text>().text = "Yes";
+            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+
+            //set button event
+            tempButton.GetComponent<Button>().onClick.AddListener(delegate {
+                greetings = false;
+            });
+
+
+        }
+    }
+    private void RemoveButtons()
+    {
         //destroy all buttons
         foreach (Transform child in buttonParent.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
 
-        //make all buttons
-        if (dialogue.responses.Length > 0)
-        {
-            for (int i = 0; i < dialogue.responses.Length; i++)
-            {
-                GameObject tempButton = Instantiate(buttonPrefab, buttonParent);
-                tempButton.SetActive(true);
-                //set pos
-                tempButton.GetComponent<RectTransform>().localPosition = new Vector3(-25 + 50 * i, 0, 0);
-                //set text
-                tempButton.GetComponentInChildren<Text>().text = dialogue.responses[i].text;
-                //set button event
+    }
 
-                int ii = i; //WHY DOES THIS WORK
-                tempButton.GetComponent<Button>().onClick.AddListener(delegate {
-                    int id = dialogue.responses[ii].dialogueID;
-                    if (id < customer.customerData.dialogues.Length)
-                    {
-                        BeginDialogue(customer.customerData.dialogues[id], name);
-                    }
-                });
-            }
+    public IEnumerator Greetings(string line, string name)
+    {
+        greetings = true;
+        BeginLine(line, name);
+        AddButton(-1);
+        while (greetings)
+        {
+            yield return new WaitForFixedUpdate();
         }
     }
 
