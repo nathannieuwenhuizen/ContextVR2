@@ -955,6 +955,7 @@ MonoBehaviour:
   dialogueDuration: 0.5
   nameText: {fileID: 6604735588220974444}
   customer: {fileID: 0}
+  greetings: 0
 --- !u!1 &6788309320915287868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080974682221320946}
   - component: {fileID: 2316450628094724347}
+  - component: {fileID: 8783545351422705980}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -1113,8 +1115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09092783b7a2cd44a8d6604a2aad809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0.1
-  rotateSpeed: 2
   desiredHead: {fileID: 21300000, guid: 71108e4ea9461cf4da71c464853b09bc, type: 3}
   head: {fileID: 2737237308202397904}
   customerData:
@@ -1135,6 +1135,21 @@ MonoBehaviour:
   canvasContent: {fileID: 5029313418765002566}
   canvas: {fileID: 5600869415065745767}
   desiredHeadImage: {fileID: 7845306479694517435}
+  movement: {fileID: 8783545351422705980}
+--- !u!114 &8783545351422705980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8992148284509144097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25419af9d5444d3458cae8da389128a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 0.2
+  rotateSpeed: 3
 --- !u!1 &9005066836704862526
 GameObject:
   m_ObjectHideFlags: 0

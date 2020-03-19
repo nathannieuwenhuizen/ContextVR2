@@ -114,14 +114,14 @@ public class GameManager : MonoBehaviour
     public IEnumerator NextCustomerWalkngIn()
     {
         //customer walks to greeting pos through the door
-        yield return StartCoroutine(currentCustomer.GoTo(greetingPos.position));
+        yield return StartCoroutine(currentCustomer.movement.GoTo(greetingPos.position));
 
         //wait for player to respond
         yield return StartCoroutine(currentCustomer.Greeting());
 
         //customer walks to chair position
-        yield return StartCoroutine(currentCustomer.GoTo(chairPos.position) );
-        yield return StartCoroutine(currentCustomer.Orienting(currentCustomer.transform.position + new Vector3(10f, 0, 0)));
+        yield return StartCoroutine(currentCustomer.movement.GoTo(chairPos.position) );
+        yield return StartCoroutine(currentCustomer.movement.Orienting(currentCustomer.transform.position + new Vector3(10f, 0, 0)));
 
         //chair rotates
         yield return StartCoroutine(chair.Spinning(false));
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
     public void HairCutFinished()
     {
         //if out of edit mode/haircut mode or the customer is walking, you can't finish.
-        if (!editMode || currentCustomer.IsMoving) { return; }
+        if (!editMode || currentCustomer.movement.IsMoving) { return; }
         editMode = false;
 
         //you can save the hair
@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
         UpdateStore();
 
         //customer walks out of store
-        yield return StartCoroutine(currentCustomer.GoTo(doorPos.position, true));
+        yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position, true));
 
         yield return new WaitForSeconds(5f);
         customerCount++;

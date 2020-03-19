@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 0.1f;
-    [SerializeField] private float rotateSpeed = 2f;
 
     [SerializeField] private Sprite desiredHead;
 
@@ -26,6 +24,8 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private Image desiredHeadImage;
 
+    public CustomerMovement movement;
+
     public GameObject Head {
         get { return head; }
     }
@@ -36,14 +36,14 @@ public class Customer : MonoBehaviour
             desiredHeadImage.sprite = value;
         }
     }
-    public bool IsMoving { get; private set; } = false;
 
     private void Update() {
         AimCanvasToCamera();
     }
     public void Start()
     {
-        canvas.worldCamera = VRInputModule.instance.currentCamera;
+        
+        //canvas.worldCamera = VRInputModule.instance.currentCamera;
         dialogueHandeler.customer = this;
     }
     public CustomerData CustomerData
@@ -78,46 +78,6 @@ public class Customer : MonoBehaviour
         float a = Vector3.Distance(Camera.main.transform.position, canvasPivot.position);
         float angle = Mathf.Acos(a / s) * Mathf.Rad2Deg;
         canvasPivot.eulerAngles = new Vector3(canvasPivot.eulerAngles.x, canvasPivot.eulerAngles.y + angle, canvasPivot.eulerAngles.z);
-    }
-
-    public IEnumerator Orienting(Vector3 destination)
-    {
-        Vector3 newDirection;
-
-        while (Mathf.Abs(Vector3.Angle(transform.forward, destination - transform.position)) > 0.1f)
-        {
-            newDirection = Vector3.RotateTowards(transform.forward, destination - transform.position, Time.deltaTime * rotateSpeed, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
-            yield return new WaitForFixedUpdate();
-        }
-        newDirection = Vector3.RotateTowards(transform.forward, destination - transform.position, 1f, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-
-    }
-    public IEnumerator Walking(Vector3 destination)
-    {
-        while (Vector3.Distance(transform.position, destination) > 0.1f)
-        {
-            transform.Translate(transform.InverseTransformDirection(transform.forward) * walkSpeed);
-            yield return new WaitForFixedUpdate();
-        }
-        transform.position = destination;
-    }
-
-    public IEnumerator GoTo(Vector3 pos, bool destoryWhenFinish = false)
-    {
-        if (!IsMoving)
-        {
-            IsMoving = true;
-            yield return StartCoroutine(Orienting(pos));
-            yield return StartCoroutine(Walking(pos));
-            IsMoving = false;
-        }
-        if (destoryWhenFinish)
-        {
-            Destroy(this.gameObject);
-        }
-
     }
 
     public void LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
@@ -208,17 +168,4 @@ public class CustomerData
     public string positiveReaction;
     public string negativeReaction;
     public Dialogue[] dialogues;
-}
-[System.Serializable]
-public class Dialogue
-{
-    public string text = "...";
-    public Response[] responses;
-}
-
-[System.Serializable]
-public class Response
-{
-    public string text;
-    public int dialogueID;
 }

@@ -107,3 +107,16 @@ public class DialogueHandeler : MonoBehaviour
 
     }
 }
+[System.Serializable]
+public class Dialogue
+{
+    public string text = "...";
+    public Response[] responses;
+}
+
+[System.Serializable]
+public class Response
+{
+    public string text;
+    public int dialogueID;
+}
