@@ -34,7 +34,7 @@ public class DialogueHandeler : MonoBehaviour
         {
             //set text
             tempButton.GetComponentInChildren<Text>().text = dialogue.responses[i].text;
-            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(-25 + 50 * i, 0, 0);
+            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(0, 0 - 40 * i, 0);
 
             //set button event
             int ii = i; //WHY DOES THIS WORK

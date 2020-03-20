@@ -1,0 +1,69 @@
+{
+	"name" : "Armani",
+	"desiredHaircutID" : 2,
+	"appearanceSeed" : 1,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hello. My hair needs to be cut.",
+	"negativeReaction" : "Thanks, I hate it.",
+	"positiveReaction" : "Wow, nice. I feel so free like this.",
+	"minimumPrecentageForPositiveReaction" : "0.8",
+	"dialogues" :[
+	{
+		"text" : "I don't know if you're up to this, but could you give me something that isn't the prescribed style? Anything, I don't care.",
+		"responses" : [
+		{
+			"text" : "Why would you want that?",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "Yes, I'd love to.",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "Why? Because I need to feel like me and not like everyone else. The Party took away so much of our freedom.",
+		"responses" : [
+		{
+			"text" : "Didn't we all agree to this?",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "It's for a good cause.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "Thank god. I wish the Party would just stop interfering with people's hair like this, it's fucking insane!",
+		"responses" : [
+		{
+			"text" : "I like to cut hair my way.",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "Do you have something against the Party?",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "We didn't! I wasn't born yet. So now I just have to live as I'm told? I tell you, a part of human freedom died when the Party took over.",
+		"responses" : []
+	},
+	{
+		"text" : "Sure. Fifty years ago maybe. I get that discrimination was bad then, but haircuts? Come on.",
+		"responses" : []
+	},
+	{
+		"text" : "Right? It must be awful to be a hairdresser. I wouldn't want to be one. I need to be able to express myself.",
+		"responses" : []
+	},
+	{
+		"text" : "Not necessarily. They have done good stuff for the world and all, but they take it too far. I want to see the Party go.",
+		"responses" : []
+	}
+	]
+}

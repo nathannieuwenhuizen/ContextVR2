@@ -197,10 +197,10 @@ MonoBehaviour:
   customerDataQueue:
   - recurringCharacter: 0
     fileNames:
-    - test
+    - Rene
   - recurringCharacter: 0
     fileNames:
-    - test
+    - Rene
   money: 0
 --- !u!1 &1941399834101772427
 GameObject:

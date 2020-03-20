@@ -69,7 +69,7 @@ public class Customer : MonoBehaviour
         dialogueHandeler.BeginDialogue(customerData.dialogues[0], customerData.name);
     }
 
-    // Turn the canvas so the  tekstballon looks at the player
+    // Turn the canvas so the tekstballon looks at the player
     public void AimCanvasToCamera()
     {
         canvasPivot.LookAt(2 * canvasPivot.position - Camera.main.transform.position);
