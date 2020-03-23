@@ -33,8 +33,13 @@ public class ShopFloor : MonoBehaviour {
         {
             AudioManager.instance?.Play3DSound(AudioEffect.propHitGround, .1f, collision.transform.position);
         }
-
-        scaleObjects.Add(collision.transform);
+        if (collision.gameObject.GetComponent<ATM>())
+        {
+            collision.gameObject.GetComponent<ATM>().ResetPosition();
+        } else
+        {
+            scaleObjects.Add(collision.transform);
+        }
     }
     
     void OnCollisionExit(Collision collision) {

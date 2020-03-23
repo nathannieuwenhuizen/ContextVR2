@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     private ImageGallery gallery;
     [SerializeField]
     private ResultTerminal resultTerminal;
+    [SerializeField]
+    private ATM atm;
 
     [Header("customerPositions")]
     [SerializeField]
@@ -140,6 +142,8 @@ public class GameManager : MonoBehaviour
             //gallery.AddFrame(formChecker.refTexture);
             //gallery.AddFrame(formChecker.selectedTexture);
         }
+        //resets the atm position
+        atm.ResetPosition();
 
         //calculate price
         int price = currentCustomer.CustomerData.basePrice;
