@@ -25,6 +25,13 @@ public class UIBeam : MonoBehaviour {
         if (lr != null) {
             lr.enabled = ((eventSystem.currentCamera == cam && held) || (eventSystem.currentCamera == cam && drawline)) ? true : false;
         }
+
+        if (!held && eventSystem.currentCamera == cam)
+        {
+            drawLine(true);
+            //lr.enabled = hover;
+            //grabPointIndicator.SetActive(hover);
+        }
     }
 
     public void Press() {
@@ -51,7 +58,7 @@ public class UIBeam : MonoBehaviour {
         return hit;
     }
 
-    private void drawLine() {
+    private void drawLine(bool hover = false) {
         PointerEventData data = eventSystem.getData();
         float targetLength = data.pointerCurrentRaycast.distance == 0 ? LRLength : data.pointerCurrentRaycast.distance;
 
@@ -59,7 +66,21 @@ public class UIBeam : MonoBehaviour {
 
         Vector3 endPos = transform.position + transform.forward * targetLength;
 
-        if (hit.collider != null) endPos = hit.point;
+        if (hit.collider != null)
+        {
+            endPos = hit.point;
+            if (hover)
+            {
+                lr.enabled = false;
+                grabPointIndicator.SetActive(false);
+            }
+        } else
+        {
+            if (hover) {
+                lr.enabled = true;
+                grabPointIndicator.SetActive(true);
+            }
+        }
         grabPointIndicator.transform.position = endPos;
 
         lr.SetPosition(0, transform.position);
