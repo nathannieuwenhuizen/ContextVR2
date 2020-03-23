@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941399832823555159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.65, y: 2.9, z: -4.85}
+  m_LocalPosition: {x: -1.65, y: 2.9, z: -6.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1941399833177076825}
@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1941399832958845194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   chair: {fileID: 0}
   gallery: {fileID: 0}
   resultTerminal: {fileID: 0}
+  atm: {fileID: 0}
   doorPos: {fileID: 1941399832823555158}
   greetingPos: {fileID: 7897302133951405350}
   chairPos: {fileID: 1941399834101772426}
