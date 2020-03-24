@@ -319,6 +319,7 @@ namespace Valve.VR
 
         protected virtual void Awake()
         {
+            updatePose = true;
             SteamVR.Initialize();
 
             AssignBonesArray();
@@ -392,7 +393,7 @@ namespace Valve.VR
             if (skeletonAction == null)
                 return;
 
-            if (updatePose)
+            if (updatePose || !updatePose)
                 UpdatePose();
 
             if (blendPoser != null && skeletonBlend < 1)
