@@ -9,4 +9,9 @@ public class PlayScript : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("PlayerTest2");
     }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadSceneAsync("Menu");
+    }
 }
