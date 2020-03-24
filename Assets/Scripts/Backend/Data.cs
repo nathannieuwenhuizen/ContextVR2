@@ -16,6 +16,14 @@ public static class Data
     public static bool RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = true;
     public static string RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME = "recurringCharacter.hair";
     public static int RECURING_CHARACTER_VISITS = 0;
+    public static string HAIRCUTS_FOLDER_NAME = "/saves";
+
+    //govermentHair
+    public static string GOVERMENT_FILE_NAME = "goverment.hair";
+
+    //folder for player made haircuts
+    public static string PLAYER_HAIRCUTS_FOLDER_NAME = "/saves/madeByPlayer";
+    public static int MAX_FILES_IN_PLAYER_FOLDER = 100;
 
     public static void SaveTextureAsPNG(Texture2D _texture, string _fullPath)
     {
@@ -68,12 +76,12 @@ public static class Data
     {
         BinaryFormatter formatter = GetBinaryFormatter();
 
-        if (!Directory.Exists(Application.dataPath + directory))
+        if (!Directory.Exists(Application.persistentDataPath + directory))
         {
-            Directory.CreateDirectory(Application.dataPath + directory);
+            Directory.CreateDirectory(Application.persistentDataPath + directory);
         }
 
-        string path = Application.dataPath + directory + "/" + fileName;
+        string path = Application.persistentDataPath + directory + "/" + fileName;
         FileStream file = File.Create(path);
 
         formatter.Serialize(file, saveData);
@@ -83,7 +91,7 @@ public static class Data
 
     public static object LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
     {
-        string path = Application.dataPath + directory + "/" + fileName;
+        string path = Application.persistentDataPath + directory + "/" + fileName;
         if (!File.Exists(path)) {
             Debug.LogErrorFormat("Form nathan: THe file doesnt exist at {0}", path);
             return null;
@@ -109,11 +117,11 @@ public static class Data
 
     public static string[] GetHairFiles(string directory = "/saves")
     {
-        if (!Directory.Exists(Application.dataPath + directory))
+        if (!Directory.Exists(Application.persistentDataPath + directory))
         {
-            Directory.CreateDirectory(Application.dataPath + directory);
+            Directory.CreateDirectory(Application.persistentDataPath + directory);
         }
-        return Directory.GetFiles(Application.dataPath + directory);
+        return Directory.GetFiles(Application.persistentDataPath + directory);
     }
 
     public static BinaryFormatter GetBinaryFormatter()

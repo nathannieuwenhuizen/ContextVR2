@@ -31,6 +31,8 @@ public class EnviromentCustomerManager : MonoBehaviour
     }
     public void LoadCustomers()
     {
+
+        string[] previousMadeHair = Data.GetHairFiles(Data.PLAYER_HAIRCUTS_FOLDER_NAME);
         for (int i = 0; i < amountOfCitizens; i++)
         {
             int startIndex = Random.Range(0, vectorPositions.Count);
@@ -46,6 +48,13 @@ public class EnviromentCustomerManager : MonoBehaviour
             //tempCustomer.movement.walkSpeed = .2f;
             StartCoroutine(tempCustomer.movement.WalkLoop(vectorPositions.ToArray(), invert, startIndex));
 
+            /*if (Random.Range(0, 100) < 70)
+            {
+                tempCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
+            } else
+            {
+                tempCustomer.LoadHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
+            }*/
             customers.Add(tempCustomer);
         }
     }

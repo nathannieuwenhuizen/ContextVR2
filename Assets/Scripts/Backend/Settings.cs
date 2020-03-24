@@ -20,17 +20,17 @@ public static class Settings
     //{
     //    get { return (float)Settings.TotalPrecentage / (float)Settings.AmountOfCustomers; }
     //}
-    //public static int AmountOfCustomers
-    //{
-    //    get
-    //    {
-    //        return PlayerPrefs.GetInt("amountCustomers", 0);
-    //    }
-    //    set
-    //    {
-    //        PlayerPrefs.SetInt("amountCustomers", value);
-    //    }
-    //}
+    public static int AmountOfCustomers
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("amountCustomers", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("amountCustomers", value);
+        }
+    }
     //public static float TotalPrecentage
     //{
     //    get

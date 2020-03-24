@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             //load hair if character visited before
             if (Data.RECURING_CHARACTER_VISITS > 0)
             {
-                currentCustomer.LoadHair("/saves", Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+                currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
             }
 
             if (nextDialogueData.fileNames.Length > 1) //more than one file?
@@ -206,10 +206,14 @@ public class GameManager : MonoBehaviour
         if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
         {
             //save hair and update data
-            currentCustomer.SaveHair("/saves", Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+            currentCustomer.SaveHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
             Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction;
             Data.RECURING_CHARACTER_VISITS++;
         }
+
+        //save the data to playermade haircuts
+        Settings.AmountOfCustomers = (Settings.AmountOfCustomers + 1) % Data.MAX_FILES_IN_PLAYER_FOLDER;
+        currentCustomer.SaveHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, Settings.AmountOfCustomers + ".hair");
 
         //raction of customer
         currentCustomer.Reaction(formChecker.desiredPrecentage);
