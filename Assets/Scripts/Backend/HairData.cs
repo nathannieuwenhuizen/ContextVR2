@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class HairData
 {
-    public PrimitiveType meshType = PrimitiveType.Cube;
+    public PrimitiveType meshType = PrimitiveType.Capsule;
 
     public string id;
 

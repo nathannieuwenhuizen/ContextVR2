@@ -123,7 +123,14 @@ public class Customer : MonoBehaviour
             obj.gameObject.tag = Tags.GRABABLE;
             obj.hairData = data;
 
-            obj.transform.localScale = data.scale;
+            if (data.meshType != PrimitiveType.Capsule)
+            {
+                obj.transform.localScale = data.scale; 
+            } else
+            {
+
+                obj.transform.localScale = new Vector3(0.005f,0.005f,0.005f); // to prevent huge objects in scene because of props scaling
+            }
             obj.transform.localPosition = data.localposition;
             obj.transform.localRotation = data.rotation;
 

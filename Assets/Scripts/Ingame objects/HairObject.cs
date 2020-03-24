@@ -98,11 +98,14 @@ public class HairObject : MonoBehaviour
                 hairData.meshType = PrimitiveType.Cylinder;
                 break;
             default:
-                hairData.meshType = PrimitiveType.Sphere;
+                hairData.meshType = PrimitiveType.Capsule;
                 break;
         }
-        //Debug.Log("Mesh: " + GetComponent<MeshFilter>().mesh.name);
-        //Debug.Log( hairData.meshType);
+        if (gameObject.name.Contains("prop") || gameObject.name.Contains("atm") || gameObject.name.Contains("book") || gameObject.name.Contains("sandwitch") || gameObject.name.Contains("doughnut") )
+        {
+            hairData.meshType = PrimitiveType.Capsule;
+        }
+
         oldPos = transform.position;
         collissions = new List<Collision>();
     }
