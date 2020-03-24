@@ -48,13 +48,15 @@ public class EnviromentCustomerManager : MonoBehaviour
             //tempCustomer.movement.walkSpeed = .2f;
             StartCoroutine(tempCustomer.movement.WalkLoop(vectorPositions.ToArray(), invert, startIndex));
 
-            /*if (Random.Range(0, 100) < 70)
+            if (Random.Range(0, 100) < 70 || previousMadeHair.Length == 0)
             {
                 tempCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
             } else
             {
+                Debug.Log("Hair: " + previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
+
                 tempCustomer.LoadHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
-            }*/
+            }
             customers.Add(tempCustomer);
         }
     }

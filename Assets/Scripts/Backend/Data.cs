@@ -76,12 +76,12 @@ public static class Data
     {
         BinaryFormatter formatter = GetBinaryFormatter();
 
-        if (!Directory.Exists(Application.persistentDataPath + directory))
+        if (!Directory.Exists(Application.dataPath + directory))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + directory);
+            Directory.CreateDirectory(Application.dataPath + directory);
         }
 
-        string path = Application.persistentDataPath + directory + "/" + fileName;
+        string path = Application.dataPath + directory + "/" + fileName;
         FileStream file = File.Create(path);
 
         formatter.Serialize(file, saveData);
@@ -91,7 +91,7 @@ public static class Data
 
     public static object LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
     {
-        string path = Application.persistentDataPath + directory + "/" + fileName;
+        string path = Application.dataPath + directory + "/" + fileName;
         if (!File.Exists(path)) {
             Debug.LogErrorFormat("Form nathan: THe file doesnt exist at {0}", path);
             return null;
@@ -117,11 +117,21 @@ public static class Data
 
     public static string[] GetHairFiles(string directory = "/saves")
     {
-        if (!Directory.Exists(Application.persistentDataPath + directory))
+        if (!Directory.Exists(Application.dataPath + directory))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + directory);
+            Directory.CreateDirectory(Application.dataPath + directory);
         }
-        return Directory.GetFiles(Application.persistentDataPath + directory);
+        string[] files = Directory.GetFiles(Application.dataPath + directory );
+
+        List<string> result = new List<string>();
+        for (int i = 0; i < files.Length; i++)
+        {
+            if (!files[i].Contains(".meta"))
+            {
+                result.Add ( Path.GetFileName(files[i]) );
+            }
+        }
+        return result.ToArray();
     }
 
     public static BinaryFormatter GetBinaryFormatter()
