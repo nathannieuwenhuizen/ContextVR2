@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     private Transform greetingPos;
     [SerializeField]
     private Transform chairPos;
+    [SerializeField]
+    private Transform spawnPos;
 
     [Header("hair info")]
     public Sprite govermentHair;
@@ -68,7 +70,9 @@ public class GameManager : MonoBehaviour
     public void NextCustomerWalksIn()
     {
         //spawn customer
-        currentCustomer = Instantiate(customerPrefab, doorPos).GetComponent<Customer>();
+        currentCustomer = Instantiate(customerPrefab).GetComponent<Customer>();
+        currentCustomer.transform.position = spawnPos.position;
+
         VRInputModule.instance.customerCanvas = currentCustomer.canvas;
 
         //load/apply data (dialogue, desired haircut and appearance)
@@ -120,6 +124,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator NextCustomerWalkngIn()
     {
         //customer walks to greeting pos through the door
+        yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position));
         yield return StartCoroutine(currentCustomer.movement.GoTo(greetingPos.position));
 
         //wait for player to respond
@@ -231,7 +236,8 @@ public class GameManager : MonoBehaviour
 
         //customer walks out of store
         currentCustomer.Sit(false);
-        yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position, true));
+        yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position));
+        yield return StartCoroutine(currentCustomer.movement.GoTo(spawnPos.position, true));
 
         yield return new WaitForSeconds(5f);
         customerCount++;
