@@ -27,6 +27,7 @@ public class Customer : MonoBehaviour
     private GameObject walkLegs;
     [SerializeField]
     private GameObject sitLegs;
+    public customerMaterials customerMaterials;
 
     [SerializeField]
     private Image desiredHeadImage;
@@ -67,6 +68,7 @@ public class Customer : MonoBehaviour
                 {
                     DesiredHead = GameManager.instance.customerHaircuts[customerData.desiredHaircutID];
                 }
+                customerMaterials.SetMaterial(customerData.appearanceSeed);
             }
         }
     }

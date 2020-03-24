@@ -44,10 +44,16 @@ public class EnviromentCustomerManager : MonoBehaviour
             tempCustomer.canvas.gameObject.SetActive(false);
             tempCustomer.transform.position = positions[startIndex].position + transform.forward * 5f;
 
+            //Random walkspeed
             tempCustomer.movement.walkSpeed = Random.Range(0.02f, 0.04f);
-            //tempCustomer.movement.walkSpeed = .2f;
+
+            //start walk loop
             StartCoroutine(tempCustomer.movement.WalkLoop(vectorPositions.ToArray(), invert, startIndex));
 
+            //set random clothes
+            tempCustomer.customerMaterials.SetMaterial(Mathf.FloorToInt(Random.Range(0, 5)));
+
+            //set hair
             if (Random.Range(0, 100) < 70 || previousMadeHair.Length == 0)
             {
                 tempCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
@@ -55,6 +61,8 @@ public class EnviromentCustomerManager : MonoBehaviour
             {
                 tempCustomer.LoadHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
             }
+
+            //add to list
             customers.Add(tempCustomer);
         }
     }
