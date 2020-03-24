@@ -2152,6 +2152,8 @@ GameObject:
   m_Component:
   - component: {fileID: 776751681}
   - component: {fileID: 776751680}
+  - component: {fileID: 776751682}
+  - component: {fileID: 776751683}
   m_Layer: 0
   m_Name: Radio music
   m_TagString: Untagged
@@ -2170,10 +2172,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3eed34c22e2258f4d99e22a34b2db18b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2269,6 +2271,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776751682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776751679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412e6b2423b8f144eaa38c13c60a1d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 3eed34c22e2258f4d99e22a34b2db18b, type: 3}
+  - {fileID: 8300000, guid: aa770fdf42344234f98df899a2780c0a, type: 3}
+  - {fileID: 8300000, guid: 8287f8ac003a83644bc814828b37d650, type: 3}
+  - {fileID: 8300000, guid: 88e7354f6ffdba1498f46ff9a38a48eb, type: 3}
+  - {fileID: 8300000, guid: 6e692efb19cc72740be69330079799fb, type: 3}
+--- !u!81 &776751683
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776751679}
+  m_Enabled: 1
 --- !u!1001 &803504930
 PrefabInstance:
   m_ObjectHideFlags: 0
