@@ -164,6 +164,9 @@ public class GameManager : MonoBehaviour
         if (formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction)
         {
             tip += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
+        } else if (currentCustomer.customerData.moodForNewHaircut)
+        {
+            tip += currentCustomer.customerData.maxTip;
         }
         money += price + tip;
 

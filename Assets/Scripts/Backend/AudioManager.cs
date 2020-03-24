@@ -17,7 +17,8 @@ public enum AudioEffect
     doorbell,
     door,
     chair,
-    computerTerminal
+    computerTerminal,
+    vendingMachine
 }
 public class AudioManager : MonoBehaviour
 {

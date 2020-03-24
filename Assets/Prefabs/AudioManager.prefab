@@ -1004,6 +1004,8 @@ MonoBehaviour:
     audioS: {fileID: 2386907278145790270}
   - audioEffect: 12
     audioS: {fileID: 2386907278271452881}
+  - audioEffect: 13
+    audioS: {fileID: 2386907278447994168}
 --- !u!1 &2386907277887782583
 GameObject:
   m_ObjectHideFlags: 0
