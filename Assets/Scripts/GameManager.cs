@@ -131,7 +131,8 @@ public class GameManager : MonoBehaviour
 
         //chair rotates
         yield return StartCoroutine(chair.Spinning(false));
-        editMode = true;
+
+        EditMode = true;
     }
 
     /// <summary>
@@ -163,18 +164,14 @@ public class GameManager : MonoBehaviour
         resultTerminal.ShowResult(formChecker.govermentPrecentage, formChecker.desiredPrecentage, price, tip);
     }
 
-    private void Update()
+    public bool EditMode
     {
-
-        //just for testing
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            HairCutFinished();
-        }
-        //just for testing
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            //currentCustomer.LoadHair();
+        get { return editMode; }
+        set { editMode = value;
+            if (currentCustomer != null)
+            {
+                currentCustomer.neckBone.enabled = !value;
+            }
         }
     }
 
@@ -184,8 +181,8 @@ public class GameManager : MonoBehaviour
     public void HairCutFinished()
     {
         //if out of edit mode/haircut mode or the customer is walking, you can't finish.
-        if (!editMode || currentCustomer.movement.IsMoving) { return; }
-        editMode = false;
+        if (!EditMode || currentCustomer.movement.IsMoving) { return; }
+        EditMode = false;
 
         //you can save the hair
         //currentCustomer.SaveHair();

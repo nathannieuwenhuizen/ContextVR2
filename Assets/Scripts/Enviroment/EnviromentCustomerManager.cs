@@ -53,8 +53,6 @@ public class EnviromentCustomerManager : MonoBehaviour
                 tempCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
             } else
             {
-                Debug.Log("Hair: " + previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
-
                 tempCustomer.LoadHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, previousMadeHair[Mathf.FloorToInt(Random.Range(0, previousMadeHair.Length))]);
             }
             customers.Add(tempCustomer);

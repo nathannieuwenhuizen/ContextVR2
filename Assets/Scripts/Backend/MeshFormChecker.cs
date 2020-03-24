@@ -14,7 +14,7 @@ public class MeshFormChecker : MonoBehaviour
 
     [Header("Other Info")]
     [SerializeField]
-    private float cameraSize = 2f;
+    private float cameraSize = 2.5f;
     [SerializeField]
     private int cellSize = 5;
 
@@ -65,7 +65,7 @@ public class MeshFormChecker : MonoBehaviour
 
             //clone the objects to checkcamera
             tempSelectedHaircut = Instantiate(selected, checkPos);
-            tempSelectedHaircut.transform.Rotate(0, 90, 0);
+            tempSelectedHaircut.transform.Rotate(180, 180, 0);
 
             tempSelectedHaircut.transform.localPosition = Vector3.zero;
 
@@ -130,7 +130,7 @@ public class MeshFormChecker : MonoBehaviour
             SpriteRenderer sr = tempObject.GetComponent<SpriteRenderer>();
             sr.sprite = _sprite;
             //Debug.Log("temo scale: " + tempSelectedHaircut.transform.localScale.x);
-            tempObject.transform.localScale *= (_sprite.pixelsPerUnit / Data.HEAD_SIZE_PIXELS) * tempSelectedHaircut.transform.localScale.x;
+            tempObject.transform.localScale *= (_sprite.pixelsPerUnit / Data.HEAD_SIZE_PIXELS) * 1.2f;
         }
 
         return tempObject;

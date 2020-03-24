@@ -21,6 +21,9 @@ public class Customer : MonoBehaviour
     [SerializeField] private Transform canvasContent;
     [SerializeField] public Canvas canvas;
 
+    [Header("Animation info")]
+    public DynamicBone neckBone;
+
     [SerializeField]
     private Image desiredHeadImage;
 
