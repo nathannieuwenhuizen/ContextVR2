@@ -23,6 +23,10 @@ public class Customer : MonoBehaviour
 
     [Header("Animation info")]
     public DynamicBone neckBone;
+    [SerializeField]
+    private GameObject walkLegs;
+    [SerializeField]
+    private GameObject sitLegs;
 
     [SerializeField]
     private Image desiredHeadImage;
@@ -66,6 +70,14 @@ public class Customer : MonoBehaviour
             }
         }
     }
+
+    public void Sit(bool val)
+    {
+        sitLegs.SetActive(val);
+        walkLegs.SetActive(!val);
+        sitLegs.GetComponent<SkinnedMeshRenderer>().material = walkLegs.GetComponent<SkinnedMeshRenderer>().material;
+    }
+
     public IEnumerator Greeting()
     {
         yield return StartCoroutine( dialogueHandeler.Greetings(customerData.greetingDialogue, customerData.name));

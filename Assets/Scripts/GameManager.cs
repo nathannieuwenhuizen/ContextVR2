@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(currentCustomer.movement.GoTo(chairPos.position) );
         yield return StartCoroutine(currentCustomer.movement.Orienting(currentCustomer.transform.position + new Vector3(10f, 0, 0)));
 
+        currentCustomer.Sit(true);
+
         //chair rotates
         yield return StartCoroutine(chair.Spinning(false));
 
@@ -225,6 +227,7 @@ public class GameManager : MonoBehaviour
         UpdateStore();
 
         //customer walks out of store
+        currentCustomer.Sit(false);
         yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position, true));
 
         yield return new WaitForSeconds(5f);
