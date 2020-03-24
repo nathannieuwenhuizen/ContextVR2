@@ -105,7 +105,11 @@ public class GameManager : MonoBehaviour
                     jsonData = nextDialogueData.fileNames[1];
                 }
             }
+        } else
+        {
+            currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
         }
+
         //load json file as a c# object
         currentCustomer.CustomerData = JsonUtility.FromJson<CustomerData>(
             Data.LoadJSONFileAsText(jsonData)
