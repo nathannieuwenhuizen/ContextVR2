@@ -139,10 +139,12 @@ public class Customer : MonoBehaviour
         tempTransforms.Clear();
     }
 
-    public void Reaction(float desiredMatch)
+    // Give correct customer reaction
+    public void Reaction(bool gotWhatTheyWanted)
     {
+        // When hair looks like governmenthair, react to government hair. Else, react to different hair.
         dialogueHandeler.BeginLine(
-            desiredMatch > customerData.minimumPrecentageForPositiveReaction ? 
+            gotWhatTheyWanted ?
             customerData.positiveReaction : customerData.negativeReaction, customerData.name);
     }
 
@@ -182,14 +184,14 @@ public class Customer : MonoBehaviour
 public class CustomerData
 {
     public string name = "name";
-    public bool moodForNewHaircut = false;
+    // public bool moodForNewHaircut = false;
     public int basePrice = 20;
     public int maxTip = 30;
     public int desiredHaircutID = -1;
     public int appearanceSeed = 0;
-    public float minimumPrecentageForPositiveReaction = 0.7f;
     public string greetingDialogue;
     public string positiveReaction;
     public string negativeReaction;
+    public bool wantsGovernmentHair = true;
     public Dialogue[] dialogues;
 }

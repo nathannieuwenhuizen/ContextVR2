@@ -90,6 +90,7 @@ public class DialogueHandeler : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(Talking(line));
     }
+
     private IEnumerator Talking(string line)
     {
         //play talking sound
@@ -107,6 +108,7 @@ public class DialogueHandeler : MonoBehaviour
 
     }
 }
+
 [System.Serializable]
 public class Dialogue
 {

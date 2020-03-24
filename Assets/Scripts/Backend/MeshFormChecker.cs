@@ -7,9 +7,9 @@ public class MeshFormChecker : MonoBehaviour
     [SerializeField]
     private Transform checkPos;
 
-    private GameObject tempSelectedHaircut;
-    private GameObject tempReferenceHaircut;
-    private GameObject tempGovermentHaircut;
+    private GameObject tempSelectedHaircut;     // Haircut the player has made
+    private GameObject tempReferenceHaircut;    // Haircut the customer wants
+    private GameObject tempGovermentHaircut;    // Haircut the government wants
     public Texture2D portaitShot;
 
     [Header("Other Info")]
@@ -103,9 +103,9 @@ public class MeshFormChecker : MonoBehaviour
             //selectedTexture = null;
 
             //update values
-            desiredPrecentage = GetPrecentageMatchOfTextures(refTexture, selectedTexture);
-            govermentPrecentage = GetPrecentageMatchOfTextures(govermentTexture, selectedTexture);
-            conflictPrecentage = GetPrecentageMatchOfTextures(govermentTexture, refTexture);
+            desiredPrecentage = GetPrecentageMatchOfTextures(refTexture, selectedTexture);          // Comparison player-made with customer-wish
+            govermentPrecentage = GetPrecentageMatchOfTextures(govermentTexture, selectedTexture);  // Comparison player-made government-wish
+            conflictPrecentage = GetPrecentageMatchOfTextures(govermentTexture, refTexture);        // Comparison customer-wish with government-wish
 
             //Debug.Log(desiredPrecentage + "%");
             //Debug.Log(govermentPrecentage + "%");

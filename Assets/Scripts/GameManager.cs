@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     private Transform spawnPos;
 
     [Header("hair info")]
+    [Tooltip("Minimum percentage for when a haircut is close enough to be a government haircut.")]
+    [SerializeField] private float governmentHairThreshold = 0.5f;
     public Sprite govermentHair;
     public Sprite[] customerHaircuts;
 
@@ -161,10 +163,13 @@ public class GameManager : MonoBehaviour
         int price = currentCustomer.CustomerData.basePrice;
         int tip = 0;
         //if customer is happy, he/she gives a fine tip!
-        if (formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction)
+        // If customer wanted and got government hair, tip as much as it looks alike.
+        if (currentCustomer.customerData.wantsGovernmentHair && formChecker.govermentPrecentage > governmentHairThreshold)
         {
-            tip += (int)(formChecker.desiredPrecentage * currentCustomer.CustomerData.maxTip);
-        } else if (currentCustomer.customerData.moodForNewHaircut)
+            tip += (int)(formChecker.govermentPrecentage * currentCustomer.CustomerData.maxTip);
+        }
+        // If customer didn't want government hair and didn't get it, tip max.
+        else if (currentCustomer.customerData.wantsGovernmentHair && formChecker.govermentPrecentage < governmentHairThreshold)
         {
             tip += currentCustomer.customerData.maxTip;
         }
@@ -216,12 +221,19 @@ public class GameManager : MonoBehaviour
         //compares the haircut
         yield return StartCoroutine(formChecker.getPrecentageFilled(currentCustomer.Head, currentCustomer.DesiredHead, govermentHair));
 
+        //Did the customer get what they wanted.
+        bool customerGotWhatTheyWanted = false;
+        // Customer wants government haircut and got government haircut.
+        if (currentCustomer.customerData.wantsGovernmentHair && formChecker.govermentPrecentage > governmentHairThreshold) customerGotWhatTheyWanted = true;
+        // Customer didn't want government haircut and got something else.
+        if (!currentCustomer.customerData.wantsGovernmentHair && formChecker.govermentPrecentage < governmentHairThreshold) customerGotWhatTheyWanted = true;
+
         //if recurring character
         if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
         {
             //save hair and update data
             currentCustomer.SaveHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
-            Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = formChecker.desiredPrecentage > currentCustomer.customerData.minimumPrecentageForPositiveReaction;
+            Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = customerGotWhatTheyWanted;
             Data.RECURING_CHARACTER_VISITS++;
         }
 
@@ -229,10 +241,9 @@ public class GameManager : MonoBehaviour
         Settings.AmountOfCustomers = (Settings.AmountOfCustomers + 1) % Data.MAX_FILES_IN_PLAYER_FOLDER;
         currentCustomer.SaveHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, Settings.AmountOfCustomers + ".hair");
 
-        //raction of customer
-        currentCustomer.Reaction(formChecker.desiredPrecentage);
+        //reaction of customer on how much the haircut resembles the government haircut
+        currentCustomer.Reaction(customerGotWhatTheyWanted);
         yield return new WaitForSeconds(1f);
-
 
         //updates the money and gallery
         UpdateStore();
