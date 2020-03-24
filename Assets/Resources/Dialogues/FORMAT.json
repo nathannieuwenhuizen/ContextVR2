@@ -1,0 +1,69 @@
+{
+	"name" : "NAAM",
+	"desiredHaircutID" : 1,
+	"appearanceSeed" : 1,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "HELLO",
+	"positiveReaction" : "BOO",
+	"negativeReaction" : "NICE",
+	"wantsGovernmentHair" : true,
+	"dialogues" :[
+	{
+		"text" : "TEKST0",
+		"responses" : [
+		{
+			"text" : "A1",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "A2",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "TEKST1",
+		"responses" : [
+		{
+			"text" : "A1",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "A2",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "TEKST2",
+		"responses" : [
+		{
+			"text" : "A1",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "A2",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "TEKST3",
+		"responses" : []
+	},
+	{
+		"text" : "TEKST4",
+		"responses" : []
+	},
+	{
+		"text" : "TEKST5",
+		"responses" : []
+	},
+	{
+		"text" : "TEKST6",
+		"responses" : []
+	}
+	]
+}

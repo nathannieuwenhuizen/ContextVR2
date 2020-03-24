@@ -1,0 +1,69 @@
+{
+	"name" : "Farrah",
+	"desiredHaircutID" : 1,
+	"appearanceSeed" : 1,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hi! Can you cut my hair?",
+	"negativeReaction" : "Better safe than sorry.",
+	"positiveReaction" : "I... wow. I'm scared, yet more confident.",
+	"minimumPrecentageForPositiveReaction" : "0.5",
+	"dialogues" :[
+	{
+		"text" : "Can I ask you something? Do you ever feel not like yourself around other people? like you're not fitting in, even though you look so alike?",
+		"responses" : [
+		{
+			"text" : "Occassionally.",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "Are you okay?",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "Wow, I can talk with you about this. I truly want to fit in, but I also want to be myself, y'know?",
+		"responses" : [
+		{
+			"text" : "You might want a different haircut.",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "It's giving and taking.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "I'm not sure. I've been really insecure about myself recently. I'm not comfortable with my... identity. If that makes sense.",
+		"responses" : [
+		{
+			"text" : "I can give you more confidence.",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "Are you able to express yourself?",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "I'm not hot on the prescribed haircuts, I admit. But if I didn't have one, what would the others say? That scares me.",
+		"responses" : []
+	},
+	{
+		"text" : "That's both wise and vague. But I can see keeping a balance is good for my health. Or is it selfish?",
+		"responses" : []
+	},
+	{
+		"text" : "Really? You mean with a haircut? I don't know. It's not allowed. But then again, imagine how cool I could look.",
+		"responses" : []
+	},
+	{
+		"text" : "Barely. Now that you say it, I thinks that is what's wrong. I have no ways of showing others who I really am.",
+		"responses" : []
+	}
+	]
+}

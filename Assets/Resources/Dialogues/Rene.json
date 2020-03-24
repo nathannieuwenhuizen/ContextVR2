@@ -6,9 +6,9 @@
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hello",
-	"negativeReaction" : "Negative!",
-	"positiveReaction" : "Yay!",
-	"minimumPrecentageForPositiveReaction" : "0.8",
+	"positiveReaction" : "Negative!",
+	"negativeReaction" : "Yay!",
+	"wantsGovernmentHair" : true,
 	"dialogues" :[
 	{
 		"text" : "I really like this months haircut. It's got something gallant and noble to it, which is perfect for my grandmothers commemoration.",

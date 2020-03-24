@@ -1,14 +1,14 @@
 {
-	"name" : "Rene",
+	"name" : "Noor",
 	"desiredHaircutID" : 2,
 	"appearanceSeed" : 1,
 	"moodForNewHaircut" : true,
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hey, do you think you can give me a different haircut?",
-	"negativeReaction" : "Thanks, I hate it.",
-	"positiveReaction" : "Wow, nice. I feel so free like this.",
-	"minimumPrecentageForPositiveReaction" : "0.8",
+	"positiveReaction" : "Thanks, I hate it.",
+	"negativeReaction" : "Wow, nice. I feel so free like this.",
+	"wantsGovernmentHair" : true,
 	"dialogues" :[
 	{
 		"text" : "I don't know if you're up to this, but could you give me something that isn't the prescribed style? Anything, I don't care.",

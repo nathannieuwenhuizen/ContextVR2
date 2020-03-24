@@ -6,63 +6,63 @@
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hello. My hair needs to be cut.",
-	"negativeReaction" : "Thanks, I hate it.",
-	"positiveReaction" : "Wow, nice. I feel so free like this.",
-	"minimumPrecentageForPositiveReaction" : "0.8",
+	"positiveReaction" : "No comment.",
+	"negativeReaction" : "No comment.",
+	"wantsGovernmentHair" : true,
 	"dialogues" :[
 	{
-		"text" : "I don't know if you're up to this, but could you give me something that isn't the prescribed style? Anything, I don't care.",
+		"text" : "I don't want to talk about the new haircut of the month. I just have no opinion about it or about the Party, okay?",
 		"responses" : [
 		{
-			"text" : "Why would you want that?",
+			"text" : "Though you want the prescribed haircut.",
 			"dialogueID" : 1
 		},
 		{
-			"text" : "Yes, I'd love to.",
+			"text" : "Though you want the prescribed haircut.",
 			"dialogueID" : 2
 		}
 		]
 	},
 	{
-		"text" : "Why? Because I need to feel like me and not like everyone else. The Party took away so much of our freedom.",
+		"text" : "I don't want anything really. So I don't make a fuss about it and stay away from choosing any side.",
 		"responses" : [
 		{
-			"text" : "Didn't we all agree to this?",
+			"text" : "Not choosing is still choosing.",
 			"dialogueID" : 3
 		},
 		{
-			"text" : "It's for a good cause.",
+			"text" : "Why don't you pick another haircut?",
 			"dialogueID" : 4
 		}
 		]
 	},
 	{
-		"text" : "Thank god. I wish the Party would just stop interfering with people's hair like this, it's fucking insane!",
+		"text" : "I don't. Hair is hair, it has shape, end of discussion. Why is it even a deal for people?",
 		"responses" : [
 		{
-			"text" : "I like to cut hair my way.",
+			"text" : "You must look at the bigger picture.",
 			"dialogueID" : 5
 		},
 		{
-			"text" : "Do you have something against the Party?",
+			"text" : "So you're against the Party?",
 			"dialogueID" : 6
 		}
 		]
 	},
 	{
-		"text" : "We didn't! I wasn't born yet. So now I just have to live as I'm told? I tell you, a part of human freedom died when the Party took over.",
+		"text" : "That's stupid. Is there any way in which I can be not involved in fucking politics? I just want an easy life.",
 		"responses" : []
 	},
 	{
-		"text" : "Sure. Fifty years ago maybe. I get that discrimination was bad then, but haircuts? Come on.",
+		"text" : "Because, eh... then I'd still have to decide on a look. And we would be all the way back at the start.",
 		"responses" : []
 	},
 	{
-		"text" : "Right? It must be awful to be a hairdresser. I wouldn't want to be one. I need to be able to express myself.",
+		"text" : "You mean that hair is a small part of the bigger problem called discrimination? I have never discriminated anyone in my life.",
 		"responses" : []
 	},
 	{
-		"text" : "Not necessarily. They have done good stuff for the world and all, but they take it too far. I want to see the Party go.",
+		"text" : "Yes, no. I don't want to get involved with politics, or democracy and voting. I mean, what's in it for me?",
 		"responses" : []
 	}
 	]
