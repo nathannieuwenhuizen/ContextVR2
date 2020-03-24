@@ -197,6 +197,9 @@ public class GameManager : MonoBehaviour
     {
         //play cash register sound
         AudioManager.instance?.Play3DSound(AudioEffect.cashRegister, 1, chair.transform.position);
+        //play cash register particle
+        atm.ShowParticle();
+
         yield return new WaitForSeconds(.5f);
 
         //char is spinning

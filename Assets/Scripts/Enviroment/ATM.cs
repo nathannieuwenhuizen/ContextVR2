@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ATM : MonoBehaviour
 {
+    [SerializeField]
+    private ParticleSystem dollarParticle;
 
     private Vector3 startPos;
     private Vector3 scale;
@@ -58,6 +60,10 @@ public class ATM : MonoBehaviour
 
             }
         }
+    }
+    public void ShowParticle()
+    {
+        dollarParticle.Play();
     }
 
     // Update is called once per frame
