@@ -26,6 +26,10 @@ public class HairObject : MonoBehaviour
         get { return grabbed; }
         set {
             grabbed = value;
+            if (value == false)
+            {
+                Hover = false;
+            }
             collissions.Clear();
         }
     }
@@ -72,6 +76,10 @@ public class HairObject : MonoBehaviour
         }
 
         highLightedMaterial = Resources.Load("Outline", typeof(Material)) as Material;
+        if (GetComponent<ATM>())
+        {
+            highLightedMaterial = Resources.Load("ATM hover", typeof(Material)) as Material;
+        }
     }
     private void Start()
     {
