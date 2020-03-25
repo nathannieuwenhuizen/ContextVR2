@@ -50,7 +50,7 @@ public class HandInput : MonoBehaviour {
         }
     }
 
-    public void OnEnable()
+    public void Start()
     {
         colorAction.AddOnStateDownListener(ColorDown, handType);
         colorAction.AddOnStateUpListener(ColorUp, handType);
