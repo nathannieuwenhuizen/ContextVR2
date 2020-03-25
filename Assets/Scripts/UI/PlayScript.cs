@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayScript : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject playerRig;
     public void LoadGame()
     {
-        SceneManager.LoadSceneAsync("PlayerTest2");
+        Destroy(playerRig);
+        SceneManager.LoadScene("PlayerTest2");
     }
 
     public void ReturnToMenu()

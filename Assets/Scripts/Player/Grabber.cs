@@ -40,10 +40,12 @@ public class Grabber : MonoBehaviour {
     }
 
     public void Grab() {
+        Debug.Log(" Grab hand!");
+
         if (Grabbed) { return;  }
 
         //make hand dissapear
-        HideHands();
+        //HideHands();
 
         //check object with tag
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);

@@ -73,7 +73,7 @@ public class ATM : MonoBehaviour
         {
             if (GetComponent<HairObject>())
             {
-                Debug.Log(" dist: " + Vector3.Distance(transform.position, startPos));
+                //Debug.Log(" dist: " + Vector3.Distance(transform.position, startPos));
                 if (Vector3.Distance(transform.position, startPos) > tooFarDistance)
                 {
                     tooFar = true;

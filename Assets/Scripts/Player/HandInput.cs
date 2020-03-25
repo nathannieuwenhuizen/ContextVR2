@@ -22,6 +22,7 @@ public class HandInput : MonoBehaviour {
     bool ui;
 
     void Start() {
+        Debug.Log("Event start");
         colorAction.AddOnStateDownListener(ColorDown,handType);
         colorAction.AddOnStateUpListener(ColorUp,handType);
 
@@ -69,6 +70,7 @@ public class HandInput : MonoBehaviour {
     }
 
     public void HoldDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
+        Debug.Log(" Grab!");
         grabber.Grab();
     }
     public void HoldUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)  {

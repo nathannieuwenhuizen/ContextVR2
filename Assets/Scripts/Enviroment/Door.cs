@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
         {
             Open(true);
         }
-        if (GameManager.instance.currentCustomer != null)
+        if (GameManager.instance?.currentCustomer != null)
         {
             float distance = GameManager.instance.currentCustomer.transform.position.z - transform.position.z;
             if (Mathf.Abs(distance) < 1f)
