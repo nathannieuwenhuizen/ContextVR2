@@ -1,7 +1,7 @@
 {
 	"name" : "Armani",
 	"desiredHaircutID" : 2,
-	"appearanceSeed" : 1,
+	"appearanceSeed" : 2,
 	"moodForNewHaircut" : false,
 	"maxTip" : 30,
 	"basePrice" : 20,
@@ -14,11 +14,11 @@
 		"text" : "I don't want to talk about the new haircut of the month. I just have no opinion about it or about the Party, okay?",
 		"responses" : [
 		{
-			"text" : "Though you want the prescribed haircut.",
+			"text" : "What haircut do you want then?",
 			"dialogueID" : 1
 		},
 		{
-			"text" : "Though you want the prescribed haircut.",
+			"text" : "You must have some opinion.",
 			"dialogueID" : 2
 		}
 		]
@@ -50,7 +50,7 @@
 		]
 	},
 	{
-		"text" : "That's stupid. Is there any way in which I can be not involved in fucking politics? I just want an easy life.",
+		"text" : "That's stupid. Is there any way in which I can be not involved in politics? I just want an easy life.",
 		"responses" : []
 	},
 	{

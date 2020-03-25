@@ -1,13 +1,13 @@
 {
 	"name" : "Rene",
 	"desiredHaircutID" : 2,
-	"appearanceSeed" : 1,
+	"appearanceSeed" : 0,
 	"moodForNewHaircut" : false,
 	"maxTip" : 30,
 	"basePrice" : 20,
-	"greetingDialogue" : "Hello",
-	"positiveReaction" : "Negative!",
-	"negativeReaction" : "Yay!",
+	"greetingDialogue" : "Hi! Do you have time to give me a haircut?",
+	"positiveReaction" : "Many thanks! I'm glad I can sport this haircut for the better of society.",
+	"negativeReaction" : "This is awful! Don't you have any respect?!",
 	"wantsGovernmentHair" : true,
 	"dialogues" :[
 	{

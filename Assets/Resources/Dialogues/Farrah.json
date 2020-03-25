@@ -1,14 +1,14 @@
 {
 	"name" : "Farrah",
 	"desiredHaircutID" : 1,
-	"appearanceSeed" : 1,
+	"appearanceSeed" : 3,
 	"moodForNewHaircut" : false,
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hi! Can you cut my hair?",
 	"negativeReaction" : "Better safe than sorry.",
 	"positiveReaction" : "I... wow. I'm scared, yet more confident.",
-	"minimumPrecentageForPositiveReaction" : "0.5",
+	"wantsGovernmentHair" : false,
 	"dialogues" :[
 	{
 		"text" : "Can I ask you something? Do you ever feel not like yourself around other people? like you're not fitting in, even though you look so alike?",

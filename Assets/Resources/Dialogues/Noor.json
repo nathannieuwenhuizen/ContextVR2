@@ -8,7 +8,7 @@
 	"greetingDialogue" : "Hey, do you think you can give me a different haircut?",
 	"positiveReaction" : "Thanks, I hate it.",
 	"negativeReaction" : "Wow, nice. I feel so free like this.",
-	"wantsGovernmentHair" : true,
+	"wantsGovernmentHair" : false,
 	"dialogues" :[
 	{
 		"text" : "I don't know if you're up to this, but could you give me something that isn't the prescribed style? Anything, I don't care.",
@@ -37,7 +37,7 @@
 		]
 	},
 	{
-		"text" : "Thank god. I wish the Party would just stop interfering with people's hair like this, it's fucking insane!",
+		"text" : "Thank god. I wish the Party would just stop interfering with people's hair like this, it's insane!",
 		"responses" : [
 		{
 			"text" : "I like to cut hair my way.",
@@ -62,7 +62,7 @@
 		"responses" : []
 	},
 	{
-		"text" : "Not necessarily. They have done good stuff for the world and all, but they take it too far. I want to see the Party go.",
+		"text" : "Maybe. They have done good stuff for the climate and all, but they take it too far. I want to see the Party go.",
 		"responses" : []
 	}
 	]
