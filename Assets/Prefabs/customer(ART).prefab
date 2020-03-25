@@ -163,10 +163,11 @@ SkinnedMeshRenderer:
   - {fileID: 1338697242328119359}
   - {fileID: 2090371961303359370}
   - {fileID: 5076527881297855624}
+  - {fileID: 1309583194228615380}
   m_BlendShapeWeights: []
-  m_RootBone: {fileID: 2288052811974366184}
+  m_RootBone: {fileID: 1309583194228615380}
   m_AABB:
-    m_Center: {x: -0.062238127, y: -0.33993787, z: -0.93973327}
+    m_Center: {x: 0.08518594, y: -0.59419936, z: -1.7072005}
     m_Extent: {x: 0.30417916, y: 0.7339838, z: 1.1244597}
   m_DirtyAABB: 0
 --- !u!1 &1193297856842421605
@@ -376,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016301685206716050}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.118736446, y: -1.0290003, z: -0.09738}
+  m_LocalPosition: {x: 0.118736446, y: -1.0996056, z: -0.09738}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5076527881297855624}
@@ -822,7 +823,7 @@ Transform:
   m_GameObject: {fileID: 4941842732164065024}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0.060692787, y: -0.52124953, z: 0}
-  m_LocalScale: {x: 24.383228, y: 22.771196, z: 24.383228}
+  m_LocalScale: {x: 24.383228, y: 22.77119, z: 24.383224}
   m_Children: []
   m_Father: {fileID: 2030939117923611389}
   m_RootOrder: 0
@@ -886,7 +887,6 @@ GameObject:
   - component: {fileID: 2037221122568150574}
   - component: {fileID: 4014148582039214156}
   - component: {fileID: 4941842733499842886}
-  - component: {fileID: 4941842733499842885}
   m_Layer: 0
   m_Name: customer(ART)
   m_TagString: Untagged
@@ -902,7 +902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4941842733499842887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5283715896967129812}
@@ -994,19 +994,6 @@ MonoBehaviour:
   - {fileID: 171531000353400272}
   stepTime: 0.16
   height: 0.5
---- !u!114 &4941842733499842885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4941842733499842887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3da3298060354d42ad9fafc372f1ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.04
 --- !u!1 &5254761243849860803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5254761243849860803}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.118736446, y: -1.029, z: 0.09738306}
+  m_LocalPosition: {x: 0.118736446, y: -1.0996056, z: 0.09738306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1358454975677128649}
@@ -1095,7 +1082,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7b23a9b9278c35e488502dbcde7f00f1, type: 2}
+  - {fileID: 2100000, guid: 82b0ef543830a974cb51832f3c842470, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1147,7 +1134,7 @@ Transform:
   - {fileID: 8558313501277019671}
   m_Father: {fileID: 1309583194228615380}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 40.263, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5592336366484629544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,7 +1226,7 @@ Transform:
   - {fileID: 1338697242328119359}
   m_Father: {fileID: 1309583194228615380}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -34.693, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5798908026015883328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,7 +1494,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 59e51d439bcecac41898761a347dc3ce, type: 2}
+  - {fileID: 2100000, guid: 82b0ef543830a974cb51832f3c842470, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
