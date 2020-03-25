@@ -221,6 +221,7 @@ MonoBehaviour:
   greetingPos: {fileID: 7897302133951405350}
   chairPos: {fileID: 1941399834101772426}
   spawnPos: {fileID: 3199853886668442898}
+  governmentHairThreshold: 0.5
   govermentHair: {fileID: 21300000, guid: 3778cf32787db9740abf83b5cf3b2431, type: 3}
   customerHaircuts:
   - {fileID: 21300000, guid: 97706c7adfbdc4841aed5161f237ba32, type: 3}
@@ -228,12 +229,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a846c5d5f40f349a0ec762b7900a8b, type: 3}
   - {fileID: 21300000, guid: 1a09fcc794a7c624bbd2157b4fe6c6b4, type: 3}
   customerDataQueue:
-  - recurringCharacter: 1
+  - recurringCharacter: 0
     fileNames:
     - Rene
-  - recurringCharacter: 1
+  - recurringCharacter: 0
     fileNames:
-    - Rene
+    - Noor
+  - recurringCharacter: 0
+    fileNames:
+    - Armani
+  - recurringCharacter: 0
+    fileNames:
+    - Farrah
   money: 0
 --- !u!1 &1941399834101772427
 GameObject:

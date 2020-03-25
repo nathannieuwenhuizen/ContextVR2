@@ -389,7 +389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5029313418765002566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1237,15 +1237,14 @@ MonoBehaviour:
   head: {fileID: 7274408744322122979}
   customerData:
     name: name
-    moodForNewHaircut: 0
     basePrice: 20
     maxTip: 30
     desiredHaircutID: -1
     appearanceSeed: 0
-    minimumPrecentageForPositiveReaction: 0.7
     greetingDialogue: 
     positiveReaction: 
     negativeReaction: 
+    wantsGovernmentHair: 1
     dialogues: []
   dataPath: Rene
   dialogueHandeler: {fileID: 8058405535679599936}
