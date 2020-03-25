@@ -45,7 +45,7 @@ public class Grabber : MonoBehaviour {
         if (Grabbed) { return;  }
 
         //make hand dissapear
-        //HideHands();
+        HideHands();
 
         //check object with tag
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);

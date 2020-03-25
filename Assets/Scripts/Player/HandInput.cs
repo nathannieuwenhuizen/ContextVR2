@@ -62,6 +62,21 @@ public class HandInput : MonoBehaviour {
         }
     }
 
+    public void OnDisable()
+    {
+        Debug.Log(" Disable");
+
+        colorAction.RemoveOnStateDownListener(ColorDown, handType);
+        colorAction.RemoveOnStateUpListener(ColorUp, handType);
+
+        triggerAction.RemoveOnStateDownListener(TriggerDown, handType);
+        triggerAction.RemoveOnStateUpListener(TriggerUp, handType);
+
+        holdAction.RemoveOnStateDownListener(HoldDown, handType);
+        holdAction.RemoveOnStateUpListener(HoldUp, handType);
+
+    }
+
     public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         UIBeam.Press(); 
     }
