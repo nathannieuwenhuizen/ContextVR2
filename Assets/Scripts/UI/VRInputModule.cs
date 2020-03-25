@@ -27,16 +27,10 @@ public class VRInputModule : BaseInputModule {
     public override void UpdateModule()
     {
         base.UpdateModule();
-
-        Debug.Log("prcoess");
-        Debug.LogError("prcoess");
-
     }
     public override void Process() {
         data.position = new Vector2(currentCamera.pixelWidth / 2, currentCamera.scaledPixelHeight / 2);
 
-        Debug.Log("prcoess");
-        Debug.LogError("prcoess");
         eventSystem.RaycastAll(data, m_RaycastResultCache);
         data.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
 
