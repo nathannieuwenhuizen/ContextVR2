@@ -21,18 +21,6 @@ public class HandInput : MonoBehaviour {
     public bool ToggleToggle;
     bool ui;
 
-    void Start() {
-        Debug.Log("Event start");
-        colorAction.AddOnStateDownListener(ColorDown,handType);
-        colorAction.AddOnStateUpListener(ColorUp,handType);
-
-        triggerAction.AddOnStateDownListener(TriggerDown, handType);
-        triggerAction.AddOnStateUpListener(TriggerUp, handType);
-
-        holdAction.AddOnStateDownListener(HoldDown, handType);
-        holdAction.AddOnStateUpListener(HoldUp, handType);
-    }
-
     public void ColorDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         if (!ToggleToggle) {
             colorUI.SetActive(true);
@@ -62,10 +50,20 @@ public class HandInput : MonoBehaviour {
         }
     }
 
+    public void OnEnable()
+    {
+        colorAction.AddOnStateDownListener(ColorDown, handType);
+        colorAction.AddOnStateUpListener(ColorUp, handType);
+
+        triggerAction.AddOnStateDownListener(TriggerDown, handType);
+        triggerAction.AddOnStateUpListener(TriggerUp, handType);
+
+        holdAction.AddOnStateDownListener(HoldDown, handType);
+        holdAction.AddOnStateUpListener(HoldUp, handType);
+    }
+
     public void OnDisable()
     {
-        Debug.Log(" Disable");
-
         colorAction.RemoveOnStateDownListener(ColorDown, handType);
         colorAction.RemoveOnStateUpListener(ColorUp, handType);
 
