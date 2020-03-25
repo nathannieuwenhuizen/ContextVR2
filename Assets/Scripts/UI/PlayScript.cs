@@ -7,6 +7,14 @@ public class PlayScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject playerRig;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            LoadGame();
+        }
+    }
     public void LoadGame()
     { 
         Destroy(playerRig);

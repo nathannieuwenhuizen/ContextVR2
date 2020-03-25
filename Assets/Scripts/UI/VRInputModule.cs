@@ -22,16 +22,30 @@ public class VRInputModule : BaseInputModule {
 
     protected override void Start() {
         data = new PointerEventData(eventSystem);
-        data.position = new Vector2(currentCamera.pixelWidth / 2, currentCamera.scaledPixelHeight / 2);
     }
 
+    public override void UpdateModule()
+    {
+        base.UpdateModule();
+
+        Debug.Log("prcoess");
+        Debug.LogError("prcoess");
+
+    }
     public override void Process() {
+        data.position = new Vector2(currentCamera.pixelWidth / 2, currentCamera.scaledPixelHeight / 2);
+
+        Debug.Log("prcoess");
+        Debug.LogError("prcoess");
         eventSystem.RaycastAll(data, m_RaycastResultCache);
         data.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
 
         HandlePointerExitAndEnter(data,currentObject);
 
         ExecuteEvents.Execute(data.pointerDrag, data, ExecuteEvents.dragHandler);
+        Debug.Log("prcoess finish");
+        Debug.LogError("prcoess finish");
+
     }
 
     public PointerEventData getData() {
