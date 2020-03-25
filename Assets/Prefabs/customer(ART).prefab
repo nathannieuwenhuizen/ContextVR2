@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceTreshold: 0.2
-  stepDistance: 0.8
+  stepDistance: 0.6
   Leggs:
   - {fileID: 3304883026064317695}
   - {fileID: 171531000353400272}
