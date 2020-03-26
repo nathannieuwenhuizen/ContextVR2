@@ -21,7 +21,7 @@ public class HSVColorPanel : MonoBehaviour {
     [SerializeField] int swatchesWidth;
     [SerializeField] float swatchesDistanceX;
     [SerializeField] float swatchesDistanceY;
-    [SerializeField] Color[] swatches;
+    [SerializeField] public Color[] swatches;
     [SerializeField] GameObject swatchPrefab;
     [SerializeField] Sprite normalSprite;
     [SerializeField] Sprite selectedSprite;
