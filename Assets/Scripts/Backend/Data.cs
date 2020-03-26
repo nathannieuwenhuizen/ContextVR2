@@ -14,6 +14,7 @@ public static class Data
 
     //recuring character data
     public static bool RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = true;
+    public static bool RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT = true;
     public static string RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME = "recurringCharacter.hair";
     public static int RECURING_CHARACTER_VISITS = 0;
     public static string HAIRCUTS_FOLDER_NAME = "/saves";

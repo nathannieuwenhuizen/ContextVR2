@@ -231,6 +231,7 @@ public class GameManager : MonoBehaviour
         //if recurring character
         if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
         {
+            Data.RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT = formChecker.govermentPrecentage > governmentHairThreshold;
             //save hair and update data
             currentCustomer.SaveHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
             Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = customerGotWhatTheyWanted;
