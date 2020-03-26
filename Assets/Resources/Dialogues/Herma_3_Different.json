@@ -6,8 +6,8 @@
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hey, I wanted to drop by!",
-	"positiveReaction" : "BOO",
-	"negativeReaction" : "NICE",
+	"positiveReaction" : "Love it!",
+	"negativeReaction" : "I can appreciate any hairstyle now.",
 	"wantsGovernmentHair" : false,
 	"dialogues" :[
 	{
@@ -37,32 +37,32 @@
 		]
 	},
 	{
-		"text" : "TEKST2",
+		"text" : "You sure are. People say I inspire them, whatever that means. Although others still say this is hurtful to everyone.",
 		"responses" : [
 		{
-			"text" : "A1",
+			"text" : "I would choose inspiration.",
 			"dialogueID" : 5
 		},
 		{
-			"text" : "A2",
+			"text" : "Screw them!",
 			"dialogueID" : 6
 		}
 		]
 	},
 	{
-		"text" : "TEKST3",
+		"text" : "I will! It's like seeing all the beautiful diversity of plants and animals in the gardens, but with people! I think that's special.",
 		"responses" : []
 	},
 	{
-		"text" : "TEKST4",
+		"text" : "To agree with me! It's like seeing all the beautiful diversity of plants and animals in the gardens, but with people! I think that's special.",
 		"responses" : []
 	},
 	{
-		"text" : "TEKST5",
+		"text" : "Same here! It's like seeing all the beautiful diversity of plants and animals in the gardens, but with people! I think that's special.",
 		"responses" : []
 	},
 	{
-		"text" : "TEKST6",
+		"text" : "Yes! It's like seeing all the beautiful diversity of plants and animals in the gardens, but with people! I think that's special.",
 		"responses" : []
 	}
 	]
