@@ -50,7 +50,6 @@ public class Customer : MonoBehaviour
     }
     public void Start()
     {
-        
         //canvas.worldCamera = VRInputModule.instance.currentCamera;
         dialogueHandeler.customer = this;
     }

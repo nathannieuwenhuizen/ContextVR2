@@ -1,0 +1,69 @@
+{
+	"name" : "Herma",
+	"desiredHaircutID" : 0,
+	"appearanceSeed" : 4,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hi there! Are you the hairdresser?",
+	"positiveReaction" : "Thanks a lot! See you next time!",
+	"negativeReaction" : "Wow, what did you do?",
+	"wantsGovernmentHair" : true,
+	"dialogues" :[
+	{
+		"text" : "One new predescribed haircut for me! Sorry, I'm excited. I just moved into the city! It's for work, but I enjoy it already.",
+		"responses" : [
+		{
+			"text" : "What kind of work do you do?",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "Do you like the city?",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "I monitor vertical gardens. It's my dream job! I get to spend much time out in the open air and smelling nice flowers.",
+		"responses" : [
+		{
+			"text" : "We have beautiful gardens here.",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "I'm more of an animal person myself.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "Going from what I've already seen, yes! I love the designs of the vertical gardens. Maybe also because that's my job.",
+		"responses" : [
+		{
+			"text" : "You design vertical gardens?",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "I'm not really a plant person.",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "That's why I'm excited. I really appreciate the efforts of the Party to contiue making cities more green.",
+		"responses" : []
+	},
+	{
+		"text" : "The gardens are crawling with animals though! Birds, squirrels, mice and insects in every shape and color.",
+		"responses" : []
+	},
+	{
+		"text" : "Actually, not like that. I monitor their biodiversity and health! I spend a lot of time with the garden personell though, they're nice!",
+		"responses" : []
+	},
+	{
+		"text" : "They make our lives possible! It fascinates me. And also, they smell quite nice!",
+		"responses" : []
+	}
+	]
+}

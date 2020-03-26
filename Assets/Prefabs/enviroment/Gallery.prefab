@@ -47,4 +47,4 @@ MonoBehaviour:
     type: 3}
   frames: []
   framesPadding: 1.5
-  maxFrames: 3
+  maxFrames: 5
