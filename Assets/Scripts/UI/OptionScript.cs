@@ -8,9 +8,6 @@ public class OptionScript : MonoBehaviour
     [SerializeField]
     private Slider volumeSlider;
 
-    [SerializeField]
-    private Slider musicSlider;
-
     private void Start()
     {
         AudioListener.volume = Settings.Volume;
@@ -24,15 +21,4 @@ public class OptionScript : MonoBehaviour
         Settings.Volume = volumeSlider.value;
         AudioListener.volume = volumeSlider.value;
     }
-
-    public void UpdateMusic()
-    {
-        //Idk hoe dit geimplementeerd is
-    }
-
-    public void EnableSubs()
-    {
-        //We hebben geen subtitles
-    }
-
 }
