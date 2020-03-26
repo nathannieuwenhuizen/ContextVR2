@@ -241,15 +241,25 @@ public class GameManager : MonoBehaviour
         Settings.AmountOfCustomers = (Settings.AmountOfCustomers + 1) % Data.MAX_FILES_IN_PLAYER_FOLDER;
         currentCustomer.SaveHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, Settings.AmountOfCustomers + ".hair");
 
-        //reaction of customer on how much the haircut resembles the government haircut
-        currentCustomer.Reaction(customerGotWhatTheyWanted);
         yield return new WaitForSeconds(1f);
+
+        //customer standsup and looks at player
+        currentCustomer.Sit(false);
+        yield return StartCoroutine(currentCustomer.movement.GoTo(greetingPos.position));
+        yield return StartCoroutine(currentCustomer.movement.Orienting(
+            currentCustomer.transform.position + 
+            new Vector3(0, 0, 1) * 5f
+            ));
+        
+        //reaction of customer on how much the haircut resembles the government haircut
+        yield return currentCustomer.Reaction(customerGotWhatTheyWanted);
+        yield return new WaitForSeconds(2f);
 
         //updates the money and gallery
         UpdateStore();
 
-        //customer walks out of store
-        currentCustomer.Sit(false);
+        //customer walks out
+        currentCustomer.canvas.gameObject.SetActive(false);
         yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position));
         yield return StartCoroutine(currentCustomer.movement.GoTo(spawnPos.position, true));
 

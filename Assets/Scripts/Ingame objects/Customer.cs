@@ -52,6 +52,8 @@ public class Customer : MonoBehaviour
     {
         //canvas.worldCamera = VRInputModule.instance.currentCamera;
         dialogueHandeler.customer = this;
+        canvas.gameObject.SetActive(false);
+
     }
     public CustomerData CustomerData
     {
@@ -81,6 +83,8 @@ public class Customer : MonoBehaviour
 
     public IEnumerator Greeting()
     {
+        canvas.gameObject.SetActive(true);
+        yield return new WaitForFixedUpdate(); //otherwise button wont show up
         yield return StartCoroutine( dialogueHandeler.Greetings(customerData.greetingDialogue, customerData.name));
         dialogueHandeler.BeginDialogue(customerData.dialogues[0], customerData.name);
     }
@@ -139,12 +143,13 @@ public class Customer : MonoBehaviour
     }
 
     // Give correct customer reaction
-    public void Reaction(bool gotWhatTheyWanted)
+    public  IEnumerator Reaction(bool gotWhatTheyWanted)
     {
+        dialogueHandeler.HideButtons();
         // When hair looks like governmenthair, react to government hair. Else, react to different hair.
-        dialogueHandeler.BeginLine(
+        yield return StartCoroutine( dialogueHandeler.BeginLine(
             gotWhatTheyWanted ?
-            customerData.positiveReaction : customerData.negativeReaction, customerData.name);
+            customerData.positiveReaction : customerData.negativeReaction, customerData.name));
     }
 
     public bool SaveHair(string directory = "/saves", string fileName = "testHairSave.hair")

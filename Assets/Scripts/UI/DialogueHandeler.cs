@@ -22,7 +22,7 @@ public class DialogueHandeler : MonoBehaviour
     }
     public void BeginDialogue(Dialogue dialogue, string _name) {
         //set dialogue text
-        BeginLine(dialogue.text, _name);
+        StartCoroutine( BeginLine(dialogue.text, _name));
 
         HideButtons();
         for (int i = 0; i < dialogue.responses.Length; i++)
@@ -72,7 +72,7 @@ public class DialogueHandeler : MonoBehaviour
     }
 
 
-    private void HideButtons()
+    public void HideButtons()
     {
         foreach (ReactionButton child in reactionButtons)
         {
@@ -84,7 +84,7 @@ public class DialogueHandeler : MonoBehaviour
     public IEnumerator Greetings(string line, string name)
     {
         greetings = true;
-        BeginLine(line, name);
+        yield return StartCoroutine( BeginLine(line, name));
         AddButton(-1);
         while (greetings)
         {
@@ -92,13 +92,13 @@ public class DialogueHandeler : MonoBehaviour
         }
     }
 
-    public void BeginLine(string line, string name)
+    public IEnumerator BeginLine(string line, string name)
     {
         dialogueText.text = "";
         nameText.text = name;
 
         StopAllCoroutines();
-        StartCoroutine(Talking(line));
+         yield return StartCoroutine(Talking(line));
     }
 
     private IEnumerator Talking(string line)
