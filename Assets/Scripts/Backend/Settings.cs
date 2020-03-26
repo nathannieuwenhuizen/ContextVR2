@@ -4,15 +4,27 @@ using UnityEngine;
 
 public static class Settings
 {
-    public static float Volume
+    public static float MusicVolume
     {
         get
         {
-            return PlayerPrefs.GetFloat("Volume", 1);
+            return PlayerPrefs.GetFloat("Music", 1);
         }
         set
         {
-            PlayerPrefs.SetFloat("Volume", value);
+            PlayerPrefs.SetFloat("Music", value);
+            AudioListener.volume = value;
+        }
+    }
+    public static float SoundEffectVolume
+    {
+        get
+        {
+            return PlayerPrefs.GetFloat("SoundEffect", 1);
+        }
+        set
+        {
+            PlayerPrefs.SetFloat("SoundEffect", value);
             AudioListener.volume = value;
         }
     }

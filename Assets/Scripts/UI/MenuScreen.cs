@@ -32,8 +32,8 @@ public class MenuScreen : MonoBehaviour
 
         activeScreen = mainScreen;
 
-        AudioListener.volume = Settings.Volume;
-        volumeSlider.value = Settings.Volume;
+        AudioListener.volume = Settings.MusicVolume;
+        volumeSlider.value = Settings.MusicVolume;
 
     }
 
@@ -60,7 +60,7 @@ public class MenuScreen : MonoBehaviour
     {
         AudioManager.instance?.PlaySound(AudioEffect.scaleChange, 1);
 
-        Settings.Volume = volumeSlider.value;
+        Settings.MusicVolume = volumeSlider.value;
         AudioListener.volume = volumeSlider.value;
     }
 }
