@@ -99,7 +99,7 @@ public class HairObject : MonoBehaviour
             case "Cube":
                 hairData.meshType = PrimitiveType.Cube;
                 break;
-            case "Spher":
+            case "Sphe":
                 hairData.meshType = PrimitiveType.Sphere;
                 break;
             case "Cyli":
@@ -111,6 +111,7 @@ public class HairObject : MonoBehaviour
         }
         if (gameObject.name.Contains("prop") || gameObject.name.Contains("atm") || gameObject.name.Contains("book") || gameObject.name.Contains("sandwitch") || gameObject.name.Contains("doughnut") )
         {
+            Debug.Log(" it is a prop!");
             hairData.meshType = PrimitiveType.Capsule;
         }
 
