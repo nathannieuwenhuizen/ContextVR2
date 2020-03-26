@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             if (nextDialogueData.fileNames.Length > 1) //more than one file?
             {
                 //recurring match is more than 0.8, then load positive.
-                if (Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT == false)
+                if (Data.RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT == false)
                 {
                     jsonData = nextDialogueData.fileNames[1];
                 }
