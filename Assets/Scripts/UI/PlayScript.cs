@@ -24,6 +24,6 @@ public class PlayScript : MonoBehaviour
     public void ReturnToMenu()
     {
         Destroy(playerRig);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu2");
     }
 }
