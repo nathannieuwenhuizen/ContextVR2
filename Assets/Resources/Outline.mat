@@ -67,7 +67,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Outline: 1.02
-    - _OutlineThickness: 0.1
+    - _OutlineThickness: 0.05
     - _OutlineWidth: 0.126
     - _Parallax: 0.02
     - _Smoothness: 0

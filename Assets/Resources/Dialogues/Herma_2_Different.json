@@ -1,0 +1,69 @@
+{
+	"name" : "Herma",
+	"desiredHaircutID" : 1,
+	"appearanceSeed" : 4,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hey, I'm back!",
+	"positiveReaction" : "You're the professional!",
+	"negativeReaction" : "Wish me luck out there.",
+	"wantsGovernmentHair" : true,
+	"dialogues" :[
+	{
+		"text" : "A lot of people have been giving me weird looks because of the haircut you gave me. It makes me nervous.",
+		"responses" : [
+		{
+			"text" : "Sorry for that.",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "Why do you care?",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "People at work and also on the street. But something else happened. Someone said it looked cool!",
+		"responses" : [
+		{
+			"text" : "How did that feel?",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "Of course it does.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "I'm split. It was not the right thing to do, we have a collective responsability. Yet someone give me a compliment about my hair!",
+		"responses" : [
+		{
+			"text" : "How did that feel?",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "You can occasionally break the rules.",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "It felt pretty amazing! I kept feeling like that for the rest of the day as well! But does it outweigh the bad comments?",
+		"responses" : []
+	},
+	{
+		"text" : "Thanks! You know what you're doing, you're a proffesional. But I also don't want to get in any kind of trouble.",
+		"responses" : []
+	},
+	{
+		"text" : "It felt pretty amazing! I kept feeling like that for the rest of the day as well! But I don't want to get in trouble.",
+		"responses" : []
+	},
+	{
+		"text" : "That is how the system falls apart! But then again, does hair really make a big difference? Getting compliments feels amazing.",
+		"responses" : []
+	}
+	]
+}
