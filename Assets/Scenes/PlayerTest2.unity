@@ -2817,8 +2817,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3433387496729247961, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: m_Name
+      value: GovMes Popup
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcda4645b73053241882efcb1fb47929, type: 3}
+--- !u!223 &767574754 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2631393784821635536, guid: dcda4645b73053241882efcb1fb47929,
+    type: 3}
+  m_PrefabInstance: {fileID: 767574753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &776751679
 GameObject:
   m_ObjectHideFlags: 0
@@ -11736,7 +11747,7 @@ PrefabInstance:
     - target: {fileID: 4566165601379366404, guid: 7a9bf1b279befc24a94cf2711caf7add,
         type: 3}
       propertyPath: canvass.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4566165601379366404, guid: 7a9bf1b279befc24a94cf2711caf7add,
         type: 3}
@@ -11763,6 +11774,11 @@ PrefabInstance:
       propertyPath: canvass.Array.data[2]
       value: 
       objectReference: {fileID: 2021251413}
+    - target: {fileID: 4566165601379366404, guid: 7a9bf1b279befc24a94cf2711caf7add,
+        type: 3}
+      propertyPath: canvass.Array.data[3]
+      value: 
+      objectReference: {fileID: 767574754}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a9bf1b279befc24a94cf2711caf7add, type: 3}
 --- !u!114 &4566165601379366404 stripped
