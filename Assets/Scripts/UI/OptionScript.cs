@@ -10,15 +10,15 @@ public class OptionScript : MonoBehaviour
 
     private void Start()
     {
-        AudioListener.volume = Settings.Volume;
-        volumeSlider.value = Settings.Volume;
+        AudioListener.volume = Settings.MusicVolume;
+        volumeSlider.value = Settings.MusicVolume;
     }
 
     public void UpdateVolume()
     {
         AudioManager.instance?.PlaySound(AudioEffect.scaleChange, 1);
 
-        Settings.Volume = volumeSlider.value;
+        Settings.MusicVolume = volumeSlider.value;
         AudioListener.volume = volumeSlider.value;
     }
 }
