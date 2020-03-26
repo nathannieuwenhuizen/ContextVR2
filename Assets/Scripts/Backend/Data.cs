@@ -76,12 +76,12 @@ public static class Data
     {
         BinaryFormatter formatter = GetBinaryFormatter();
 
-        if (!Directory.Exists(Application.dataPath + directory))
+        if (!Directory.Exists(Data.DataPath() + directory))
         {
-            Directory.CreateDirectory(Application.dataPath + directory);
+            Directory.CreateDirectory(Data.DataPath() + directory);
         }
 
-        string path = Application.dataPath + directory + "/" + fileName;
+        string path = Data.DataPath() + directory + "/" + fileName;
         FileStream file = File.Create(path);
 
         formatter.Serialize(file, saveData);
@@ -89,9 +89,14 @@ public static class Data
         return true;
     }
 
+    public static string DataPath()
+    {
+        return Application.streamingAssetsPath;
+    }
+
     public static object LoadHair(string directory = "/saves", string fileName = "testHairSave.hair")
     {
-        string path = Application.dataPath + directory + "/" + fileName;
+        string path = Data.DataPath() + directory + "/" + fileName;
         if (!File.Exists(path)) {
             Debug.LogErrorFormat("Form nathan: THe file doesnt exist at {0}", path);
             return null;
@@ -117,11 +122,11 @@ public static class Data
 
     public static string[] GetHairFiles(string directory = "/saves")
     {
-        if (!Directory.Exists(Application.dataPath + directory))
+        if (!Directory.Exists(Data.DataPath() + directory))
         {
-            Directory.CreateDirectory(Application.dataPath + directory);
+            Directory.CreateDirectory(Data.DataPath() + directory);
         }
-        string[] files = Directory.GetFiles(Application.dataPath + directory );
+        string[] files = Directory.GetFiles(Data.DataPath() + directory );
 
         List<string> result = new List<string>();
         for (int i = 0; i < files.Length; i++)

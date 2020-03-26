@@ -7,14 +7,23 @@ public class PlayScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject playerRig;
-    public void LoadGame()
+
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            LoadGame();
+        }
+    }
+    public void LoadGame()
+    { 
         Destroy(playerRig);
         SceneManager.LoadScene("PlayerTest2");
     }
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadSceneAsync("Menu");
+        Destroy(playerRig);
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -3,6 +3,7 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 [Aa]ssets/saves/MadeByPlayer/
+[Aa]ssets/StreamingAssets/saves/MadeByPlayer/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/

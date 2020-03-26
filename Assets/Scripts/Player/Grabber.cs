@@ -44,8 +44,7 @@ public class Grabber : MonoBehaviour {
 
         if (Grabbed) { return;  }
 
-        //make hand dissapear
-        HideHands();
+        
 
         //check object with tag
         GameObject focusedObject = SphereCastedObject(Tags.GRABABLE, transform);
@@ -61,6 +60,9 @@ public class Grabber : MonoBehaviour {
 
         //play grab sound
         AudioManager.instance?.Play3DSound(AudioEffect.grabProp, 1, transform.position);
+
+        //make hand dissapear
+        HideHands();
 
         //add haircomponent
         if (grabbedObject.GetComponent<HairObject>() == null) {
