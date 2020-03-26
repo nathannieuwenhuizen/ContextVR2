@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         if (nextDialogueData.recurringCharacter)
         {
             //load hair if character visited before
-            if (Data.RECURING_CHARACTER_VISITS > 0)
+            if (Data.RECURING_CHARACTER_VISITS > -1)
             {
                 currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
             } else
