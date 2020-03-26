@@ -7,19 +7,24 @@ using System.IO;
 public class DialogueHandeler : MonoBehaviour
 {
     [SerializeField] private Text dialogueText;
-    [SerializeField] private Transform buttonParent;
-    [SerializeField] private GameObject buttonPrefab;
+
+    [SerializeField] private ReactionButton[] reactionButtons;
+
     [SerializeField] private float dialogueDuration = 0.5f;
     [SerializeField] private Text nameText;
     [SerializeField] public Customer customer;
 
     public bool greetings = false;
 
-    public void BeginDialogue(Dialogue dialogue, string name) {
+    public void Start()
+    {
+        HideButtons();
+    }
+    public void BeginDialogue(Dialogue dialogue, string _name) {
         //set dialogue text
-        BeginLine(dialogue.text, name);
+        BeginLine(dialogue.text, _name);
 
-        RemoveButtons();
+        HideButtons();
         for (int i = 0; i < dialogue.responses.Length; i++)
         {
             AddButton(i, dialogue);
@@ -27,22 +32,26 @@ public class DialogueHandeler : MonoBehaviour
     }
     public void AddButton(int i, Dialogue dialogue = null)
     {
-        GameObject tempButton = Instantiate(buttonPrefab, buttonParent);
-        tempButton.SetActive(true);
+
+        ReactionButton tempButton = reactionButtons[Mathf.Max(0, Mathf.Min(i, reactionButtons.Length - 1))];
+
+        tempButton.model.SetActive(true);
+        tempButton.button.gameObject.SetActive(true);
         //set pos
         if (dialogue != null)
         {
             //set text
-            tempButton.GetComponentInChildren<Text>().text = dialogue.responses[i].text;
-            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(0, 0 - 40 * i, 0);
+            tempButton.button.GetComponentInChildren<Text>().text = dialogue.responses[i].text;
 
             //set button event
             int ii = i; //WHY DOES THIS WORK
-            tempButton.GetComponent<Button>().onClick.AddListener(delegate {
+            tempButton.button.onClick.RemoveAllListeners();
+
+            tempButton.button.onClick.AddListener(delegate {
                 int id = dialogue.responses[ii].dialogueID;
                 if (id < customer.customerData.dialogues.Length)
                 {
-                    BeginDialogue(customer.customerData.dialogues[id], name);
+                    BeginDialogue(customer.customerData.dialogues[id], customer.customerData.name);
                 }
             });
 
@@ -50,25 +59,26 @@ public class DialogueHandeler : MonoBehaviour
         else //it is greetings button
         {
             //set text
-            tempButton.GetComponentInChildren<Text>().text = "Yes";
-            tempButton.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+            tempButton.button.GetComponentInChildren<Text>().text = "Yes";
 
             //set button event
-            tempButton.GetComponent<Button>().onClick.AddListener(delegate {
+            tempButton.button.onClick.RemoveAllListeners();
+            tempButton.button.onClick.AddListener( delegate {
                 greetings = false;
             });
 
 
         }
     }
-    private void RemoveButtons()
-    {
-        //destroy all buttons
-        foreach (Transform child in buttonParent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
 
+
+    private void HideButtons()
+    {
+        foreach (ReactionButton child in reactionButtons)
+        {
+            child.model.SetActive(false);
+            child.button.gameObject.SetActive(false);
+        }
     }
 
     public IEnumerator Greetings(string line, string name)
@@ -107,6 +117,13 @@ public class DialogueHandeler : MonoBehaviour
         AudioManager.instance?.StopSound(AudioEffect.dialogueTalk);
 
     }
+}
+
+[System.Serializable]
+public class ReactionButton
+{
+    public Button button;
+    public GameObject model;
 }
 
 [System.Serializable]

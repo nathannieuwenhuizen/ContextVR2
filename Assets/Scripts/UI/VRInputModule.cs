@@ -37,8 +37,8 @@ public class VRInputModule : BaseInputModule {
         HandlePointerExitAndEnter(data,currentObject);
 
         ExecuteEvents.Execute(data.pointerDrag, data, ExecuteEvents.dragHandler);
-        Debug.Log("prcoess finish");
-        Debug.LogError("prcoess finish");
+        //Debug.Log("prcoess finish");
+        //Debug.LogError("prcoess finish");
 
     }
 
