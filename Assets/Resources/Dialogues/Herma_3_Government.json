@@ -1,0 +1,69 @@
+{
+	"name" : "Herma",
+	"desiredHaircutID" : 1,
+	"appearanceSeed" : 4,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hey, I wanted to drop by!",
+	"positiveReaction" : "Let's go contribute to society!",
+	"negativeReaction" : "There's always beauty to be seen.",
+	"wantsGovernmentHair" : true,
+	"dialogues" :[
+	{
+		"text" : "I wasn't sure I was happy with the haircut you gave me last time, but people really liked it. You nailed the look!",
+		"responses" : [
+		{
+			"text" : "You're welcome!",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "I am good.",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "I was scared I wasn't special enough, but I shouldn't be affraid about that. People like me anyway.",
+		"responses" : [
+		{
+			"text" : "You're special any way.",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "There is beauty in everything.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "You sure are. I was scared I wasn't special enough, but I shouldn't be affraid about that. People like me anyway.",
+		"responses" : [
+		{
+			"text" : "You're special any way.",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "There is beauty in everything.",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "Thanks! When we form a unitied society, when can make life better for everyone. I think that's special.",
+		"responses" : []
+	},
+	{
+		"text" : "I agree! When we as a people form a unitied society, when can make life better for everyone. I think that's beautiful.",
+		"responses" : []
+	},
+	{
+		"text" : "Thanks! When we as a people form a unitied society, when can make life better for everyone. I think that's special.",
+		"responses" : []
+	},
+	{
+		"text" : "I agree! When we as a people form a unitied society, when can make life better for everyone. I think that's beautiful.",
+		"responses" : []
+	}
+	]
+}

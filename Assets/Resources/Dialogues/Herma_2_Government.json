@@ -1,0 +1,69 @@
+{
+	"name" : "Herma",
+	"desiredHaircutID" : 1,
+	"appearanceSeed" : 4,
+	"moodForNewHaircut" : false,
+	"maxTip" : 30,
+	"basePrice" : 20,
+	"greetingDialogue" : "Hey, I'm back!",
+	"positiveReaction" : "I hope you know what you're doing!",
+	"negativeReaction" : "I'm sure I'll cheer up.",
+	"wantsGovernmentHair" : false,
+	"dialogues" :[
+	{
+		"text" : "I was not really happy with the haircut you did last time. It was fine, but... I miss a personal touch.",
+		"responses" : [
+		{
+			"text" : "A personal touch?",
+			"dialogueID" : 1
+		},
+		{
+			"text" : "It is the predescribed haircut!",
+			"dialogueID" : 2
+		}
+		]
+	},
+	{
+		"text" : "Well, I don't know. You do my hair like all the hairdressers I have been to before. I would like to stand out a little more.",
+		"responses" : [
+		{
+			"text" : "I'm not allowed to vary much.",
+			"dialogueID" : 3
+		},
+		{
+			"text" : "You can get in trouble.",
+			"dialogueID" : 4
+		}
+		]
+	},
+	{
+		"text" : "Yes, I know! Sorry, I should not argue with that. But I've been feeling a bit bland. I thought it might be the boring hair.",
+		"responses" : [
+		{
+			"text" : "Your hair is just fine.",
+			"dialogueID" : 5
+		},
+		{
+			"text" : "I can make something different.",
+			"dialogueID" : 6
+		}
+		]
+	},
+	{
+		"text" : "It must be hard to be a hairdresser. You're doing very responsible work. I respect that!",
+		"responses" : []
+	},
+	{
+		"text" : "Thanks. Although it isn't allowed. But that is a bit nitpicky isn't it? I mean, is it really needed to stop discrimination?",
+		"responses" : []
+	},
+	{
+		"text" : "If you say so. It made this months vote after all. Everyone likes it, so that just can't be my problem.",
+		"responses" : []
+	},
+	{
+		"text" : "Really? I mean, still be careful. I don't want to get in trouble. But I do want to feel a bit more special.",
+		"responses" : []
+	}
+	]
+}
