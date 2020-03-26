@@ -422,6 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941399833177076825}
   - component: {fileID: 1941399833177076824}
+  - component: {fileID: 8203493652026911803}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -507,6 +508,19 @@ MonoBehaviour:
     - Herma_3_Government
     - Herma_3_Different
   money: 0
+--- !u!114 &8203493652026911803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941399833177076830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b0c6d187816804bbfc43e789400ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRig: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
 --- !u!1 &1941399834101772427
 GameObject:
   m_ObjectHideFlags: 0

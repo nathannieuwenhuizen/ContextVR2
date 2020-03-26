@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class GameManager : MonoBehaviour
 {
-
     [Header("Hair Data")]
     public string fileName = "testHairSave.hair";
     public string directory = "/saves";
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    [HideInInspector]
     public int money = 0;
 
     private bool editMode = false;
@@ -270,8 +271,31 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         customerCount++;
 
-        //next customer walks in
-        NextCustomerWalksIn();
+        // At the end of the customer que, end the game. Else, keep the customers coming.
+        if (customerCount < customerDataQueue.Length)
+        {
+            //next customer walks in
+            NextCustomerWalksIn();
+        }
+        else
+        {
+            EndGame();
+        }
 
+    }
+
+    public void EndGame()
+    {
+        StartCoroutine(EndGameRoutine());
+    }
+
+    private IEnumerator EndGameRoutine()
+    {
+        // Nice built-in vr fade functions using Valve.vr namespace. Idk wat dat allemaal betekent.
+        SteamVR_Fade.Start(Color.clear, 0);
+        SteamVR_Fade.Start(Color.black, 3.0f);
+        yield return new WaitForSeconds(3.0f);
+        // Go back to menu scene.
+        GetComponent<PlayScript>().ReturnToMenu();
     }
 }
