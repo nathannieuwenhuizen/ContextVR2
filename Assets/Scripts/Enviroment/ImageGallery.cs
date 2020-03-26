@@ -16,18 +16,29 @@ public class ImageGallery : MonoBehaviour
     [SerializeField]
     private int maxFrames = 5;
 
+    private int index = 0;
+
     void Start()
     {
-        //LoadGalleryFromFiles("/../SaveImages/");
         frames = new List<GameObject>();
+        LoadGallery();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AddFrame();
+        }
     }
 
-    public void LoadGalleryFromFiles(string basePath)
+    public void LoadGallery()
     {
-        for (int i = 0; i < maxFrames; i++)
+        string[] fileNames = Data.GetFiles(Data.PORTRAITS_FOLDER_NAME);
+
+        for (int i = 0; i < Mathf.Min(fileNames.Length, maxFrames); i++)
         {
 
-            Texture2D newTexture = Data.LoadPNG(basePath + i + ".png");
+            Texture2D newTexture = Data.LoadPortrait(fileNames[i]);
             if (newTexture == null)
             {
                 Debug.Log("no texture");
@@ -39,37 +50,45 @@ public class ImageGallery : MonoBehaviour
         }
     }
 
-    public void AddFrame(Texture2D texture)
+    public void AddFrame(Texture2D texture = null)
     {
-        GameObject newFrame = Instantiate(framePrefab, transform);
-        newFrame.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = texture;
+        GameObject newFrame;
 
-
-        if (frames.Count > maxFrames)
+        //update list
+        if (index >= maxFrames)
         {
-            frames.Insert(0, newFrame);
-            RemoveFrame(frames[frames.Count - 1]);
+            newFrame = frames[index % maxFrames];
 
         } else
         {
+            newFrame = Instantiate(framePrefab, transform);
             frames.Add(newFrame);
         }
-        UpdatePos();
+
+        //save portrait image
+        if (texture)
+        {
+            newFrame.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = texture;
+            Data.SavePortrait(texture, (index % maxFrames) + ".png");
+        }
+
+        //set name and location
+        newFrame.transform.localPosition = new Vector3((index % maxFrames) * framesPadding, 0, 0);
+        newFrame.name = "frame #" + index % maxFrames;
+
+        //animation
+        newFrame.transform.Rotate(new Vector3(0, 0, 45));
+        newFrame.transform.localScale = Vector3.zero;
+        LeanTween.scale(newFrame, Vector3.one, 1f).setEase(LeanTweenType.easeOutCirc);
+        LeanTween.rotateZ(newFrame, 0, 2f).setEase(LeanTweenType.easeOutElastic);
+
+        index++;
     }
 
     public void RemoveFrame(GameObject frame)
     {
         Destroy(frame);
         frames.Remove(frame);
-    }
-
-    public void UpdatePos()
-    {
-        for(int i = 0; i < frames.Count; i++)
-        {
-            frames[i].name = "frame #" + frames.IndexOf(frames[i]);
-            frames[i].transform.localPosition = new Vector3(i * framesPadding, 0, 0);
-        }
     }
 
 }

@@ -18,6 +18,10 @@ public static class Data
     public static int RECURING_CHARACTER_VISITS = 0;
     public static string HAIRCUTS_FOLDER_NAME = "/saves";
 
+    //portrait info
+    public static string PORTRAITS_FOLDER_NAME = "/saves/portraits";
+    public static Color PORTRAIT_BG = new Color32(0xF3, 0xEE, 0xE7, 0xff);
+
     //govermentHair
     public static string GOVERMENT_FILE_NAME = "goverment.hair";
 
@@ -25,34 +29,41 @@ public static class Data
     public static string PLAYER_HAIRCUTS_FOLDER_NAME = "/saves/madeByPlayer";
     public static int MAX_FILES_IN_PLAYER_FOLDER = 100;
 
-    public static void SaveTextureAsPNG(Texture2D _texture, string _fullPath)
+    public static void SavePortrait(Texture2D _texture, string fileName = "Image.png")
     {
         //first Make sure you're using RGB24 as your texture format
         Texture2D texture = new Texture2D(_texture.width, _texture.height, TextureFormat.RGB24, false);
 
         //then Save To Disk as PNG
         byte[] bytes = _texture.EncodeToPNG();
-        var dirPath = Application.dataPath + "/../SaveImages/";
+        var dirPath = Data.DataPath() + Data.PORTRAITS_FOLDER_NAME;
         if (!Directory.Exists(dirPath))
         {
             Directory.CreateDirectory(dirPath);
         }
-        File.WriteAllBytes(dirPath + "Image" + ".png", bytes);
+        File.WriteAllBytes(dirPath + "/" + fileName, bytes);
         
     }
 
-    public static Texture2D LoadPNG(string filePath)
+    public static Texture2D LoadPortrait(string fileName = "Image.png")
     {
         Texture2D tex = null;
         byte[] fileData;
 
-        Debug.Log("Application path: " + Application.dataPath);
-        
-            fileData = File.ReadAllBytes(filePath);
-            tex = new Texture2D(2, 2);
+        string path = Data.DataPath() + Data.PORTRAITS_FOLDER_NAME + "/" + fileName;
+        fileData = File.ReadAllBytes(path);
+        tex = new Texture2D(2, 2);
+        try
+        {
             tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
-        
-        return tex;
+            return tex;
+        }
+        catch
+        {
+            Debug.LogErrorFormat("From Nathan: Fail to load save file at {0}", path);
+            return null;
+        }
+
     }
 
     /// <summary>
@@ -120,7 +131,7 @@ public static class Data
         }
     }
 
-    public static string[] GetHairFiles(string directory = "/saves")
+    public static string[] GetFiles(string directory = "/saves")
     {
         if (!Directory.Exists(Data.DataPath() + directory))
         {
