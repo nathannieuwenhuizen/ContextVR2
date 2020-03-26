@@ -2732,21 +2732,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1941399832823555158, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941399832823555158, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941399832958845191, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}
       propertyPath: formChecker
@@ -2772,22 +2757,6 @@ PrefabInstance:
       propertyPath: atm
       value: 
       objectReference: {fileID: 324787224}
-    - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: customerDataQueue.Array.data[0].recurringCharacter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: customerDataQueue.Array.data[1].recurringCharacter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: customerPrefab
-      value: 
-      objectReference: {fileID: 8992148284509144097, guid: b5c345701b445384a819fd36c97bcd88,
-        type: 3}
     - target: {fileID: 1941399833177076825, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2847,16 +2816,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3199853886668442898, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7897302133951405350, guid: dcda4645b73053241882efcb1fb47929,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcda4645b73053241882efcb1fb47929, type: 3}
@@ -9741,7 +9700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &651652130906175712
 Transform:
   m_ObjectHideFlags: 0
@@ -11835,7 +11794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4626522050715393608
 GameObject:
   m_ObjectHideFlags: 0
