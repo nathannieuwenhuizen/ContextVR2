@@ -41,6 +41,7 @@ public class MeshFormChecker : MonoBehaviour
     {
         refCamera = GetComponent<Camera>();
         CameraSize = cameraSize;
+        refCamera.backgroundColor = Data.PORTRAIT_BG;
     }
 
     public float CameraSize
@@ -50,8 +51,8 @@ public class MeshFormChecker : MonoBehaviour
         {
             refCamera.orthographicSize = value / 2f;
             refCamera.nearClipPlane = 0;
-            refCamera.farClipPlane = value;
-            checkPos.localPosition = new Vector3(0, -value / 4f, value / 2f);
+            refCamera.farClipPlane = value * 2;
+            checkPos.localPosition = new Vector3(0, -value / 4f, value);
         }
     }
 
@@ -85,7 +86,8 @@ public class MeshFormChecker : MonoBehaviour
             refTexture = GetScreenShot(tempReferenceHaircut, width);
             govermentTexture = GetScreenShot(tempGovermentHaircut, width);
 
-            portaitShot = GetScreenShot(tempSelectedHaircut, Mathf.RoundToInt(height / 1.5f));
+
+            MakePortraitShot();
 
             //Data.SaveTextureAsPNG(selectedTexture, "");
             testPlane.material.mainTexture = selectedTexture;
@@ -115,6 +117,17 @@ public class MeshFormChecker : MonoBehaviour
 
             calculating = false;
         }
+    }
+
+    public void MakePortraitShot()
+    {
+        float angle = 0;
+        int delta = Mathf.RoundToInt(Random.Range(-2, 2)) * 45;
+        angle = delta;
+        tempSelectedHaircut.transform.Rotate(new Vector3(0, 0, angle));
+        portaitShot = GetScreenShot(tempSelectedHaircut, Mathf.RoundToInt(height / 1.5f));
+        tempSelectedHaircut.transform.Rotate(new Vector3(0, 0, -angle));
+
     }
 
     public GameObject spriteObject(Sprite _sprite)
@@ -152,10 +165,10 @@ public class MeshFormChecker : MonoBehaviour
                 Color col = textureA.GetPixel(x, y);
                 Color col2 = textureB.GetPixel(x, y);
 
-                bool colIsFilled = col != Color.white;
-                bool col2IsFilled = col2 != Color.white;
+                bool colIsFilled = col != Data.PORTRAIT_BG;
+                bool col2IsFilled = col2 != Data.PORTRAIT_BG;
 
-                //if both are white
+                //if both are BG
                 if (!colIsFilled && !col2IsFilled)
                 {
                     continue;

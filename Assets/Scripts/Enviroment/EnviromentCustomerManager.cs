@@ -32,7 +32,7 @@ public class EnviromentCustomerManager : MonoBehaviour
     public void LoadCustomers()
     {
 
-        string[] previousMadeHair = Data.GetHairFiles(Data.PLAYER_HAIRCUTS_FOLDER_NAME);
+        string[] previousMadeHair = Data.GetFiles(Data.PLAYER_HAIRCUTS_FOLDER_NAME);
         for (int i = 0; i < amountOfCitizens; i++)
         {
             int startIndex = Random.Range(0, vectorPositions.Count);
