@@ -78,11 +78,14 @@ public class Grabber : MonoBehaviour {
         grabbedObject.GetComponent<HairObject>().Hover = true;
 
         //update slider
-        HSVColorPanel.instance.SelectedObject = grabbedObject;
-
-            //Throw Physics Shit
-            //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
+        if (grabbedObject.GetComponent<ATM>() == null)
+        {
+            HSVColorPanel.instance.SelectedObject = grabbedObject;
         }
+
+        //Throw Physics Shit
+        //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
+    }
 
     void scaleCheck() {
 
