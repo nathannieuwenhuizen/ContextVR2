@@ -631,21 +631,21 @@ MonoBehaviour:
   m_Root: {fileID: 4314984244466641938}
   m_UpdateRate: 30
   m_UpdateMode: 0
-  m_Damping: 0.1
+  m_Damping: 0.181
   m_DampingDistrib:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Elasticity: 0.1
+  m_Elasticity: 0.071
   m_ElasticityDistrib:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.1
+  m_Stiffness: 0.244
   m_StiffnessDistrib:
     serializedVersion: 2
     m_Curve: []
