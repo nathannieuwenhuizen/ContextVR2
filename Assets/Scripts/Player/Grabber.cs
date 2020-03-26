@@ -176,8 +176,6 @@ public class Grabber : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R)) Release();
         transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * 0.3f);
 
-        Debug.Log(scaleMin);
-
         if (scalingObject != null ) {
             if (scalingObject.GetComponent<HairObject>().Grabbed)
             {
