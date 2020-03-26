@@ -25,6 +25,7 @@ public static class Data
 
     //govermentHair
     public static string GOVERMENT_FILE_NAME = "goverment.hair";
+    public static string PREVIOUS_GOVERMENT_FILE_NAME = "previousGoverment.hair";
 
     //folder for player made haircuts
     public static string PLAYER_HAIRCUTS_FOLDER_NAME = "/saves/madeByPlayer";

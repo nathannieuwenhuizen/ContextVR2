@@ -101,6 +101,9 @@ public class GameManager : MonoBehaviour
             if (Data.RECURING_CHARACTER_VISITS > 0)
             {
                 currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+            } else
+            {
+                currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.PREVIOUS_GOVERMENT_FILE_NAME);
             }
 
             if (nextDialogueData.fileNames.Length > 1) //more than one file?
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
             }
         } else
         {
-            currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
+            currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.PREVIOUS_GOVERMENT_FILE_NAME);
         }
 
         //load json file as a c# object
