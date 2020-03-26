@@ -18,51 +18,51 @@
 			"dialogueID" : 1
 		},
 		{
-			"text" : "I am good.",
+			"text" : "I'm the best.",
 			"dialogueID" : 2
 		}
 		]
 	},
 	{
-		"text" : "I was scared I wasn't special enough, but I shouldn't be affraid about that. People like me anyway.",
+		"text" : "I was scared I wasn't special enough, but I shouldn't be afraid about that. People like me anyway.",
 		"responses" : [
 		{
 			"text" : "You're special any way.",
 			"dialogueID" : 3
 		},
 		{
-			"text" : "There is beauty in everything.",
+			"text" : "There's beauty in everything.",
 			"dialogueID" : 4
 		}
 		]
 	},
 	{
-		"text" : "You sure are. I was scared I wasn't special enough, but I shouldn't be affraid about that. People like me anyway.",
+		"text" : "You sure are. I was scared I wasn't special enough, but I shouldn't be afraid about that. People like me anyway.",
 		"responses" : [
 		{
 			"text" : "You're special any way.",
 			"dialogueID" : 5
 		},
 		{
-			"text" : "There is beauty in everything.",
+			"text" : "There's beauty in everything.",
 			"dialogueID" : 6
 		}
 		]
 	},
 	{
-		"text" : "Thanks! When we form a unitied society, when can make life better for everyone. I think that's special.",
+		"text" : "Thanks! When we as a people form a united society, when can make life better for everyone. I think that's special.",
 		"responses" : []
 	},
 	{
-		"text" : "I agree! When we as a people form a unitied society, when can make life better for everyone. I think that's beautiful.",
+		"text" : "I agree! When we as a people form a united society, when can make life better for everyone. I think that's beautiful.",
 		"responses" : []
 	},
 	{
-		"text" : "Thanks! When we as a people form a unitied society, when can make life better for everyone. I think that's special.",
+		"text" : "Thanks! When we as a people form a united society, when can make life better for everyone. I think that's special.",
 		"responses" : []
 	},
 	{
-		"text" : "I agree! When we as a people form a unitied society, when can make life better for everyone. I think that's beautiful.",
+		"text" : "I agree! When we as a people form a united society, when can make life better for everyone. I think that's beautiful.",
 		"responses" : []
 	}
 	]

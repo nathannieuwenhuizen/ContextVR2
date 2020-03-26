@@ -37,14 +37,14 @@
 		]
 	},
 	{
-		"text" : "I'm split. It was not the right thing to do, we have a collective responsability. Yet someone give me a compliment about my hair!",
+		"text" : "I'm split. It was not the right thing to do, we have a collective responsability. Yet someone gave me a compliment about my hair!",
 		"responses" : [
 		{
 			"text" : "How did that feel?",
 			"dialogueID" : 5
 		},
 		{
-			"text" : "You can occasionally break the rules.",
+			"text" : "You can sometimes break the rules.",
 			"dialogueID" : 6
 		}
 		]
@@ -54,7 +54,7 @@
 		"responses" : []
 	},
 	{
-		"text" : "Thanks! You know what you're doing, you're a proffesional. But I also don't want to get in any kind of trouble.",
+		"text" : "Thanks! You know what you're doing, you're a professional. But I also don't want to get in any kind of trouble.",
 		"responses" : []
 	},
 	{

@@ -27,7 +27,7 @@
 		"text" : "Well, I don't know. You do my hair like all the hairdressers I have been to before. I would like to stand out a little more.",
 		"responses" : [
 		{
-			"text" : "I'm not allowed to vary much.",
+			"text" : "I'm not allowed much variety.",
 			"dialogueID" : 3
 		},
 		{
@@ -54,15 +54,15 @@
 		"responses" : []
 	},
 	{
-		"text" : "Thanks. Although it isn't allowed. But that is a bit nitpicky isn't it? I mean, is it really needed to stop discrimination?",
+		"text" : "Thanks. Although it isn't allowed. But that's a bit nitpicky isn't it? I mean, is it really needed to stop discrimination?",
 		"responses" : []
 	},
 	{
-		"text" : "If you say so. It made this months vote after all. Everyone likes it, so that just can't be my problem.",
+		"text" : "If you say so. this haircut made this months vote after all. Everyone likes it, so I guess it's just my problem.",
 		"responses" : []
 	},
 	{
-		"text" : "Really? I mean, still be careful. I don't want to get in trouble. But I do want to feel a bit more special.",
+		"text" : "Really? I mean, still be careful. I don't want to get in trouble, but I do want to feel a bit more special.",
 		"responses" : []
 	}
 	]
