@@ -14,6 +14,7 @@ public static class Data
 
     //recuring character data
     public static bool RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = true;
+    public static bool RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT = true;
     public static string RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME = "recurringCharacter.hair";
     public static int RECURING_CHARACTER_VISITS = 0;
     public static string HAIRCUTS_FOLDER_NAME = "/saves";
@@ -24,6 +25,7 @@ public static class Data
 
     //govermentHair
     public static string GOVERMENT_FILE_NAME = "goverment.hair";
+    public static string PREVIOUS_GOVERMENT_FILE_NAME = "previousGoverment.hair";
 
     //folder for player made haircuts
     public static string PLAYER_HAIRCUTS_FOLDER_NAME = "/saves/madeByPlayer";
@@ -176,6 +178,6 @@ public static class Data
 [System.Serializable]
 public class DialogueData{
     public bool recurringCharacter = false;
-    [Header("If multiple files, the first one is negative and the last one positive.")]
+    [Header("If multiple files, first file is 'got a government haircut last time' and second file is 'got a different haircut last time'.")]
     public string[] fileNames;
 }

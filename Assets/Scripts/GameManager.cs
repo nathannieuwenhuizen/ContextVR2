@@ -101,19 +101,22 @@ public class GameManager : MonoBehaviour
             if (Data.RECURING_CHARACTER_VISITS > 0)
             {
                 currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
+            } else
+            {
+                currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.PREVIOUS_GOVERMENT_FILE_NAME);
             }
 
             if (nextDialogueData.fileNames.Length > 1) //more than one file?
             {
                 //recurring match is more than 0.8, then load positive.
-                if (Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT == false)
+                if (Data.RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT == false)
                 {
                     jsonData = nextDialogueData.fileNames[1];
                 }
             }
         } else
         {
-            currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.GOVERMENT_FILE_NAME);
+            currentCustomer.LoadHair(Data.HAIRCUTS_FOLDER_NAME, Data.PREVIOUS_GOVERMENT_FILE_NAME);
         }
 
         //load json file as a c# object
@@ -231,6 +234,7 @@ public class GameManager : MonoBehaviour
         //if recurring character
         if (customerDataQueue[customerCount % customerDataQueue.Length].recurringCharacter)
         {
+            Data.RECURRING_CHARACTER_IS_GIVEN_GOVERMENT_HAIR_SINCE_LAST_VISIT = formChecker.govermentPrecentage > governmentHairThreshold;
             //save hair and update data
             currentCustomer.SaveHair(Data.HAIRCUTS_FOLDER_NAME, Data.RECURRING_CHARACTER_HAIRCUT_CURRENT_FILENAME);
             Data.RECURRING_CHARACTER_IS_POSITIVE_SINCE_LAST_VISIT = customerGotWhatTheyWanted;
@@ -241,15 +245,25 @@ public class GameManager : MonoBehaviour
         Settings.AmountOfCustomers = (Settings.AmountOfCustomers + 1) % Data.MAX_FILES_IN_PLAYER_FOLDER;
         currentCustomer.SaveHair(Data.PLAYER_HAIRCUTS_FOLDER_NAME, Settings.AmountOfCustomers + ".hair");
 
-        //reaction of customer on how much the haircut resembles the government haircut
-        currentCustomer.Reaction(customerGotWhatTheyWanted);
         yield return new WaitForSeconds(1f);
+
+        //customer standsup and looks at player
+        currentCustomer.Sit(false);
+        yield return StartCoroutine(currentCustomer.movement.GoTo(greetingPos.position));
+        yield return StartCoroutine(currentCustomer.movement.Orienting(
+            currentCustomer.transform.position + 
+            new Vector3(0, 0, 1) * 5f
+            ));
+        
+        //reaction of customer on how much the haircut resembles the government haircut
+        yield return currentCustomer.Reaction(customerGotWhatTheyWanted);
+        yield return new WaitForSeconds(2f);
 
         //updates the money and gallery
         UpdateStore();
 
-        //customer walks out of store
-        currentCustomer.Sit(false);
+        //customer walks out
+        currentCustomer.canvas.gameObject.SetActive(false);
         yield return StartCoroutine(currentCustomer.movement.GoTo(doorPos.position));
         yield return StartCoroutine(currentCustomer.movement.GoTo(spawnPos.position, true));
 

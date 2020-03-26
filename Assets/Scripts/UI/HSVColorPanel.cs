@@ -45,8 +45,6 @@ public class HSVColorPanel : MonoBehaviour {
         updateSaturation();
         updateValue();
         resetSwatches();
-
-        //StartCoroutine(test());
     }
 
     void resetSwatches() {
@@ -64,16 +62,6 @@ public class HSVColorPanel : MonoBehaviour {
 
             int ii = i; //WHY DOES THIS WORK
             swatchbuttons[i].GetComponent<Button>().onClick.AddListener(delegate { PressSwatch(ii); });
-        }
-    }
-
-    //for testing
-    public IEnumerator test()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            SelectedColor = new Color(Random.value, Random.value, Random.value);
         }
     }
 
