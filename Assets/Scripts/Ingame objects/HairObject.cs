@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class HairObject : MonoBehaviour
 {
     public HairData hairData;
@@ -94,25 +93,33 @@ public class HairObject : MonoBehaviour
 
         }
 
-        switch (GetComponent<MeshFilter>().mesh.name.Substring(0,4))
+        switch (gameObject.name.Substring(0,4))
         {
-            case "Cube":
+            case "cube":
                 hairData.meshType = PrimitiveType.Cube;
                 break;
-            case "Sphe":
+            case "sphe":
                 hairData.meshType = PrimitiveType.Sphere;
                 break;
-            case "Cyli":
+            case "cyli":
                 hairData.meshType = PrimitiveType.Cylinder;
+                break;
+
+            case "book":
+                hairData.propType = PropType.book;
+                break;
+            case "sand":
+                hairData.propType = PropType.sandwitch;
+                break;
+            case "doug":
+                hairData.propType = PropType.doughnut;
+                break;
+            case "ATM_":
+                hairData.propType = PropType.ATM;
                 break;
             default:
                 hairData.meshType = PrimitiveType.Capsule;
                 break;
-        }
-        if (gameObject.name.Contains("prop") || gameObject.name.Contains("atm") || gameObject.name.Contains("book") || gameObject.name.Contains("sandwitch") || gameObject.name.Contains("doughnut") )
-        {
-            Debug.Log(" it is a prop!");
-            hairData.meshType = PrimitiveType.Capsule;
         }
 
         oldPos = transform.position;

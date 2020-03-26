@@ -171,6 +171,44 @@ public static class Data
         return formatter;
     }
 
+    public static void SetHairObjectName(GameObject obj, HairData data)
+    {
+        if (data.propType != PropType.none)
+        {
+            switch (data.propType)
+            {
+                case PropType.book:
+                    obj.name = "book";
+                    break;
+                case PropType.doughnut:
+                    obj.name = "doughnut";
+                    break;
+                case PropType.sandwitch:
+                    obj.name = "sandwitch";
+                    break;
+                case PropType.ATM:
+                    obj.name = "ATM_";
+                    break;
+            }
+        } else
+        {
+            switch (data.meshType)
+            {
+                case PrimitiveType.Cube:
+                    obj.name = "cube";
+                    break;
+                case PrimitiveType.Sphere:
+                    obj.name = "sphere";
+                    break;
+                case PrimitiveType.Cylinder:
+                    obj.name = "cylinder";
+                    break;
+                default:
+                    obj.name = "capsule";
+                    break;
+            }
+        }
+    }
 
 }
 

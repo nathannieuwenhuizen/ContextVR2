@@ -111,10 +111,20 @@ public class Customer : MonoBehaviour
         List<Transform> tempTransforms = new List<Transform>();
         for (int i = 0; i < HeadData.current.hairObjects.Count; i++)
         {
-            HairData data = HeadData.current.hairObjects[i]; 
-            HairObject obj = GameObject.CreatePrimitive(data.meshType).AddComponent<HairObject>();
+            HairData data = HeadData.current.hairObjects[i];
+
+            HairObject obj;
+            if (data.propType != PropType.none)
+            {
+                obj = Instantiate(GetProp(data.propType)).AddComponent<HairObject>();
+                obj.ToggleRigidBody(false);
+            } else
+            {
+                obj = GameObject.CreatePrimitive(data.meshType).AddComponent<HairObject>();
+            }
+
             obj.GetComponent<MeshRenderer>().material.color = data.color;
-            obj.gameObject.name = "hair object #" + i;
+            Data.SetHairObjectName(obj.gameObject, data);
 
             if (data.parentIndex == -1)
             {
@@ -126,12 +136,11 @@ public class Customer : MonoBehaviour
             obj.gameObject.tag = Tags.GRABABLE;
             obj.hairData = data;
 
-            if (data.meshType != PrimitiveType.Capsule)
+            if (data.meshType != PrimitiveType.Capsule || data.propType != PropType.none)
             {
                 obj.transform.localScale = data.scale; 
             } else
             {
-
                 obj.transform.localScale = new Vector3(0.005f,0.005f,0.005f); // to prevent huge objects in scene because of props scaling
             }
             obj.transform.localPosition = data.localposition;
@@ -182,6 +191,29 @@ public class Customer : MonoBehaviour
 
         HeadData.current.hairObjects.Add(obj.hairData);
     }
+    public GameObject GetProp(PropType type)
+    {
+        GameObject result = null;
+        Debug.Log("Load prop: " + type);
+        switch (type)
+        {
+
+            case PropType.book:
+                result = Instantiate( Resources.Load("Props/book", typeof(GameObject))) as GameObject;
+                break;
+            case PropType.doughnut:
+                result = Instantiate( Resources.Load("Props/doughnut", typeof(GameObject))) as GameObject;
+                break;
+            case PropType.sandwitch:
+                result = Instantiate(Resources.Load("Props/sandwitch", typeof(GameObject))) as GameObject;
+                break;
+            case PropType.ATM:
+                result = Instantiate(Resources.Load("Props/ATM", typeof(GameObject))) as GameObject;
+                break;
+        }
+        return result;
+    }
+
 }
 
 [System.Serializable]
