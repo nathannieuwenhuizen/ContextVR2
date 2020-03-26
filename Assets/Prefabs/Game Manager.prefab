@@ -229,18 +229,29 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a846c5d5f40f349a0ec762b7900a8b, type: 3}
   - {fileID: 21300000, guid: 1a09fcc794a7c624bbd2157b4fe6c6b4, type: 3}
   customerDataQueue:
+  - recurringCharacter: 1
+    fileNames:
+    - Herma_1
   - recurringCharacter: 0
     fileNames:
     - Rene
   - recurringCharacter: 0
     fileNames:
     - Noor
+  - recurringCharacter: 1
+    fileNames:
+    - Herma_2_Government
+    - Herma_2_Different
   - recurringCharacter: 0
     fileNames:
     - Armani
   - recurringCharacter: 0
     fileNames:
     - Farrah
+  - recurringCharacter: 1
+    fileNames:
+    - Herma_3_Government
+    - Herma_3_Different
   money: 0
 --- !u!1 &1941399834101772427
 GameObject:

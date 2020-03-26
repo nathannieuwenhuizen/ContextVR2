@@ -177,6 +177,6 @@ public static class Data
 [System.Serializable]
 public class DialogueData{
     public bool recurringCharacter = false;
-    [Header("If multiple files, the first one is negative and the last one positive.")]
+    [Header("If multiple files, first file is 'got a government haircut last time' and second file is 'got a different haircut last time'.")]
     public string[] fileNames;
 }
