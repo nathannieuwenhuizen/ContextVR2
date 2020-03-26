@@ -6,8 +6,8 @@
 	"maxTip" : 30,
 	"basePrice" : 20,
 	"greetingDialogue" : "Hey, do you think you can give me a different haircut?",
-	"positiveReaction" : "Thanks, I hate it.",
-	"negativeReaction" : "Wow, nice. I feel so free like this.",
+	"positiveReaction" : "Wow, nice. I feel so free like this.",
+	"negativeReaction" : "Thanks, I hate it.",
 	"wantsGovernmentHair" : false,
 	"dialogues" :[
 	{
