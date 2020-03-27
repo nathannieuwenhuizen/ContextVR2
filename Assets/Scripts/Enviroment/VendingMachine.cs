@@ -26,7 +26,7 @@ public class VendingMachine : MonoBehaviour
         GameObject newProp = Instantiate(props[index]);
         newProp.transform.position = spawnPoint.position;
         //newProp.name = "Prop from vendingMachine" ;
-        newProp.transform.localScale = new Vector3(2,2,2);
+        //newProp.transform.localScale = new Vector3(2,2,2);
 
         StartCoroutine(resetting());
     }
