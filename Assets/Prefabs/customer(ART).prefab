@@ -987,8 +987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6625419e7037b084fbf9d975501b05b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceTreshold: 0.2
-  stepDistance: 0.6
+  distanceTreshold: 0.1
+  stepDistance: 0.2
   Leggs:
   - {fileID: 3304883026064317695}
   - {fileID: 171531000353400272}
