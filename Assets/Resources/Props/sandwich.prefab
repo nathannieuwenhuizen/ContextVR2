@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 1084376177567920656}
   - component: {fileID: 6735828569870086641}
   - component: {fileID: 5176434379173668813}
-  - component: {fileID: -979341910193931322}
-  - component: {fileID: 3740944176485868961}
   - component: {fileID: 297466897018448141}
   m_Layer: 0
   m_Name: sandwich
@@ -114,50 +112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-979341910193931322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671025058107541196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d360c846ff6b04ea31c200f4703168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hairData:
-    meshType: 1
-    MaterialName: 
-    id: 
-    parentIndex: 0
-    localposition: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
-    scale: {x: 0, y: 0, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 0}
-  idleMaterial: {fileID: 0}
---- !u!114 &3740944176485868961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671025058107541196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d360c846ff6b04ea31c200f4703168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hairData:
-    meshType: 1
-    MaterialName: 
-    id: 
-    parentIndex: 0
-    localposition: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 0}
-    scale: {x: 0, y: 0, z: 0}
-    color: {r: 0, g: 0, b: 0, a: 0}
-  idleMaterial: {fileID: 0}
 --- !u!114 &297466897018448141
 MonoBehaviour:
   m_ObjectHideFlags: 0

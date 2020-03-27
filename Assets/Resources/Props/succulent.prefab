@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8651233191206361502}
   - component: {fileID: 8314308276190166856}
   - component: {fileID: 893496303346399095}
+  - component: {fileID: 8634341049800970493}
+  - component: {fileID: -725981305469350673}
   m_Layer: 0
   m_Name: succulent
   m_TagString: Grabable
@@ -79,3 +81,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8634341049800970493
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098158697167337201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7477375259063604500, guid: d37b625866aa9e34db950e0133e7851b, type: 3}
+--- !u!114 &-725981305469350673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098158697167337201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca03cd17b76d804dad6e39a932bfcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScaleValue: 0.01
+  maxScaleValue: 0.5

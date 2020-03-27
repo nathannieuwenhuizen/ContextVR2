@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1207855976276792086}
   - component: {fileID: 506377383611436299}
   - component: {fileID: 8608564709076669629}
+  - component: {fileID: 5250130093673341727}
   m_Layer: 0
   m_Name: krant
   m_TagString: Grabable
@@ -111,3 +112,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5250130093673341727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648514570265929674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca03cd17b76d804dad6e39a932bfcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScaleValue: 0.01
+  maxScaleValue: 0.5

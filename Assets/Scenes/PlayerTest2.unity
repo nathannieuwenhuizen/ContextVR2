@@ -9370,10 +9370,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1243824032826753263, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Text
+      value: Press the <b>button</b> for a top of the line <i>organically</i> 3d
+        printed object
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243824032826753263, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3006238519898442992, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
         type: 3}
       propertyPath: m_Name
       value: vendingMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648974462584522279, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -173
       objectReference: {fileID: 0}
     - target: {fileID: 9174234912206474528, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
         type: 3}

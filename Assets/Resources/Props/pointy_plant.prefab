@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 123381346578764325}
   - component: {fileID: 469214359348312115}
   - component: {fileID: 875045682926182649}
+  - component: {fileID: 7078241293925559079}
   m_Layer: 0
   m_Name: pointy_plant
   m_TagString: Grabable
@@ -111,3 +112,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2451298561580486542, guid: c903f9e03ca45cc45a00d977c98dcacb, type: 3}
+--- !u!114 &7078241293925559079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840424834818811641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca03cd17b76d804dad6e39a932bfcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScaleValue: 0.01
+  maxScaleValue: 0.5
