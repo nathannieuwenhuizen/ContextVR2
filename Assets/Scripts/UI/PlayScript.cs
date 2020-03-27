@@ -23,6 +23,7 @@ public class PlayScript : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        Data.RECURING_CHARACTER_VISITS = 0;
         Destroy(playerRig);
         SceneManager.LoadScene("Menu2");
     }

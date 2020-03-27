@@ -929,7 +929,7 @@ PrefabInstance:
     - target: {fileID: 3196482903663557451, guid: 53427a5c428971d4a80bc881e7f9fb9c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.62
+      value: -4.76
       objectReference: {fileID: 0}
     - target: {fileID: 3196482903663557451, guid: 53427a5c428971d4a80bc881e7f9fb9c,
         type: 3}
@@ -995,6 +995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: COLORPICKER2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196482903663557463, guid: 53427a5c428971d4a80bc881e7f9fb9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3196482903920212473, guid: 53427a5c428971d4a80bc881e7f9fb9c,
         type: 3}

@@ -10,8 +10,8 @@ public class OptionScript : MonoBehaviour
 
     private void Start()
     {
-        AudioListener.volume = Settings.MusicVolume;
         volumeSlider.value = Settings.MusicVolume;
+        AudioListener.volume = Settings.MusicVolume;
     }
 
     public void UpdateVolume()
