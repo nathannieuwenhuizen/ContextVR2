@@ -46,6 +46,10 @@ public class HairObject : MonoBehaviour
             {
                 Color color = mr.material.color;
                 mr.material = value ? highLightedMaterial : idleMaterial;
+                if (GetComponent<GrabbableScripts>())
+                {
+                    highLightedMaterial.SetFloat("_OutlineThickness", GetComponent<GrabbableScripts>().oultineThickness);
+                }
                 mr.material.color = color;
             }
 
