@@ -42,24 +42,33 @@ public class HairObject : MonoBehaviour
         {
             //Debug.Log("hover: " + value);
             hover = value;
-            if (mr != null)
-            {
-                Color color = mr.material.color;
-                mr.material = value ? highLightedMaterial : idleMaterial;
-                if (GetComponent<GrabbableScripts>())
-                {
-                    highLightedMaterial.SetFloat("_OutlineThickness", GetComponent<GrabbableScripts>().oultineThickness);
-                }
-                mr.material.color = color;
-            }
-
-            for (int i= 0; i < transform.childCount; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
                 if (transform.GetChild(i).GetComponent<HairObject>())
                 {
                     transform.GetChild(i).GetComponent<HairObject>().Hover = value;
                 }
             }
+
+            if (mr != null)
+            {
+                Color color = mr.material.color;
+                mr.material = value ? highLightedMaterial : idleMaterial;
+                if (GetComponent<GrabbableScripts>())
+                {
+                    //highLightedMaterial.SetTexture("_MainTex", idleMaterial.GetTexture("_MainTex"));
+
+                    highLightedMaterial.mainTexture = idleMaterial.mainTexture;
+                    if (value)
+                    {
+                        GetComponent<MeshRenderer>().material.color = idleMaterial.color;
+                        highLightedMaterial.SetFloat("_OutlineThickness", GetComponent<GrabbableScripts>().oultineThickness);
+
+                    }
+                }
+                mr.material.color = color;
+            }
+
         }
     }
     public bool AttachedAtHead
@@ -78,7 +87,10 @@ public class HairObject : MonoBehaviour
             idleMaterial = mr.material;
         }
 
-        highLightedMaterial = Resources.Load("Outline", typeof(Material)) as Material;
+        highLightedMaterial = new Material(Shader.Find("Tutorial/020_InvertedHull/Surface"));
+        highLightedMaterial.mainTexture = idleMaterial.mainTexture;
+        highLightedMaterial.SetColor("_OutlineColor", Data.OUTLINE_COLOR);
+
         if (GetComponent<ATM>())
         {
             highLightedMaterial = Resources.Load("ATM hover", typeof(Material)) as Material;
