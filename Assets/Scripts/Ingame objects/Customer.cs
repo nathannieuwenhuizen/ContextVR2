@@ -114,9 +114,9 @@ public class Customer : MonoBehaviour
             HairData data = HeadData.current.hairObjects[i];
 
             HairObject obj;
-            if (data.propType != PropType.none)
+            if (data.MaterialName != "" && data.MaterialName != null)
             {
-                obj = Instantiate(GetProp(data.propType)).AddComponent<HairObject>();
+                obj = Instantiate(GetProp(data.MaterialName)).AddComponent<HairObject>();
                 obj.ToggleRigidBody(false);
             } else
             {
@@ -124,7 +124,6 @@ public class Customer : MonoBehaviour
             }
 
             obj.GetComponent<MeshRenderer>().material.color = data.color;
-            Data.SetHairObjectName(obj.gameObject, data);
 
             if (data.parentIndex == -1)
             {
@@ -136,13 +135,7 @@ public class Customer : MonoBehaviour
             obj.gameObject.tag = Tags.GRABABLE;
             obj.hairData = data;
 
-            if (data.meshType != PrimitiveType.Capsule || data.propType != PropType.none)
-            {
-                obj.transform.localScale = data.scale; 
-            } else
-            {
-                obj.transform.localScale = new Vector3(0.005f,0.005f,0.005f); // to prevent huge objects in scene because of props scaling
-            }
+            obj.transform.localScale = data.scale; 
             obj.transform.localPosition = data.localposition;
             obj.transform.localRotation = data.rotation;
 
@@ -191,26 +184,21 @@ public class Customer : MonoBehaviour
 
         HeadData.current.hairObjects.Add(obj.hairData);
     }
-    public GameObject GetProp(PropType type)
+    public GameObject GetProp(string materialName)
     {
-        GameObject result = null;
-        Debug.Log("Load prop: " + type);
-        switch (type)
+        if (materialName == "" || materialName == null)
         {
 
-            case PropType.book:
-                result = Instantiate( Resources.Load("Props/book", typeof(GameObject))) as GameObject;
-                break;
-            case PropType.doughnut:
-                result = Instantiate( Resources.Load("Props/doughnut", typeof(GameObject))) as GameObject;
-                break;
-            case PropType.sandwitch:
-                result = Instantiate(Resources.Load("Props/sandwitch", typeof(GameObject))) as GameObject;
-                break;
-            case PropType.ATM:
-                result = Instantiate(Resources.Load("Props/ATM", typeof(GameObject))) as GameObject;
-                break;
+            return null; 
         }
+        GameObject result = null;
+        if (Resources.Load("Props/" + materialName, typeof(GameObject)) == null)
+        {
+            return null;
+        }
+        Debug.Log("Load prop: " + materialName);
+
+        result = Resources.Load("Props/" + materialName, typeof(GameObject)) as GameObject;
         return result;
     }
 

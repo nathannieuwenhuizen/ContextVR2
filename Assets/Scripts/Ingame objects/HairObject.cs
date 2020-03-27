@@ -92,33 +92,18 @@ public class HairObject : MonoBehaviour
             }
 
         }
+        hairData.MaterialName = Data.PropMaterial( idleMaterial.name);
 
-        switch (gameObject.name.Substring(0,4))
+        switch (GetComponent<MeshFilter>().mesh.name.Substring(0,4))
         {
-            case "cube":
+            case "Cube":
                 hairData.meshType = PrimitiveType.Cube;
                 break;
-            case "sphe":
+            case "Sphe":
                 hairData.meshType = PrimitiveType.Sphere;
                 break;
-            case "cyli":
+            case "Cyli":
                 hairData.meshType = PrimitiveType.Cylinder;
-                break;
-
-            case "book":
-                hairData.propType = PropType.book;
-                break;
-            case "sand":
-                hairData.propType = PropType.sandwitch;
-                break;
-            case "doug":
-                hairData.propType = PropType.doughnut;
-                break;
-            case "ATM_":
-                hairData.propType = PropType.ATM;
-                break;
-            default:
-                hairData.meshType = PrimitiveType.Capsule;
                 break;
         }
 

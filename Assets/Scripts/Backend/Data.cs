@@ -171,43 +171,20 @@ public static class Data
         return formatter;
     }
 
-    public static void SetHairObjectName(GameObject obj, HairData data)
+    public static string PropMaterial(string mat)
     {
-        if (data.propType != PropType.none)
+        Debug.Log("material: " + mat);
+        string[] names = new string[] { "book", "pointy_plant", "doughnut", "sandwich", "ATM", "krant", "cactus", "succulent" };
+        for(int i = 0; i < names.Length; i++)
         {
-            switch (data.propType)
+            if (mat.Contains(names[i]))
             {
-                case PropType.book:
-                    obj.name = "book";
-                    break;
-                case PropType.doughnut:
-                    obj.name = "doughnut";
-                    break;
-                case PropType.sandwitch:
-                    obj.name = "sandwitch";
-                    break;
-                case PropType.ATM:
-                    obj.name = "ATM_";
-                    break;
-            }
-        } else
-        {
-            switch (data.meshType)
-            {
-                case PrimitiveType.Cube:
-                    obj.name = "cube";
-                    break;
-                case PrimitiveType.Sphere:
-                    obj.name = "sphere";
-                    break;
-                case PrimitiveType.Cylinder:
-                    obj.name = "cylinder";
-                    break;
-                default:
-                    obj.name = "capsule";
-                    break;
+                return names[i];
             }
         }
+
+        return "";
+
     }
 
 }
