@@ -61,6 +61,9 @@ MonoBehaviour:
   - {fileID: 1424679235487293379, guid: 37115bccddbaa114ea0c4e0df14ac609, type: 3}
   - {fileID: 5047957189374348241, guid: 1a428acc5ba332549a21315af9bb6e4b, type: 3}
   - {fileID: 1671025058107541196, guid: 4dbf2ac43033293489a42cdbc8a1857b, type: 3}
+  - {fileID: 142688459044165950, guid: 78da4cc9f1d0a4a4b96dee1abf57b8cc, type: 3}
+  - {fileID: 1840424834818811641, guid: cdaa5c8a3cbedc6489584ad231d7c5ee, type: 3}
+  - {fileID: 3098158697167337201, guid: 079fd6e9c76942043a538b893eb7852a, type: 3}
   spawnPoint: {fileID: 4371222410290956346}
   price: 5
 --- !u!1 &3006238519898442992
