@@ -14,10 +14,11 @@ public class Grabber : MonoBehaviour {
     private GameObject scalingObject;
     private float scaleMultip;
     private float startDistance;
+    private GrabbableScripts grabbedGS;
 
     private GameObject hoverObject;
 
-    [SerializeField] private float scaleMin = 0.01f;
+    [SerializeField] private float scaleMin = 0.1f;
     [SerializeField] private float scaleMax = .5f;
 
     private float oldSclale = 0;
@@ -69,13 +70,28 @@ public class Grabber : MonoBehaviour {
             grabbedObject.AddComponent<HairObject>();
         }
 
-        //lock rigidbody but still exist for collission detection with head and hair
-        grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, true);
-        //grabbedObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
-        //grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 
+        grabbedObject.GetComponent<HairObject>().ToggleRigidBody(true, true);
         grabbedObject.GetComponent<HairObject>().Grabbed = true;
         grabbedObject.GetComponent<HairObject>().Hover = true;
+
+        grabbedGS = grabbedObject.GetComponent<GrabbableScripts>();
+
+        if (grabbedGS != null)
+        {
+            otherHand.scaleMin = grabbedGS.minScaleValue;
+            otherHand.scaleMax = grabbedGS.maxScaleValue;
+
+            scaleMin = grabbedGS.minScaleValue;
+            scaleMax = grabbedGS.maxScaleValue;
+        }
+        else
+        {
+            otherHand.scaleMin = 0.1f;
+            otherHand.scaleMax = 0.5f;
+            scaleMin = 0.1f;
+            scaleMax = 0.5f;
+        }
 
         //update slider
         if (grabbedObject.GetComponent<ATM>() == null)
@@ -83,8 +99,6 @@ public class Grabber : MonoBehaviour {
             HSVColorPanel.instance.SelectedObject = grabbedObject;
         }
 
-        //Throw Physics Shit
-        //grabbedObjectCentreOfMass = grabbedObject.GetComponent<Rigidbody>().centerOfMass;
     }
 
     void scaleCheck() {
@@ -142,6 +156,7 @@ public class Grabber : MonoBehaviour {
             }
             
         }
+        grabbedGS = null;
     }
 
     public GameObject SphereCastedObject(string _tag, Transform _transform) {
