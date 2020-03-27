@@ -1603,6 +1603,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1941399832958845195, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}
       propertyPath: formChecker
@@ -1692,6 +1697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GovMes Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433387496729247961, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7897302133951405350, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}

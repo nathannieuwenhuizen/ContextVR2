@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minScaleValue: 0.07
   maxScaleValue: 0.7
+  oultineThickness: 0.03
