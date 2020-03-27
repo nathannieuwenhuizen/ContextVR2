@@ -17,10 +17,6 @@ public class ResultTerminal : MonoBehaviour
     private Image govermentMatch;
     [SerializeField]
     private Text govermentMatchText;
-    [SerializeField]
-    private Image desiredMatch;
-    [SerializeField]
-    private Text desiredMatchText;
 
     [SerializeField]
     private Text basePrice;
@@ -67,16 +63,16 @@ public class ResultTerminal : MonoBehaviour
         });
 
         //desired slider
-        desiredTween = LeanTween.value(gameObject, 0, _desiredPrecentage, sliderTime).setOnUpdate((float val) =>
-        {
-            UpdateSlider(desiredMatch, desiredMatchText, val);
-        });
-        desiredTween.setOnComplete(() =>
-        {
-            customerTip.text = "$" + _tip;
-        });
-        desiredTween.setEase(barTransitionType);
-        desiredTween.delay = sliderTime;
+        //desiredTween = LeanTween.value(gameObject, 0, _desiredPrecentage, sliderTime).setOnUpdate((float val) =>
+        //{
+        //    UpdateSlider(desiredMatch, desiredMatchText, val);
+        //});
+        //desiredTween.setOnComplete(() =>
+        //{
+        //    customerTip.text = "$" + _tip;
+        //});
+        //desiredTween.setEase(barTransitionType);
+        //desiredTween.delay = sliderTime;
         //desired slider
 
 
@@ -102,7 +98,7 @@ public class ResultTerminal : MonoBehaviour
         basePrice.text = "$0";
         customerTip.text = "$0";
         UpdateSlider(govermentMatch, govermentMatchText, 0);
-        UpdateSlider(desiredMatch, desiredMatchText, 0);
+        //UpdateSlider(desiredMatch, desiredMatchText, 0);
     }
 
     private void UpdateSlider (Image slider, Text precentageText, float val)
