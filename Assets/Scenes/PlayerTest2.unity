@@ -1786,6 +1786,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GovMes Popup
       objectReference: {fileID: 0}
+    - target: {fileID: 7897302133951405350, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.131
+      objectReference: {fileID: 0}
     - target: {fileID: 8203493652026911803, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}
       propertyPath: playerRig
