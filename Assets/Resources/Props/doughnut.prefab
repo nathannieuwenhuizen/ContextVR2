@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6787246096341778189}
   - component: {fileID: 1948970960729858792}
   - component: {fileID: 4853898773594778881}
+  - component: {fileID: 1333852528714344413}
   m_Layer: 0
   m_Name: doughnut
   m_TagString: Grabable
@@ -111,3 +112,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5345760584941703707, guid: 63826a49cde5ae14798f21a29820ec4f, type: 3}
+--- !u!114 &1333852528714344413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047957189374348241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca03cd17b76d804dad6e39a932bfcc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScaleValue: 0.1
+  maxScaleValue: 3

@@ -82,7 +82,6 @@ public class HairObject : MonoBehaviour
     }
     private void Start()
     {
-
         if (hairData == null)
         {
             hairData = new HairData();

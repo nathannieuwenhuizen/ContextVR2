@@ -183,9 +183,9 @@ public class Grabber : MonoBehaviour {
                 scale = Mathf.Clamp(scale, scaleMin, scaleMax);
                 scalingObject.transform.localScale = new Vector3(scale, scale, scale);
 
+                //play scale sound
                 if (Math.Abs(oldSclale - scale) > 0.05f )
                 {
-                    //play release without head sound
                     float pitchValue = (scaleMax - scaleMin) / (scale - scaleMin);
                     AudioManager.instance?.Play3DSound(AudioEffect.scaleChange, 1, scalingObject.transform.position, false, .2f + pitchValue * 1.3f);
                     oldSclale = scale;
