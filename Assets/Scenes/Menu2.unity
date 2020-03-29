@@ -503,11 +503,69 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 509215768646774827, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.81149673
+      objectReference: {fileID: 0}
+    - target: {fileID: 509215768646774827, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.09425142
+      objectReference: {fileID: 0}
+    - target: {fileID: 509215768646774827, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.00000021857802
+      objectReference: {fileID: 0}
+    - target: {fileID: 509215768646774827, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -5.3680713e-20
+      objectReference: {fileID: 0}
+    - target: {fileID: 691397157232008427, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3006238519898442992, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
         type: 3}
       propertyPath: m_Name
       value: vendingMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 3058622296866572853, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.71244687
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058622296866572853, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.14377642
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058622296866572853, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281911790129542305, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: props.Array.data[5]
+      value: 
+      objectReference: {fileID: 3098158697167337201, guid: ec52dfc3980f27c4182c7d2443761983,
+        type: 3}
+    - target: {fileID: 5281911790129542305, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: props.Array.data[4]
+      value: 
+      objectReference: {fileID: 1840424834818811641, guid: 3a15cf5e34e038740bd6a1fc2044e74a,
+        type: 3}
+    - target: {fileID: 5281911790129542305, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
+        type: 3}
+      propertyPath: props.Array.data[3]
+      value: 
+      objectReference: {fileID: 142688459044165950, guid: 855208f21aff38545a5c8ab1488369fa,
+        type: 3}
     - target: {fileID: 9174234912206474528, guid: 357b6fc89d1b8b1488ad1d5104a1dd59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3173,7 +3231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   shiftSpeed: 16
-  showInstructions: 1
+  showInstructions: 0
 --- !u!114 &925828413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3797,7 +3855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931354561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: 0, z: -9.52}
+  m_LocalPosition: {x: -1.12, y: 0, z: -7.53}
   m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
   m_Children:
   - {fileID: 931493917}

@@ -103,7 +103,16 @@ public class ResultTerminal : MonoBehaviour
 
     private void UpdateSlider (Image slider, Text precentageText, float val)
     {
-        slider.fillAmount = val;
-        precentageText.text = Mathf.Round(val * 100) + "%";
+        float _NewVal = 0;
+        if (val < 0.7f)
+        {
+            _NewVal = Random.Range(0.0f, 0.2f);
+        }
+        else
+        {
+            _NewVal = val;
+        }
+        slider.fillAmount = _NewVal;
+        precentageText.text = Mathf.Round(_NewVal * 100) + "%";
     }
 }

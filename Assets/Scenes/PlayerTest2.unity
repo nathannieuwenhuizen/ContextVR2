@@ -1633,6 +1633,16 @@ PrefabInstance:
       propertyPath: atm
       value: 
       objectReference: {fileID: 324787224}
+    - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: governmentHairThreshold
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941399833177076824, guid: dcda4645b73053241882efcb1fb47929,
+        type: 3}
+      propertyPath: customerDataQueue.Array.data[1].recurringCharacter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941399833177076825, guid: dcda4645b73053241882efcb1fb47929,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2614,7 +2624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   shiftSpeed: 16
-  showInstructions: 1
+  showInstructions: 0
 --- !u!114 &925828413
 MonoBehaviour:
   m_ObjectHideFlags: 0
